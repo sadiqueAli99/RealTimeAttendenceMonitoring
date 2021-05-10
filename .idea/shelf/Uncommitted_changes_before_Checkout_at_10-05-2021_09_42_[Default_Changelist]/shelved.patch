@@ -1,0 +1,19 @@
+Index: Templates/ITAdmin/AddCamera.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title></title>\r\n</head>\r\n<body>\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Templates/ITAdmin/AddCamera.html b/Templates/ITAdmin/AddCamera.html
+--- a/Templates/ITAdmin/AddCamera.html	
++++ b/Templates/ITAdmin/AddCamera.html	
+@@ -2,7 +2,7 @@
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+-    <title></title>
++    <title>hello</title>
+ </head>
+ <body>
+ 
