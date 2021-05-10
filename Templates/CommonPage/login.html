@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+
+  body {
+	font-family: sans-serif;
+}
+
+.container {
+	width: 380px;
+	margin:7% auto;
+	border-radius: 25px;
+	background-color: rgba(0,0,0,0.1);
+	box-shadow: 0 0 17px #333;
+	margin-top:48px;
+}
+
+.header {
+	text-align: center;
+	padding-top: 40px;
+}
+
+.header h1 {
+	color: #333;
+	font-size: 45px;
+	margin-bottom: 80px;
+}
+
+.main {
+	text-align: center;
+}
+
+.main input, .login {
+	width: 300px;
+	height: 40px;
+	border:none;
+	outline: none;
+	padding-left: 40px;
+	box-sizing: border-box;
+	font-size: 15px;
+	color: black;
+	margin-bottom: 40px;
+}
+
+.main .login {
+	padding-left: 0;
+	background-color: #83acf1;
+	letter-spacing: 1px;
+	font-weight: bold;
+	margin-bottom: 70px;
+}
+
+.main .login:hover {
+	box-shadow: 2px 2px 5px #555;
+	background-color: #7799d4;
+}
+.main input:hover {
+	box-shadow: 2px 2px 5px #555;
+	background-color: #ddd;
+}
+
+.main span {
+	position: relative;
+}
+
+.main i {
+	position: absolute;
+	left: 15px;
+	color: #333;
+	font-size: 16px;
+	top: 2px;
+
+}
+.error_msg{
+padding: 15px;
+text-align:center;
+background-color:#ccffcc;
+margin:10px;
+}
+
+</style>
+<body>
+ <div class="container">
+ 	<div class="header">
+ 		<h1>login</h1>
+ 	</div>
+	 {%with messages = get_flashed_messages()%}
+	 {%if messages%}
+	 {% for message in messages %}
+	 <div class="alert alert-success alert-dismissable text-center error_msg" role="alert">
+		  {{message}}
+		 <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+			 <span aria-hidden="true">&times;</span>
+		 </button>
+	 </div>
+	 {%endfor%}
+	 {%endif%}
+	 {%endwith%}
+ 	<div class="main">
+ 		<form action="{{url_for('login')}}" method="POST">
+ 			<span>
+ 				<i class="fa fa-user" aria-hidden="true"></i>
+				<input type="text" placeholder="User Email" name="Email">
+ 			</span><br>
+ 			<span>
+ 				<i class="fa fa-lock" aria-hidden="true"></i>
+ 				<input type="password" placeholder="password" name="Password">
+ 			</span><br>
+
+ 				<button class="login">login</button>
+
+ 		</form>
+ 	</div>
+ </div>
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+
+</body>
+</html>
