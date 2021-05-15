@@ -19,7 +19,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url_for('home')}}" class="nav-link">Home</a>
+        <a href="{{url_for('home1')}}" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -68,7 +68,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{url_for('home')}}" class="nav-link active">
+            <a href="{{url_for('home1')}}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -134,8 +134,8 @@
             <th>Email</th>
             <th>Mobile</th>
             <th>Address</th>
-            <th>LoginName</th>
-            <th>Password</th>
+<!--            <th>LoginName</th>-->
+<!--            <th>Password</th>-->
             <th>Action</th>
           </tr>
           {% for row in usermaster %}
@@ -149,8 +149,8 @@
             <td>{{row.6}}</td>
             <td>{{row.7}}</td>
             <td>{{row.8}}</td>
-            <td>{{row.9}}</td>
-            <td>{{row.10}}</td>
+<!--            <td>{{row.10}}</td>-->
+<!--            <td>{{row.11}}</td>-->
 
             <td>
               <a href="/update/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
@@ -201,13 +201,17 @@
                       <input type="text" class="form-control" name="Address" value="{{row.8}}">
                     </div>
                     <div class="form-group">
-                      <label>LoginName:</label>
-                      <input type="email" class="form-control" name="LoginName" value="{{row.9}}">
+                      <label>UserRole:</label>
+                      <input type="number" class="form-control" name="UserRole" value="{{row.9}}">
                     </div>
-                    <div class="form-group">
-                      <label>Password:</label>
-                      <input type="text" class="form-control" name="Password" value="{{row.10}}">
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                      <label>LoginName:</label>-->
+<!--                      <input type="email" class="form-control" name="LoginName" value="{{row.10}}">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Password:</label>-->
+<!--                      <input type="password" class="form-control" name="Password" value="{{row.11}}">-->
+<!--                    </div>-->
                     <div class="form-group">
                       <button class="btn btn-primary" type="submit">Update</button>
                     </div>
@@ -278,12 +282,22 @@
               <input type="text" class="form-control" name="Address" required="1">
             </div>
             <div class="form-group">
+              <label>UserRole:</label>
+             <!-- <input type="number" class="form-control" name="UserRole" required="1">-->
+              <select type="number" class="form-control" name="UserRole" required="1">
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+                <option >4</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label>LoginName:</label>
               <input type="email" class="form-control" name="LoginName" required="1">
             </div>
             <div class="form-group">
               <label>Password:</label>
-              <input type="text" class="form-control" name="Password" required="1">
+              <input type="password" class="form-control" name="Password" required="1">
             </div>
             <div class="form-group">
               <button class="btn btn-primary" type="submit">Insert Data</button>

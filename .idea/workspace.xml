@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="addcamera" />
+    <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="addcamera">
+      <change afterPath="$PROJECT_DIR$/Templates/Employee/acceptedleave.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Templates/Employee/rejectedleave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10-05-2021_09_42__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10-05-2021_09_42__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Admin/adminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/adminhome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Admin/holiday.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/holiday.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Employee/emphome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/emphome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Employee/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/leave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +46,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="master" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -22,6 +56,18 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="master" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="sadiqueAli99" />
+    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="RealTimeAttendenceMonitoring" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/sadiqueAli99/RealTimeAttendenceMonitoring" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1rmieNKTYBlOq0xYQ0VPSsaCYAr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -35,8 +81,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/RAM" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -50,7 +96,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Source/ITAdmin" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -71,7 +117,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\sadiq\Desktop\flaskproj\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -86,6 +132,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.aa" />
+      <item itemvalue="Python.main" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -162,5 +212,43 @@
     <MESSAGE value="first push" />
     <MESSAGE value="addcamera" />
     <option name="LAST_COMMIT_MESSAGE" value="addcamera" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620650623223">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1620650623223" />
+    <state x="550" y="126" key="EnvironmentVariablesDialog" timestamp="1620650552671">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="550" y="126" key="EnvironmentVariablesDialog/0.0.1366.728@0.0.1366.728" timestamp="1620650552671" />
+    <state x="463" y="126" key="FileChooserDialogImpl" timestamp="1620650578086">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="126" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1620650578086" />
+    <state x="407" y="231" key="Github.CreatePullRequestDialog" timestamp="1620649432682">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="407" y="231" key="Github.CreatePullRequestDialog/0.0.1366.728@0.0.1366.728" timestamp="1620649432682" />
+    <state width="743" height="2" key="GridCell.Tab.0.bottom" timestamp="1621075967775">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="743" height="2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621075967775" />
+    <state width="743" height="2" key="GridCell.Tab.0.center" timestamp="1621075967775">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="743" height="2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621075967775" />
+    <state width="743" height="2" key="GridCell.Tab.0.left" timestamp="1621075967775">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="743" height="2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621075967775" />
+    <state width="743" height="2" key="GridCell.Tab.0.right" timestamp="1621075967775">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="743" height="2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621075967775" />
+    <state x="184" y="9" key="SettingsEditor" timestamp="1620816976624">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1620816976624" />
   </component>
 </project>
