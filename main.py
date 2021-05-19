@@ -5,7 +5,6 @@ import bcrypt
 
 app = Flask(__name__, template_folder="Templates")
 app.secret_key = "many random bytes"
-useremail=''
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
@@ -18,7 +17,6 @@ mysql = MySQL(app)
 def login():
     if request.method == 'POST':
         Email = request.form['Email']
-        useremail=Email
         Password = request.form['Password'].encode('utf-8')
         cur = mysql.connection.cursor()
         cur.execute("select * from usermaster where Status=1 and Email=%s", (Email,))
@@ -242,7 +240,7 @@ def mydetails():
 @app.route('/leave')
 def leave():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves")
+    cur.execute("SELECT * FROM leaves ")
     data = cur.fetchall()
     cur.close()
     return render_template('/Employee/leave.html', leaves=data)
