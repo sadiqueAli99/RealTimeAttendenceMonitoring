@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Home page</title>
+</head>
+{% include "/include/header.html" %}
+
+{% block body %}
+
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{url_for('home1')}}" class="nav-link">Home</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  data-toggle="dropdown"> </a>
+          Logged as Manager
+          <div class="dropdown-menu dropdown-menu-right" style="top: 13px;">
+            <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
+          </div>
+        </li>
+    </ul>
+  </nav>
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link">
+      <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
+      <span class="brand-text font-weight-light">Manager Home Page</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Hello... Manager </a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="{{url_for('home1')}}" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('employeedetails')}}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Employee List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('monthlyattendance')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Attendance</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('yearlyattendance')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Yearly Attendance</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('pendingleave')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pending Leave Request</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+</div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="well text-center">
+      <h2>WELCOME TO ATTENDANCE DETAILS FORM</h2>
+    </div>
+    <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col md-12">
+          <h2>Monthly Attendance</h2>
+
+
+          {%with messages = get_flashed_messages()%}
+
+          {%if messages%}
+
+          {% for message in messages %}
+
+          <div class="alert alert-success alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{message}}
+          </div>
+          {%endfor%}
+          {%endif%}
+          {%endwith%}
+          <table class="table table-striped">
+            <tr>
+              <th>RecordID</th>
+              <th>EmployeeID</th>
+              <th>Month</th>
+              <th>Year</th>
+              <th>Day1</th>
+              <th>Day2</th>
+              <th>Day3</th>
+              <th>Day4</th>
+              <th>Day5</th>
+              <th>Day6</th>
+              <th>Day7</th>
+              <th>Day8</th>
+              <th>Day9</th>
+              <th>Day10</th>
+              <th>Day11</th>
+              <th>Day12</th>
+              <th>Day13</th>
+              <th>Day14</th>
+              <th>Day15</th>
+              <th>Day16</th>
+              <th>Day17</th>
+              <th>Day18</th>
+              <th>Day19</th>
+              <th>Day20</th>
+              <th>Day21</th>
+              <th>Day22</th>
+              <th>Day23</th>
+              <th>Day24</th>
+              <th>Day25</th>
+              <th>Day26</th>
+              <th>Day27</th>
+              <th>Day28</th>
+              <th>Day29</th>
+              <th>Day30</th>
+              <th>Day31</th>
+
+            </tr>
+            {% for row in monthlyattendancedashboard %}
+            <tr>
+              <td>{{row.0}}</td>
+              <td>{{row.1}}</td>
+              <td>{{row.2}}</td>
+              <td>{{row.3}}</td>
+              <td>{{row.4}}</td>
+              <td>{{row.5}}</td>
+              <td>{{row.6}}</td>
+              <td>{{row.7}}</td>
+              <td>{{row.8}}</td>
+              <td>{{row.9}}</td>
+              <td>{{row.10}}</td>
+              <td>{{row.11}}</td>
+              <td>{{row.12}}</td>
+              <td>{{row.13}}</td>
+              <td>{{row.14}}</td>
+              <td>{{row.15}}</td>
+              <td>{{row.16}}</td>
+              <td>{{row.17}}</td>
+              <td>{{row.18}}</td>
+              <td>{{row.19}}</td>
+              <td>{{row.20}}</td>
+              <td>{{row.21}}</td>
+              <td>{{row.22}}</td>
+              <td>{{row.23}}</td>
+              <td>{{row.24}}</td>
+              <td>{{row.25}}</td>
+              <td>{{row.26}}</td>
+              <td>{{row.27}}</td>
+              <td>{{row.28}}</td>
+              <td>{{row.29}}</td>
+              <td>{{row.30}}</td>
+              <td>{{row.31}}</td>
+              <td>{{row.32}}</td>
+              <td>{{row.33}}</td>
+              <td>{{row.34}}</td>
+
+            </tr>
+            {% endfor  %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The button Element</h1>
+
+<button type="button" onclick="alert('http://127.0.0.1:5000/monthlyattendencedetail')">Click Me!</button>
+
+</body>
+</html>
+
+
+
+
+
+
+
+            <!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Bar Chart</title>
+    <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
+  </head>
+  <body>
+    <div id="container" style="width: 100%; height: 100%"></div>
+    <script>
+      anychart.onDocumentReady(function() {
+
+        // set the data
+        var data = {
+            header: ["Monthname", "Days"],
+            rows: [
+              ["Jan", 25],
+              ["Feb", 15],
+              ["Mar", 20],
+              ["Apr", 23],
+              ["May", 23],
+              ["Jun", 12],
+              ["Jul", 14],
+              ["Aug", 10],
+              ["Sep", 21],
+              ["Oct", 16],
+              ["Nov", 17],
+             ["Dec",  12],
+        ]};
+
+        // create the chart
+           chart = anychart.column();
+
+        // add the data
+        chart.data(data);
+
+        // set the chart title
+        chart.title("Month attendance of Employee");
+
+        // draw
+        chart.container("container");
+        chart.draw();
+      });
+    </script>
+  </body>
+</html>
+
+
+
+{% endblock %}
+
+{% include "/include/footer.html" %}
+<body>
+<html>

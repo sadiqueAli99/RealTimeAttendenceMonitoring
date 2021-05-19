@@ -1,41 +1,50 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 from flask_mysqldb import MySQL
+import bcrypt
 
 app = Flask(__name__, template_folder="Templates")
-app.secret_key = 'many random bytes'
-
+app.secret_key = "many random bytes"
+useremail=''
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'ram'
+#app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
-
 
 # LOGIN
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        details = request.form
-        Email = details['Email']
-        Password = details['Password']
+        Email = request.form['Email']
+        useremail=Email
+        Password = request.form['Password'].encode('utf-8')
         cur = mysql.connection.cursor()
-        cur.execute("select * from usermaster where Status=1 and Email= '" + Email + "' and Password='" + Password + "'")
-        data = cur.fetchall()
+        cur.execute("select * from usermaster where Status=1 and Email=%s", (Email,))
+        data = cur.fetchone()
         count = cur.rowcount
-        if (count > 0):
-            for r in data:
-                if (r[10] == 1):
+        if (count) > 0:
+            if bcrypt.hashpw(Password, data[12].encode('utf-8')) == data[12].encode('utf-8'):
+                session['Email'] = request.form['Email']
+                #for r in data:
+                if data[10] == 1:
+                   # cur.execute("select * from usermaster where userrole=1 and Status=1 and ")
                     cur.close()
                     return render_template('/ITAdmin/itadminhome.html')
-                elif (r[10] == 2):
+                elif data[10] == 2:
                     cur.close()
                     return render_template('/Admin/adminhome.html')
-                elif (r[10] == 3):
+                elif data[10] == 3:
                     cur.close()
                     return render_template('/Manager/mgrhome.html')
                 else:
                     cur.close()
                     return render_template('/Employee/emphome.html')
+            else:
+                flash('Invalid Email or Password!!')
+                return render_template('/CommonPage/login.html')
+
         else:
             cur.close()
             flash("login failed")
@@ -45,6 +54,7 @@ def login():
 
 @app.route('/logout')
 def logout():
+    session.clear()
     return render_template('/CommonPage/login.html')
 
     # ADMIN HOME PAGE - CRUD OPERATIONS
@@ -77,9 +87,10 @@ def insert():
         Mobile = details['Mobile']
         Address = details['Address']
         LoginName = details['LoginName']
-        Password = details['Password']
+        Password = details['Password'].encode('utf-8')
+        hash_Password=bcrypt.hashpw(Password,bcrypt.gensalt())
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO usermaster (Name,Designation,Department,ManagerId,City,Email,Mobile,Address,LoginName,Password,Status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (Name, Designation, Department, ManagerId, City, Email, Mobile, Address, LoginName, Password,1))
+        cur.execute("INSERT INTO usermaster (Name,Designation,Department,ManagerId,City,Email,Mobile,Address,LoginName,Password,Status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (Name, Designation, Department, ManagerId, City, Email, Mobile, Address, LoginName, hash_Password,1))
         mysql.connection.commit()
         return redirect(url_for('Index'))
 
@@ -88,7 +99,7 @@ def insert():
 def delete(EmployeeId):
     flash("Record Has Been Deleted Successfully")
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE usermaster SET status = 0 WHERE EmployeeId=%s", (EmployeeId))
+    cur.execute("UPDATE usermaster SET status = 0 WHERE EmployeeId=%s", [EmployeeId])
     mysql.connection.commit()
     return redirect(url_for('Index'))
 
@@ -166,7 +177,7 @@ def holidaydelete(HolidayId):
 @app.route('/employeedetails')
 def employeedetails():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT  * FROM usermaster where Status=1 and userrole=4 ")
+    cur.execute("SELECT  * FROM usermaster where Status=1  ")
     data = cur.fetchall()
     cur.close()
     return render_template('/Manager/mgrhome.html', usermaster=data)
@@ -196,6 +207,21 @@ def reject(leaveId):
     mysql.connection.commit()
     return redirect(url_for('pendingleave'))
 
+@app.route('/monthlyattendance')
+def monthlyattendance():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM monthlyattendancedashboard where Status=1 ")
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Manager/monthlyattendence.html', monthlyattendancedashboard=data)
+
+@app.route('/yearlyattendance')
+def yearlyattendance():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM yearlyattendancedashboard where Status=1 ")
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Manager/yearlyattendence.html', yearlyattendancedashboard=data)
 
 @app.route('/home2')
 def home2():

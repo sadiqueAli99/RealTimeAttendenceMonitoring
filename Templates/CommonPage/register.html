@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>REGISTRATION FORM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box ;
+ }
+body
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.reg_form{
+border:2px solid black;
+padding-top:5px;
+background-color:#c2d6d6;
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+</style>
+<body>
+    <form action='' method="POST">
+  <div class="container">
+      <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 reg_form">
+        <h1 class="text-center reg_head">Registration Form</h1>
+    <h5>Please fill in this form to create an account.</h5>
+        <div class="form-group">
+              <label>Name:</label>
+              <input type="text" class="form-control" name="Name" required="1">
+            </div>
+            <div class="form-group">
+              <label>Designation:</label>
+              <input type="text" class="form-control" name="Designation" required="1">
+            </div>
+            <div class="form-group">
+              <label>Department:</label>
+              <input type="text" class="form-control" name="Department" required="1">
+            </div>
+            <div class="form-group">
+              <label>ManagerId:</label>
+              <input type="number" class="form-control" name="ManagerId" required="1">
+            </div>
+            <div class="form-group">
+              <label>City:</label>
+              <input type="text" class="form-control" name="City" required="1">
+            </div>
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="email" class="form-control" name="Email" required="1">
+            </div>
+            <div class="form-group">
+              <label>Mobile:</label>
+              <input type="number" class="form-control" name="Mobile" required="1">
+            </div>
+            <div class="form-group">
+              <label>Address:</label>
+              <input type="text" class="form-control" name="Address" required="1">
+            </div>
+            <div class="form-group">
+              <label>LoginName:</label>
+              <input type="email" class="form-control" name="LoginName" required="1">
+            </div>
+            <div class="form-group">
+              <label>Password:</label>
+              <input type="text" class="form-control" name="Password" required="1">
+            </div>
+
+
+    <p>Already a user? <a href="{{url_for('login')}}" style="color:dodgerblue">login</a>.</p>
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+  </div>
+      </div>
+  </div>
+ </form>
+</body>
+</html>

@@ -27,18 +27,12 @@
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-
-            <li class="nav-item dropdown">
-               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > </a>
-               Logged as Manager <span class="caret"></span>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="top: 13px;">
-                  <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
-
-                   <form id="logout-form" action="" method="POST" style="display: none;">
-                       @csrf
-                   </form>
-               </div>
-            </li>
+          <a class="nav-link dropdown-toggle"  data-toggle="dropdown"> </a>
+          Logged as Manager
+          <div class="dropdown-menu dropdown-menu-right" style="top: 13px;">
+            <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
+          </div>
+        </li>
       </ul>
   </nav>
 
@@ -84,15 +78,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{url_for('monthlyattendance')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Monthly Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{url_for('yearlyattendance')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Employies Attendance</p>
+                  <p>Yearly Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -146,8 +140,8 @@
             <th>Email</th>
             <th>Mobile</th>
             <th>Address</th>
-            <th>LoginName</th>
-            <th>Password</th>
+<!--            <th>LoginName</th>-->
+<!--            <th>Password</th>-->
           </tr>
           {% for row in usermaster %}
           <tr>
@@ -160,8 +154,8 @@
             <td>{{row.6}}</td>
             <td>{{row.7}}</td>
             <td>{{row.8}}</td>
-            <td>{{row.9}}</td>
-            <td>{{row.10}}</td>
+<!--            <td>{{row.11}}</td>-->
+<!--            <td>{{row.10}}</td>-->
           </tr>
           {% endfor  %}
         </table>

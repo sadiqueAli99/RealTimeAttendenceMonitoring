@@ -29,16 +29,12 @@
         <li class="nav-item dropdown">
 
             <li class="nav-item dropdown">
-               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </a>
-               Logged as Admin<span class="caret"></span>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="top: 13px;">
-                   <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
-
-                   <form id="logout-form" action="" method="POST" style="display: none;">
-                       @csrf
-                   </form>
-               </div>
-            </li>
+          <a class="nav-link dropdown-toggle"  data-toggle="dropdown"> </a>
+          Logged as Admin
+          <div class="dropdown-menu dropdown-menu-right" style="top: 13px;">
+            <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
+          </div>
+        </li>
       </ul>
   </nav>
 
@@ -78,7 +74,7 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('Index')}}" class="nav-link active">
+                <a href="{{url_for('Index')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Employee Details</p>
                 </a>
@@ -134,8 +130,8 @@
             <th>Email</th>
             <th>Mobile</th>
             <th>Address</th>
-            <th>LoginName</th>
-            <th>Password</th>
+<!--            <th>LoginName</th>-->
+<!--            <th>Password</th>-->
             <th>Action</th>
           </tr>
           {% for row in usermaster %}
@@ -149,8 +145,8 @@
             <td>{{row.6}}</td>
             <td>{{row.7}}</td>
             <td>{{row.8}}</td>
-            <td>{{row.9}}</td>
-            <td>{{row.10}}</td>
+<!--            <td>{{row.11}}</td>-->
+<!--            <td>{{row.12}}</td>-->
 
             <td>
               <a href="/update/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
