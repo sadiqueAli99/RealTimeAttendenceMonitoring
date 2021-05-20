@@ -210,11 +210,10 @@
             </tr>
             {% endfor  %}
           </table>
-          <h1>The button Element</h1>
-          <button type="button" onclick="alert('http://127.0.0.1:5000/monthlyattendencedetail')">Click Here!</button>
+          <button type="button" onclick="showgraph()">Show Graph</button>
 
     <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
-    <div id="container" style="width: 100%; height: 100%"></div>
+    <div id="container" style="width: 100%; height: 100%; display:none;"></div>
     <script>
       anychart.onDocumentReady(function() {
 
@@ -249,6 +248,11 @@
         chart.container("container");
         chart.draw();
       });
+      function showgraph()
+      {
+      $('#container').css('display','block');
+      }
+
     </script>
         </div>
       </div>
