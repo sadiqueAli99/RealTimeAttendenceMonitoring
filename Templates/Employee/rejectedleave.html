@@ -27,18 +27,12 @@
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-
-            <li class="nav-item dropdown">
-               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </a>
-               Logged as Employee<span class="caret"></span>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="top: 13px;">
-                   <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
-
-                   <form id="logout-form" action="" method="POST" style="display: none;">
-                       @csrf
-                   </form>
-               </div>
-            </li>
+          <a class="nav-link dropdown-toggle"  data-toggle="dropdown"> </a>
+          Logged as Employee
+          <div class="dropdown-menu dropdown-menu-right" style="top: 13px;">
+            <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
+          </div>
+        </li>
       </ul>
   </nav>
 
@@ -77,7 +71,7 @@
             </a>
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                      <a href="{{url_for('home3')}}" class="nav-link active">
+                      <a href="{{url_for('mydetails')}}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>My Details</p>
                       </a>
@@ -122,7 +116,7 @@
 <div class="content-wrapper">
 <div class="container-fluid">
   <div class="well text-center">
-    <h2>LEAVE DETAILS FORM</h2>
+    <h2>LEAVE DETAILS</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid">
@@ -179,48 +173,3 @@
 {% include "/include/footer.html" %}
 </body>
 </html>
-<!--Modal-->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4>Insert New Leave</h4>
-      </div>
-      <div class="modal-body">
-        <form action="{{url_for('leaveinsert')}}" method="POST">
-          <div class="form-group">
-            <label>Employee Id:</label>
-            <input type="number" class="form-control" name="EmployeeId" required="1">
-          </div>
-          <div class="form-group">
-            <label>Leave Request Date:</label>
-            <input type="date" class="form-control" name="LeaveRequestDate" required="1">
-          </div>
-             <div class="form-group">
-            <label>From Date:</label>
-            <input type="date" class="form-control" name="FromDate" required="1">
-          </div>
-             <div class="form-group">
-            <label>To Date:</label>
-            <input type="date" class="form-control" name="ToDate" required="1">
-          </div>
-             <div class="form-group">
-            <label>Number Of days:</label>
-            <input type="number" class="form-control" name="NumberofDays" required="1">
-          </div>
-             <div class="form-group">
-            <label>Reason:</label>
-            <input type="text" class="form-control" name="Reason" required="1">
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary" type="submit">Insert Leave</button>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>

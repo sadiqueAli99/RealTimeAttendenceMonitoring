@@ -19,15 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="addcamera">
-      <change afterPath="$PROJECT_DIR$/Templates/Employee/acceptedleave.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Templates/Employee/rejectedleave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10-05-2021_09_42__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10-05-2021_09_42__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="password encryption">
+      <change afterPath="$PROJECT_DIR$/Templates/Manager/monthlyattendance.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Templates/Manager/yearlyattendance.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Admin/adminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/adminhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Admin/holiday.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/holiday.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Employee/acceptedleave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/acceptedleave.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Employee/emphome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/emphome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Employee/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/leave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Employee/rejectedleave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/rejectedleave.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" afterDir="false" />
@@ -181,7 +182,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619768274783</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="password encryption">
+      <created>1621077492716</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1621077492716</updated>
+    </task>
+    <task id="LOCAL-00007" summary="password encryption">
+      <created>1621078246607</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1621078246607</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -211,7 +226,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first push" />
     <MESSAGE value="addcamera" />
-    <option name="LAST_COMMIT_MESSAGE" value="addcamera" />
+    <MESSAGE value="password encryption" />
+    <option name="LAST_COMMIT_MESSAGE" value="password encryption" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620650623223">
@@ -230,25 +246,33 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="407" y="231" key="Github.CreatePullRequestDialog/0.0.1366.728@0.0.1366.728" timestamp="1620649432682" />
-    <state width="743" height="2" key="GridCell.Tab.0.bottom" timestamp="1621075967775">
+    <state width="1345" height="152" key="GridCell.Tab.0.bottom" timestamp="1621598504748">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="743" height="2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621075967775" />
-    <state width="743" height="2" key="GridCell.Tab.0.center" timestamp="1621075967775">
+    <state width="1345" height="152" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621598504748" />
+    <state width="1345" height="152" key="GridCell.Tab.0.center" timestamp="1621598504748">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="743" height="2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621075967775" />
-    <state width="743" height="2" key="GridCell.Tab.0.left" timestamp="1621075967775">
+    <state width="1345" height="152" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621598504748" />
+    <state width="1345" height="152" key="GridCell.Tab.0.left" timestamp="1621598504748">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="743" height="2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621075967775" />
-    <state width="743" height="2" key="GridCell.Tab.0.right" timestamp="1621075967775">
+    <state width="1345" height="152" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621598504748" />
+    <state width="1345" height="152" key="GridCell.Tab.0.right" timestamp="1621598504748">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="743" height="2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621075967775" />
+    <state width="1345" height="152" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621598504748" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1620816976624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1620816976624" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1621078258253">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621078258253" />
+    <state x="434" y="77" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1621077691278">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="434" y="77" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1366.728@0.0.1366.728" timestamp="1621077691278" />
   </component>
 </project>
