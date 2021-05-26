@@ -94,7 +94,8 @@
 <div class="content-wrapper">
 <div class="container-fluid">
   <div class="well text-center">
-    <h2>CAMERA DETAILS FORM</h2>
+    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 5px">REALTIME MONITORING OF WORKFORCE</h2>
+    <h3>CAMERA DETAILS FORM</h3>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid">
@@ -129,8 +130,6 @@
             <td>{{row.0}}</td>
             <td>{{row.1}}</td>
             <td>{{row.2}}</td>
-
-
 
             <td>
               <a href="/Cameraupdate/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>

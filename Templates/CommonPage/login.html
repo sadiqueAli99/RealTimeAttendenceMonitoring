@@ -87,7 +87,8 @@ margin:10px;
 <body>
  <div class="container">
  	<div class="header">
- 		<h1>login</h1>
+    <h2 style="color:#008080; font-size:20px; box-shadow: 0 0 5px;">REALTIME MONITORING OF WORKFORCE</h2>
+		<h3>LOGIN</h3>
  	</div>
 	 {%with messages = get_flashed_messages()%}
 	 {%if messages%}
@@ -105,7 +106,7 @@ margin:10px;
  		<form action="{{url_for('login')}}" method="POST">
  			<span>
  				<i class="fa fa-user" aria-hidden="true"></i>
-				<input type="text" placeholder="User Email" name="Email">
+				<input type="text" placeholder="User Email" name="Email" >
  			</span><br>
  			<span>
  				<i class="fa fa-lock" aria-hidden="true"></i>
