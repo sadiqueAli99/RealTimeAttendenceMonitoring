@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from flask_mysqldb import MySQL
 import bcrypt
+import datetime
 
 app = Flask(__name__, template_folder="Templates")
 app.secret_key = "many random bytes"
-
+userID = ''
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
@@ -18,13 +19,15 @@ def login():
         Email = request.form['Email']
         Password = request.form['Password'].encode('utf-8')
         cur = mysql.connection.cursor()
-        cur.execute("select * from usermaster where Status=1 and Email=%s", (Email,))
+        cur.execute("SELECT * FROM usermaster WHERE Status=1 AND Email=%s", ( Email,))
         data = cur.fetchone()
         count = cur.rowcount
-        if (count) > 0:
+        if count > 0:
+            global userID
+            userID = data[0]
+            print(userID)
             if bcrypt.hashpw(Password, data[12].encode('utf-8')) == data[12].encode('utf-8'):
                 session['Email'] = request.form['Email']
-                #for r in data:
                 if data[10] == 1:
                     cur.close()
                     return render_template('/ITAdmin/itadminhome.html')
@@ -40,13 +43,11 @@ def login():
             else:
                 flash('Invalid Email or Password!!')
                 return render_template('/CommonPage/login.html')
-
         else:
             cur.close()
             flash("login failed")
             return render_template('/CommonPage/login.html')
     return render_template('/CommonPage/login.html')
-
 
 @app.route('/logout')
 def logout():
@@ -63,16 +64,13 @@ def Index():
     cur.close()
     return render_template('/Admin/adminhome.html', usermaster=data)
 
-
 @app.route('/home1')
 def home1():
     return render_template('/Admin/adminhome.html')
 
-
 @app.route('/insert', methods=['POST'])
 def insert():
     if request.method == 'POST':
-        flash("Data Inserted Successfully")
         details = request.form
         Name = details['Name']
         Designation = details['Designation']
@@ -87,9 +85,22 @@ def insert():
         Password = details['Password'].encode('utf-8')
         hash_Password=bcrypt.hashpw(Password,bcrypt.gensalt())
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO usermaster (Name,Designation,Department,ManagerId,City,Email,Mobile,Address,UserRole,LoginName,Password,Status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (Name, Designation, Department, ManagerId, City, Email, Mobile, Address, UserRole, LoginName, hash_Password,1))
-        mysql.connection.commit()
-        return redirect(url_for('Index'))
+        cur.execute("SELECT * FROM usermaster WHERE Status=%s AND Email=%s AND Mobile=%s ", (1,Email, Mobile))
+        count = cur.rowcount
+        if count > 0:
+            flash("Email Already Existed")
+            return redirect(url_for('Index'))
+        # elif count > 1:
+        #     flash("number existed")
+        #     return redirect(url_for('Index'))
+        else:
+            cur.execute(
+                "INSERT INTO usermaster (Name,Designation,Department,ManagerId,City,Email,Mobile,Address,UserRole,LoginName,Password,Status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                (Name, Designation, Department, ManagerId, City, Email, Mobile, Address, UserRole, LoginName,
+                 hash_Password, 1))
+            mysql.connection.commit()
+            flash("Data Inserted Successfully")
+            return redirect(url_for('Index'))
 
 
 @app.route('/delete/<string:EmployeeId>', methods=['GET'])
@@ -99,7 +110,6 @@ def delete(EmployeeId):
     cur.execute("UPDATE usermaster SET status = 0 WHERE EmployeeId=%s", [EmployeeId])
     mysql.connection.commit()
     return redirect(url_for('Index'))
-
 
 @app.route('/update', methods=['POST', 'GET'])
 def update():
@@ -135,7 +145,6 @@ def holiday():
     cur.close()
     return render_template('/Admin/holiday.html', holidaycalendermaster=data)
 
-
 @app.route('/holidayinsert', methods=['POST'])
 def holidayinsert():
     if request.method == 'POST':
@@ -149,7 +158,6 @@ def holidayinsert():
         mysql.connection.commit()
     return redirect(url_for('holiday'))
 
-
 @app.route('/holidayupdate', methods=['POST', 'GET'])
 def holidayupdate():
     if request.method == 'POST':
@@ -159,11 +167,10 @@ def holidayupdate():
         Date = details['Date']
         Year = details['Year']
         cur = mysql.connection.cursor()
-        cur.execute("UPDATE holidaycalendermaster SET EventName=%s,Date=%s,Year=%s WHERE HolidayId=%s", (EventName, Date,Year, HolidayId))
+        cur.execute("UPDATE holidaycalendermaster SET EventName=%s,Date=%s, Year=%s WHERE HolidayId=%s", (EventName, Date, Year,HolidayId))
         flash("Holiday Updated")
         mysql.connection.commit()
     return redirect(url_for('holiday'))
-
 
 @app.route('/holidaydelete/<string:HolidayId>', methods=['GET'])
 def holidaydelete(HolidayId):
@@ -182,7 +189,6 @@ def employeedetails():
     data = cur.fetchall()
     cur.close()
     return render_template('/Manager/mgrhome.html', usermaster=data)
-
 
 @app.route('/pendingleave')
 def pendingleave():
@@ -230,31 +236,30 @@ def home2():
 
     # EMPLOYEE HOME PAGE
 
-@app.route('/mydetails', methods=['GET'])
+@app.route('/mydetails', methods=['GET','POST'])
 def mydetails():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM usermaster where Status=1 and userrole=4")
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Employee/emphome.html', usermaster=data)
-
+        cur = mysql.connection.cursor()
+        print(userID)
+        cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,4,userID))
+        data = cur.fetchall()
+        cur.close()
+        return render_template('/Employee/emphome.html', usermaster=data)
 
 @app.route('/leave')
 def leave():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves ")
+    cur.execute("SELECT * FROM leaves WHERE EmployeeID=%s",[userID,])
     data = cur.fetchall()
     cur.close()
     return render_template('/Employee/leave.html', leaves=data)
 
-
 @app.route('/leaveinsert', methods=['POST'])
 def leaveinsert():
+    curtime = datetime.datetime.now()  # current date
+    formatted = curtime.strftime('%Y-%m-%d')  # convert your date in a string format before inserting it to your database
     if request.method == 'POST':
         flash("Leave Added")
         details = request.form
-        EmployeeId = details['EmployeeId']
-        LeaveRequestDate = details['LeaveRequestDate']
         FromDate = details['FromDate']
         ToDate = details['ToDate']
         NumberofDays = details['NumberofDays']
@@ -262,14 +267,14 @@ def leaveinsert():
         cur = mysql.connection.cursor()
         cur.execute(
             "INSERT INTO leaves(EmployeeId,LeaveRequestDate,FromDate,ToDate,NumberofDays,Reason) VALUES(%s,%s,%s,%s,%s,%s)",
-            (EmployeeId, LeaveRequestDate, FromDate, ToDate, NumberofDays, Reason))
+            (userID, formatted, FromDate, ToDate, NumberofDays, Reason))
         mysql.connection.commit()
     return redirect(url_for('leave'))
 
 @app.route('/leaveaccept')
 def leaveaccept():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=1")
+    cur.execute("SELECT * FROM leaves WHERE LeaveApprovalStatus=%s AND EmployeeID=%s",[1,userID,])
     data = cur.fetchall()
     cur.close()
     return render_template('/Employee/acceptedleave.html', leaves=data)
@@ -277,7 +282,7 @@ def leaveaccept():
 @app.route('/leavereject')
 def leavereject():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=2")
+    cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=%s AND EmployeeID=%s",[2,userID,])
     data = cur.fetchall()
     cur.close()
     return render_template('/Employee/rejectedleave.html', leaves=data)
@@ -295,7 +300,6 @@ def itadminhome():
     cur.close()
     return render_template('/ITAdmin/itadminhome.html', camra=data)
 
-
 @app.route('/Camerainsert', methods=['POST'])
 def Camerainsert():
     if request.method == 'POST':
@@ -303,14 +307,12 @@ def Camerainsert():
         details = request.form
         CameraName = details['CameraName']
         Location = details['Location']
-
         cur = mysql.connection.cursor()
         cur.execute(
             "INSERT INTO camra (CameraName,Location,status) VALUES (%s,%s,%s)",
             (CameraName, Location,1))
         mysql.connection.commit()
         return redirect(url_for('itadminhome'))
-
 
 @app.route('/Cameradelete/<string:CamaraID>', methods=['GET'])
 def Cameradelete(CamaraID):
@@ -319,7 +321,6 @@ def Cameradelete(CamaraID):
     cur.execute("UPDATE camra SET status=0  WHERE CamaraID=%s", (CamaraID))
     mysql.connection.commit()
     return redirect(url_for('itadminhome'))
-
 
 @app.route('/Cameraupdate', methods=['POST', 'GET'])
 def Cameraupdate():
@@ -339,7 +340,6 @@ def Cameraupdate():
 @app.route('/home')
 def home():
     return render_template('/ITAdmin/itadminhome.html')
-
 
 if __name__ == "__main__":
     app.run(debug=True)

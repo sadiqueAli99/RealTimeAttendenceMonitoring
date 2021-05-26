@@ -64,7 +64,7 @@
           <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{url_for('home3')}}" class="d-block">Hello... Employee </a>
+          <a href="#" class="d-block">Hello... Employee </a>
         </div>
       </div>
 
@@ -84,7 +84,7 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('mydetails')}}" class="nav-link ">
+                <a href="{{url_for('mydetails')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>My Details</p>
                 </a>
@@ -130,13 +130,13 @@
 <div class="content-wrapper">
 <div class="container-fluid">
   <div class="well text-center">
-    <h2>WELCOME TO EMPLOYEE DETAILS FORM</h2>
+    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 5px">REALTIME MONITORING OF WORKFORCE</h2>
+    <h3>WELCOME TO EMPLOYEE DETAILS FORM</h3>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid">
     <div class="row">
       <div class="col md-12">
-        <h2>My Deatils</h2>
 
         {%with messages = get_flashed_messages()%}
 
@@ -153,23 +153,81 @@
         {%endfor%}
         {%endif%}
         {%endwith%}
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+               <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+              <div class="card-header">
+                <h1 class="card-title">MY DETAILS</h1>
+              </div>
+               <!-- /.card-header -->
+              <div class="card-body">
+<!--                <div class="row">-->
+<!--                  <div class="col-md-6">-->
+<!--                    -->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; /.col &ndash;&gt;-->
+<!--                </div>-->
+                <!-- /.row -->
+                {% for row in usermaster %}
+                <div class="form-group">
+                  <label >Name</label>
+                  <input type="text" class="form-control" value="{{row.1}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Designation</label>
+                  <input type="text" class="form-control" value="{{row.2}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Department</label>
+                  <input type="text" class="form-control" value="{{row.3}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>ManagerId</label>
+                  <input type="number" class="form-control" value="{{row.4}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>City</label>
+                  <input type="text" class="form-control" value="{{row.5}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" class="form-control" value="{{row.6}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Mobile</label>
+                  <input type="number" class="form-control" value="{{row.7}}" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" class="form-control" value="{{row.8}}" readonly>
+                </div>
 
-        <form name="form1">
-          {% for row in usermaster %}
-         <!-- <div><b class="head">EmployeeId</b>:<b class="info">{{row.0}}</b></div>-->
-          <div><b class="head">Name:</b>:<b class="info">{{row.1}}</b></div>
-          <div><b class="head">Designation:</b>:<b class="info">{{row.2}}</b></div>
-          <div><b class="head">Department: </b>:<b class="info">{{row.3}}</b></div>
-          <div><b class="head">ManagerId: </b>:<b class="info">{{row.4}}</b></div>
-          <div><b class="head">City: </b>:<b class="info">{{row.5}}</b></div>
-          <div><b class="head">Email: </b>:<b class="info">{{row.6}}</b></div>
-          <div><b class="head">Mobile: </b>:<b class="info">{{row.7}}</b></div>
-          <div><b class="head">Address: </b>:<b class="info">{{row.8}}</b></div>
-        <!--  <div><b class="head">LoginName: </b>:<b class="info">{{row.9}}</b></div>
-          <div><b class="head">Password: </b>:<b class="info">{{row.10}}</b></div>-->
+                {% endfor  %}
+            <!-- /.row -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </section>
+        <!-- /.card -->
+<!--        <form name="form1">-->
+<!--          {% for row in usermaster %}-->
+<!--         &lt;!&ndash; <div><b class="head">EmployeeId</b>:<b class="info">{{row.0}}</b></div>&ndash;&gt;-->
+<!--          <div><b class="head">Name:</b>:<b class="info">{{row.1}}</b></div>-->
+<!--          <div><b class="head">Designation:</b>:<b class="info">{{row.2}}</b></div>-->
+<!--          <div><b class="head">Department: </b>:<b class="info">{{row.3}}</b></div>-->
+<!--          <div><b class="head">ManagerId: </b>:<b class="info">{{row.4}}</b></div>-->
+<!--          <div><b class="head">City: </b>:<b class="info">{{row.5}}</b></div>-->
+<!--          <div><b class="head">Email: </b>:<b class="info">{{row.6}}</b></div>-->
+<!--          <div><b class="head">Mobile: </b>:<b class="info">{{row.7}}</b></div>-->
+<!--          <div><b class="head">Address: </b>:<b class="info">{{row.8}}</b></div>-->
+<!--        &lt;!&ndash;  <div><b class="head">LoginName: </b>:<b class="info">{{row.9}}</b></div>-->
+<!--          <div><b class="head">Password: </b>:<b class="info">{{row.10}}</b></div>&ndash;&gt;-->
 
-          {% endfor  %}
-        </form>
+<!--          {% endfor  %}-->
+<!--        </form>-->
       </div>
     </div>
   </div>

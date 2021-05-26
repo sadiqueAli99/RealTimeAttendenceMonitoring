@@ -27,8 +27,6 @@
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-
-
           <a class="nav-link dropdown-toggle"  data-toggle="dropdown"> </a>
           Logged as Employee
           <div class="dropdown-menu dropdown-menu-right" style="top: 13px;">
@@ -73,7 +71,7 @@
             </a>
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                      <a href="{{url_for('home3')}}" class="nav-link ">
+                      <a href="{{url_for('mydetails')}}" class="nav-link ">
                           <i class="far fa-circle nav-icon"></i>
                           <p>My Details</p>
                       </a>
@@ -118,7 +116,8 @@
 <div class="content-wrapper">
 <div class="container-fluid">
   <div class="well text-center">
-    <h2>LEAVE DETAILS FORM</h2>
+    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 20px">REALTIME MONITORING OF WORKFORCE</h2>
+      <h2>LEAVE DETAILS FORM</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid">
@@ -143,8 +142,8 @@
         {%endwith%}
         <table class="table table-striped">
             <tr>
-                <th>LeaveId</th>
-                <th>EmployeeId</th>
+<!--                <th>LeaveId</th>-->
+<!--                <th>EmployeeId</th>-->
                 <th>Leave Request Date</th>
                 <th>FromDate</th>
                 <th>ToDate</th>
@@ -153,8 +152,8 @@
             </tr>
             {% for row in leaves %}
             <tr>
-                <td>{{row.0}}</td>
-                <td>{{row.1}}</td>
+<!--                <td>{{row.0}}</td>-->
+<!--                <td>{{row.1}}</td>-->
                 <td>{{row.2}}</td>
                 <td>{{row.3}}</td>
                 <td>{{row.4}}</td>
@@ -185,14 +184,14 @@
       </div>
       <div class="modal-body">
         <form action="{{url_for('leaveinsert')}}" method="POST">
-          <div class="form-group">
-            <label>Employee Id:</label>
-            <input type="number" class="form-control" name="EmployeeId" required="1">
-          </div>
-          <div class="form-group">
-            <label>Leave Request Date:</label>
-            <input type="date" class="form-control" name="LeaveRequestDate" required="1">
-          </div>
+<!--          <div class="form-group">-->
+<!--            <label>Employee Id:</label>-->
+<!--            <input type="number" class="form-control" name="EmployeeId" required="1">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label>Leave Request Date:</label>-->
+<!--            <input type="text" class="form-control" name="LeaveRequestDate" required="1">-->
+<!--          </div>-->
              <div class="form-group">
             <label>From Date:</label>
             <input type="date" class="form-control" name="FromDate" required="1">
