@@ -248,10 +248,11 @@ def mydetails():
 @app.route('/leave')
 def leave():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves WHERE EmployeeID=%s",[userID,])
+    cur.execute("SELECT leaves.EmployeeId , usermaster.Name, leaves.LeaveRequestDate , leaves.FromDate , leaves.ToDate , leaves.NumberofDays , leaves.Reason , leaves.LeaveApprovalStatus FROM leaves INNER JOIN usermaster ON leaves.EmployeeId = usermaster.EmployeeID WHERE leaves.EmployeeId=%s",[userID])
     data = cur.fetchall()
     cur.close()
     return render_template('/Employee/leave.html', leaves=data)
+
 
 @app.route('/leaveinsert', methods=['POST'])
 def leaveinsert():
@@ -271,21 +272,21 @@ def leaveinsert():
         mysql.connection.commit()
     return redirect(url_for('leave'))
 
-@app.route('/leaveaccept')
-def leaveaccept():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves WHERE LeaveApprovalStatus=%s AND EmployeeID=%s",[1,userID,])
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Employee/acceptedleave.html', leaves=data)
-
-@app.route('/leavereject')
-def leavereject():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=%s AND EmployeeID=%s",[2,userID,])
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Employee/rejectedleave.html', leaves=data)
+# @app.route('/leaveaccept')
+# def leaveaccept():
+#     cur = mysql.connection.cursor()
+#     cur.execute("SELECT * FROM leaves WHERE LeaveApprovalStatus=%s AND EmployeeID=%s",[1,userID,])
+#     data = cur.fetchall()
+#     cur.close()
+#     return render_template('/Employee/acceptedleave.html', leaves=data)
+#
+# @app.route('/leavereject')
+# def leavereject():
+#     cur = mysql.connection.cursor()
+#     cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=%s AND EmployeeID=%s",[2,userID,])
+#     data = cur.fetchall()
+#     cur.close()
+#     return render_template('/Employee/rejectedleave.html', leaves=data)
 
 @app.route('/home3')
 def home3():
