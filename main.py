@@ -61,8 +61,10 @@ def Index():
     cur = mysql.connection.cursor()
     cur.execute("SELECT  * FROM usermaster where Status=1 and userrole=4 ")
     data = cur.fetchall()
+    cur.execute("SELECT * FROM userrolemaster order by UserRole ")
+    Userrolemaster = cur.fetchall()
     cur.close()
-    return render_template('/Admin/adminhome.html', usermaster=data)
+    return render_template('/Admin/adminhome.html', usermaster=data, userrolemaster=Userrolemaster)
 
 @app.route('/home1')
 def home1():
@@ -85,14 +87,21 @@ def insert():
         Password = details['Password'].encode('utf-8')
         hash_Password=bcrypt.hashpw(Password,bcrypt.gensalt())
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM usermaster WHERE Status=%s AND Email=%s AND Mobile=%s ", (1,Email, Mobile))
+        cur.execute("SELECT * FROM usermaster WHERE Status=1 AND Name=%s", [Name])
+        count = cur.rowcount
+        if count > 0:
+            flash("Name Already Existed")
+            return redirect(url_for('Index'))
+        cur.execute("SELECT * FROM usermaster WHERE Status=1 AND Email=%s", [Email])
         count = cur.rowcount
         if count > 0:
             flash("Email Already Existed")
             return redirect(url_for('Index'))
-        # elif count > 1:
-        #     flash("number existed")
-        #     return redirect(url_for('Index'))
+        cur.execute("SELECT * FROM usermaster WHERE Status=1 AND Mobile=%s", [Mobile])
+        count = cur.rowcount
+        if count > 0:
+            flash("Number Already Existed")
+            return redirect(url_for('Index'))
         else:
             cur.execute(
                 "INSERT INTO usermaster (Name,Designation,Department,ManagerId,City,Email,Mobile,Address,UserRole,LoginName,Password,Status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
@@ -100,8 +109,7 @@ def insert():
                  hash_Password, 1))
             mysql.connection.commit()
             flash("Data Inserted Successfully")
-            return redirect(url_for('Index'))
-
+    return redirect(url_for('Index'))
 
 @app.route('/delete/<string:EmployeeId>', methods=['GET'])
 def delete(EmployeeId):
@@ -133,7 +141,7 @@ def update():
             (Name, Designation, Department, ManagerId, City, Email, Mobile, Address, UserRole, EmployeeId))
         flash("Data Updated Successfully")
         mysql.connection.commit()
-        return redirect(url_for('Index'))
+    return redirect(url_for('Index'))
 
     # ADMIN HOME PAGE - ADD HOLIDAY
 
@@ -238,17 +246,17 @@ def home2():
 
 @app.route('/mydetails', methods=['GET','POST'])
 def mydetails():
-        cur = mysql.connection.cursor()
-        print(userID)
-        cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,4,userID))
-        data = cur.fetchall()
-        cur.close()
-        return render_template('/Employee/emphome.html', usermaster=data)
+    cur = mysql.connection.cursor()
+    print(userID)
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,4,userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Employee/emphome.html', usermaster=data)
 
 @app.route('/leave')
 def leave():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves WHERE EmployeeID=%s",[userID,])
+    cur.execute("SELECT leaves.EmployeeId , usermaster.Name, leaves.LeaveRequestDate , leaves.FromDate , leaves.ToDate , leaves.NumberofDays , leaves.Reason , leaves.LeaveApprovalStatus FROM leaves INNER JOIN usermaster ON leaves.EmployeeId = usermaster.EmployeeID WHERE leaves.EmployeeId=%s",[userID])
     data = cur.fetchall()
     cur.close()
     return render_template('/Employee/leave.html', leaves=data)
@@ -312,7 +320,7 @@ def Camerainsert():
             "INSERT INTO camra (CameraName,Location,status) VALUES (%s,%s,%s)",
             (CameraName, Location,1))
         mysql.connection.commit()
-        return redirect(url_for('itadminhome'))
+    return redirect(url_for('itadminhome'))
 
 @app.route('/Cameradelete/<string:CamaraID>', methods=['GET'])
 def Cameradelete(CamaraID):
@@ -335,7 +343,7 @@ def Cameraupdate():
             (CameraName, Location,CamaraID))
         flash("Data Updated Successfully")
         mysql.connection.commit()
-        return redirect(url_for('itadminhome'))
+    return redirect(url_for('itadminhome'))
 
 @app.route('/home')
 def home():

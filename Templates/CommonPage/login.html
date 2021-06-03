@@ -1,95 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>login</title>
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="static/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="static/dist/css/adminlte.min.css">
+
 </head>
-<style>
-
-  body {
-	font-family: sans-serif;
-}
-
-.container {
-	width: 380px;
-	margin:7% auto;
-	border-radius: 25px;
-	background-color: rgba(0,0,0,0.1);
-	box-shadow: 0 0 17px #333;
-	margin-top:48px;
-}
-
-.header {
-	text-align: center;
-	padding-top: 40px;
-}
-
-.header h1 {
-	color: #333;
-	font-size: 45px;
-	margin-bottom: 80px;
-}
-
-.main {
-	text-align: center;
-}
-
-.main input, .login {
-	width: 300px;
-	height: 40px;
-	border:none;
-	outline: none;
-	padding-left: 40px;
-	box-sizing: border-box;
-	font-size: 15px;
-	color: black;
-	margin-bottom: 40px;
-}
-
-.main .login {
-	padding-left: 0;
-	background-color: #83acf1;
-	letter-spacing: 1px;
-	font-weight: bold;
-	margin-bottom: 70px;
-}
-
-.main .login:hover {
-	box-shadow: 2px 2px 5px #555;
-	background-color: #7799d4;
-}
-.main input:hover {
-	box-shadow: 2px 2px 5px #555;
-	background-color: #ddd;
-}
-
-.main span {
-	position: relative;
-}
-
-.main i {
-	position: absolute;
-	left: 15px;
-	color: #333;
-	font-size: 16px;
-	top: 2px;
-
-}
-.error_msg{
-padding: 15px;
-text-align:center;
-background-color:#ccffcc;
-margin:10px;
-}
-
-</style>
-<body>
- <div class="container">
- 	<div class="header">
-    <h2 style="color:#008080; font-size:20px; box-shadow: 0 0 5px;">REALTIME MONITORING OF WORKFORCE</h2>
-		<h3>LOGIN</h3>
- 	</div>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="{{url_for('login')}}"><b>LOGIN</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
 	 {%with messages = get_flashed_messages()%}
 	 {%if messages%}
 	 {% for message in messages %}
@@ -102,25 +36,69 @@ margin:10px;
 	 {%endfor%}
 	 {%endif%}
 	 {%endwith%}
- 	<div class="main">
- 		<form action="{{url_for('login')}}" method="POST">
- 			<span>
- 				<i class="fa fa-user" aria-hidden="true"></i>
-				<input type="text" placeholder="User Email" name="Email" >
- 			</span><br>
- 			<span>
- 				<i class="fa fa-lock" aria-hidden="true"></i>
- 				<input type="password" placeholder="password" name="Password">
- 			</span><br>
 
- 				<button class="login">login</button>
+      <form name="myform" action="{{url_for('login')}}" method="POST" onsubmit="return validateform()" >
+        <div class="input-group mb-4">
+          <input type="Email" id="Email" class="form-control" placeholder="Enter Email" name="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+                <span id="validateemail" style="visibility:hidden;">Enter proper email</span>
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-4">
+          <input type="Password" class="form-control" placeholder="Enter Password" name="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+<!--        <div class="row">-->
+<!--          <div class="col-8">-->
+<!--            <div class="icheck-primary">-->
+<!--              <input type="checkbox" id="remember">-->
+<!--              <label for="remember">-->
+<!--                Remember Me-->
+<!--              </label>-->
+<!--            </div>-->
+<!--          </div>-->
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block" value="login">Sign In</button>
+          </div>
+          <!-- /.col -->
+<!--        </div>-->
+      </form>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
 
- 		</form>
- 	</div>
- </div>
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<!-- jQuery -->
+<script src="static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="static/dist/js/adminlte.min.js"></script>
 
-<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+<script>
+function validateform(){
+  var name = document.getElementById("Email").value;
+  var letters = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
+    if (! name.match(letters))
+    {
 
+        document.getElementById("validateemail").style.visibility = "visible";
+         alert("fail");
+    }
+    else{
+         document.getElementById("validateemail").style.visibility = "hidden";
+         alert("success");
+    }
+}
+</script>
 </body>
 </html>
