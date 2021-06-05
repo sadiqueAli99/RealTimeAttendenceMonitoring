@@ -39,16 +39,15 @@
 
       <form name="myform" action="{{url_for('login')}}" method="POST" onsubmit="return validateform()" >
         <div class="input-group mb-4">
-          <input type="Email" id="Email" class="form-control" placeholder="Enter Email" name="Email">
+          <input type="Email" id="Email" class="form-control" placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please Enter Valid Email" name="Email">
           <div class="input-group-append">
             <div class="input-group-text">
-                <span id="validateemail" style="visibility:hidden;">Enter proper email</span>
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
         <div class="input-group mb-4">
-          <input type="Password" class="form-control" placeholder="Enter Password" name="Password">
+          <input type="Password" class="form-control" placeholder="Enter Password" pattern="^([a-zA-Z0-9@*#]{6,15})$" title="Please Enter Valid Password" name="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -84,21 +83,21 @@
 <!-- AdminLTE App -->
 <script src="static/dist/js/adminlte.min.js"></script>
 
-<script>
-function validateform(){
-  var name = document.getElementById("Email").value;
-  var letters = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
-    if (! name.match(letters))
-    {
+<!--<script>-->
+<!--function validateform(){-->
+<!--  var name = document.getElementById("Email").value;-->
+<!--  var letters = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;-->
+<!--    if (! name.match(letters))-->
+<!--    {-->
 
-        document.getElementById("validateemail").style.visibility = "visible";
-         alert("fail");
-    }
-    else{
-         document.getElementById("validateemail").style.visibility = "hidden";
-         alert("success");
-    }
-}
-</script>
+<!--        document.getElementById("validateemail").style.visibility = "visible";-->
+<!--         alert("fail");-->
+<!--    }-->
+<!--    else{-->
+<!--         document.getElementById("validateemail").style.visibility = "hidden";-->
+<!--         alert("success");-->
+<!--    }-->
+<!--}-->
+<!--</script>-->
 </body>
 </html>

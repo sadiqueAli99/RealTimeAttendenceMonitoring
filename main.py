@@ -105,7 +105,7 @@ def insert():
         else:
             cur.execute(
                 "INSERT INTO usermaster (Name,Designation,Department,ManagerId,City,Email,Mobile,Address,UserRole,LoginName,Password,Status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                (Name, Designation, Department, ManagerId, City, Email, Mobile, Address, UserRole, LoginName,
+                (Name, Designation, Department, 1, City, Email, Mobile, Address, UserRole, LoginName,
                  hash_Password, 1))
             mysql.connection.commit()
             flash("Data Inserted Successfully")
@@ -201,7 +201,7 @@ def employeedetails():
 @app.route('/pendingleave')
 def pendingleave():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=0 ")
+    cur.execute("SELECT leaves.leaveId , leaves.EmployeeId , usermaster.Name, leaves.LeaveRequestDate , leaves.FromDate , leaves.ToDate , leaves.NumberofDays , leaves.Reason , leaves.LeaveApprovalStatus FROM leaves INNER JOIN usermaster ON leaves.EmployeeId = usermaster.EmployeeID WHERE LeaveApprovalStatus=0")
     data = cur.fetchall()
     cur.close()
     return render_template('/Manager/pendingleave.html', leaves=data)
@@ -210,7 +210,7 @@ def pendingleave():
 def accept(leaveId):
     flash("Leave Has Been Accepted Successfully")
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE leaves SET LeaveApprovalStatus=1  WHERE leaveId=%s", (leaveId))
+    cur.execute("UPDATE leaves SET LeaveApprovalStatus=1  WHERE leaveId=%s", [leaveId])
     mysql.connection.commit()
     return redirect(url_for('pendingleave'))
 
@@ -218,7 +218,7 @@ def accept(leaveId):
 def reject(leaveId):
     flash("Leave Has Been Rejected Successfully")
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE leaves SET LeaveApprovalStatus=2  WHERE leaveId =%s", (leaveId))
+    cur.execute("UPDATE leaves SET LeaveApprovalStatus=2  WHERE leaveId =%s", [leaveId])
     mysql.connection.commit()
     return redirect(url_for('pendingleave'))
 
@@ -278,22 +278,6 @@ def leaveinsert():
             (userID, formatted, FromDate, ToDate, NumberofDays, Reason))
         mysql.connection.commit()
     return redirect(url_for('leave'))
-
-@app.route('/leaveaccept')
-def leaveaccept():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves WHERE LeaveApprovalStatus=%s AND EmployeeID=%s",[1,userID,])
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Employee/acceptedleave.html', leaves=data)
-
-@app.route('/leavereject')
-def leavereject():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=%s AND EmployeeID=%s",[2,userID,])
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Employee/rejectedleave.html', leaves=data)
 
 @app.route('/home3')
 def home3():

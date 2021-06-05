@@ -155,10 +155,10 @@
                     </div>
                     <div class="form-group">
                       <label>Event Name:</label>
-                      <input type="text" class="form-control" name="EventName" value="{{row.3}}">
+                      <input type="text" class="form-control" name="EventName" pattern="^[a-z A-Z'-]+$" title="Please Enter Valid Event Name" maxlength="15" minlength="3"  value="{{row.3}}">
                     </div>
                     <div class="form-group">
-                      <button class="btn btn-primary" type="submit">Update</button>
+                      <button class="btn btn-primary" type="submit">Update Holiday</button>
                       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     </div>
                   </form>
@@ -199,7 +199,7 @@
           </div>
            <div class="form-group">
             <label>Event Name:</label>
-            <input type="text" class="form-control" name="EventName" required="1">
+            <input type="text" class="form-control" name="EventName" pattern="^[a-z A-Z'-]+$" title="Please Enter Valid Event Name" required="1">
           </div>
           <div class="form-group">
             <button class="btn btn-primary" type="submit">Insert Holiday</button>

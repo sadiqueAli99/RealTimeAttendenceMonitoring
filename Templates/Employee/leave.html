@@ -175,10 +175,10 @@
                 <td>{{row.6}}</td>
                   <td>
                       {% if (row.7) == 1: %}
-                      <label class="btn btn-success btn-xs">Accept</label>
+                      <label class="btn btn-success btn-xs">Accepted</label>
 
                       {% elif (row.7) == 2: %}
-                      <label class="btn btn-danger btn-xs">Reject</label>
+                      <label class="btn btn-danger btn-xs">Rejected</label>
                       {% else %}
 
                       <label class="btn btn-warning btn-xs ">Pending</label>
@@ -261,10 +261,10 @@
           </div>
              <div class="form-group">
             <label>Reason:</label>
-            <input type="text" class="form-control" name="Reason" required="1">
+            <input type="text" class="form-control" name="Reason" pattern="^[a-z A-Z'-]+$" title="Please Enter Valid Reason" maxlength="15" minlength="3"  required="1">
           </div>
           <div class="form-group">
-            <button class="btn btn-primary" type="submit">Insert Leave</button>
+            <button class="btn btn-primary" type="submit">Apply Leave</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           </div>
         </form>
