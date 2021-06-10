@@ -4,81 +4,15 @@
     <meta charset="UTF-8">
     <title>Manager Home page</title>
 </head>
-<style>
-  .wellif {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color :#1a6b63 !important;
-  border: 1px solid #1c5953;
-  border-radius: 4px;
-}
-.sidebar-primary{
- 	background-color :#003B36 !important;
-}
-.navbarstyle{
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-}
-.nav > li > a:hover,
-.nav > li > a:focus {
-  text-decoration: none;
-  color:black!important;
-  background-color:white!important;
-
-}
-
-p:hover {
-color:black!important;
-}
-.btnadd{
-color:white!important;
-font-weight:bold!important;
-background-color :#1c5953 !important;
-}
-.navbarheading{
-text-align:center;
-font-weight:bold;
-font-size:18px;
-color:white;
-}
-.brand-link
-{
-text-align:center;
-}
-.tablerow{
-background-color:#1c5953;
-color:white;
-font-weight:bold;
-}
-table, th, td, tr {
-  border: 1px solid #1c5953;
-}
-.modal-header{
-background-color:#1c5953;
-color:white;
-font-weight:bold;
-}
-.modalclose{
-color:white!important;
-font-weight:bold;
-}
-.btncancel{
-color:white!important;
-font-weight:bold!important;
-background-color :#F70000!important;
-}
-</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
 
 {% block body %}
 
 <div class="content-wrapper">
-<div class="container-fluid" style="padding:0px;">
-  <div class="wellif text-center">
-    <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
+<div class="container-fluid">
+  <div class="well text-center">
+    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 20px">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
@@ -106,22 +40,22 @@ background-color :#F70000!important;
       </ul>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-       <span class="navbarheading">Manager Home Page</span>
+      <span class="brand-text font-weight-light">Manager Home Page</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="border-bottom:1px solid white;">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-           <p class="navbarstyle">>Hello... Manager </p>
+          <a href="#" class="d-block">Hello... Manager </a>
         </div>
       </div>
 
@@ -131,9 +65,9 @@ background-color :#F70000!important;
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{url_for('home2')}}" class="nav-link ">
-               <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
-              <p class="navbarstyle">
+            <a href="{{url_for('home2')}}" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -142,26 +76,26 @@ background-color :#F70000!important;
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{url_for('employeedetails')}}" class="nav-link ">
-                  <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
-                  <p class="navbarstyle">Employee List</p>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Employee List</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{url_for('monthlyattendance')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Monthly Attendance</p>
+                  <p>Monthly Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{url_for('yearlyattendance')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Yearly Attendance</p>
+                  <p>Yearly Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{url_for('pendingleave')}}" class="nav-link">
-                  <i class="fa fa-hourglass-half navbarstyle"></i>
-                  <p class="navbarstyle">Pending Leave Request</p>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pending Leave Request</p>
                 </a>
               </li>
             </ul>
@@ -172,9 +106,8 @@ background-color :#F70000!important;
   </aside>
 </div>
   <!-- Content Wrapper. Contains page content -->
-    <div class="row">
-      <div class="col md-12"  style="padding:20px;padding-top:0px;">
-        <h2  style="margin-top:0px;">Employee List</h2>
+     <div class="row">
+      <div class="col-md-12">
 
         {%with messages = get_flashed_messages()%}
 
@@ -191,36 +124,59 @@ background-color :#F70000!important;
         {%endfor%}
         {%endif%}
         {%endwith%}
-        <table class="table">
-          <tr class="tablerow">
-            <th>EmployeeId</th>
-            <th>Name</th>
-            <th>Designation</th>
-            <th>Department</th>
-            <th>ManagerId</th>
-            <th>City</th>
-            <th>Email</th>
-            <th>Mobile</th>
-            <th>Address</th>
-<!--            <th>LoginName</th>-->
-<!--            <th>Password</th>-->
-          </tr>
-          {% for row in usermaster %}
-          <tr>
-            <td>{{row.0}}</td>
-            <td>{{row.1}}</td>
-            <td>{{row.2}}</td>
-            <td>{{row.3}}</td>
-            <td>{{row.4}}</td>
-            <td>{{row.5}}</td>
-            <td>{{row.6}}</td>
-            <td>{{row.7}}</td>
-            <td>{{row.8}}</td>
-<!--            <td>{{row.9}}</td>-->
-<!--            <td>{{row.10}}</td>-->
-          </tr>
-          {% endfor  %}
-        </table>
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+               <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+              <div class="card-header">
+                <i class="fa fa-user" aria-hidden="true" style="font-size:18px; padding:7px;">MY PROFILE</i>
+
+              </div>
+               <!-- /.card-header -->
+              <div class="card-body">
+                <!-- /.row -->
+                {% for row in usermaster %}
+                <div class="form-group col-md-3">
+                  <label >Name</label>
+                  <input type="text" class="form-control" value="{{row.1}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Designation</label>
+                  <input type="text" class="form-control" value="{{row.2}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Department</label>
+                  <input type="text" class="form-control" value="{{row.3}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>ManagerId</label>
+                  <input type="number" class="form-control" value="{{row.4}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>City</label>
+                  <input type="text" class="form-control" value="{{row.5}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Email</label>
+                  <input type="email" class="form-control" value="{{row.6}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Mobile</label>
+                  <input type="number" class="form-control" value="{{row.7}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Address</label>
+                  <input type="text" class="form-control" value="{{row.8}}" readonly>
+                </div>
+
+                {% endfor  %}
+            <!-- /.row -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </section>
       </div>
     </div>
   </div>
@@ -230,5 +186,6 @@ background-color :#F70000!important;
 {% endblock %}
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+
 </body>
 </html>

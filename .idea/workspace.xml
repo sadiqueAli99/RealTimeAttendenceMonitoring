@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="User Role">
+    <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="validation">
+      <change afterPath="$PROJECT_DIR$/Templates/Admin/admindetails.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Templates/ITAdmin/itadmindetails.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Templates/Manager/managerdetails.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Admin/adminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/adminhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Admin/holiday.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/holiday.html" afterDir="false" />
@@ -28,6 +31,10 @@
       <change beforePath="$PROJECT_DIR$/Templates/Employee/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/leave.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Include/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Include/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/monthlyattendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/monthlyattendance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/yearlyattendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/yearlyattendance.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,11 +85,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Static/dist/js" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Static\dist\js" />
+      <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Static\dist\css" />
+      <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Static" />
+      <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Static\css" />
       <recent name="C:\Users\sadiq\PycharmProjects\RealTimeAttendenceMonitoring" />
     </key>
   </component>
@@ -213,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622702038762</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="validation">
+      <created>1622877857554</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1622877857554</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -247,7 +265,8 @@
     <MESSAGE value="user based display" />
     <MESSAGE value="Alignment" />
     <MESSAGE value="User Role" />
-    <option name="LAST_COMMIT_MESSAGE" value="User Role" />
+    <MESSAGE value="validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="validation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620650623223">
@@ -270,30 +289,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="407" y="231" key="Github.CreatePullRequestDialog/0.0.1366.728@0.0.1366.728" timestamp="1620649432682" />
-    <state width="1345" height="143" key="GridCell.Tab.0.bottom" timestamp="1622816211288">
+    <state width="1345" height="143" key="GridCell.Tab.0.bottom" timestamp="1623302813002">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="143" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1622816211288" />
-    <state width="1345" height="143" key="GridCell.Tab.0.center" timestamp="1622816211288">
+    <state width="1345" height="143" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1623302813002" />
+    <state width="1345" height="143" key="GridCell.Tab.0.center" timestamp="1623302813002">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="143" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1622816211288" />
-    <state width="1345" height="143" key="GridCell.Tab.0.left" timestamp="1622816211288">
+    <state width="1345" height="143" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1623302813002" />
+    <state width="1345" height="143" key="GridCell.Tab.0.left" timestamp="1623302813001">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="143" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1622816211288" />
-    <state width="1345" height="143" key="GridCell.Tab.0.right" timestamp="1622816211288">
+    <state width="1345" height="143" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1623302813001" />
+    <state width="1345" height="143" key="GridCell.Tab.0.right" timestamp="1623302813002">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="143" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1622816211288" />
+    <state width="1345" height="143" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1623302813002" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1620816976624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1620816976624" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1622702337603">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1622877909612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1622702337603" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1622877909612" />
     <state x="434" y="77" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1621598821173">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

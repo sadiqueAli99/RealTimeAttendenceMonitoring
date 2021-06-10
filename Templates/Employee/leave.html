@@ -3,46 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Apply Leave</title>
-    <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"
-        type="text/css" />
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <script language="javascript">
-        $(document).ready(function () {
-            $("#FromDate").datepicker({
-                dateFormat: "dd-m-yy",
-                minDate: 0,
-                onClose: function (selectedDate, instance) {
-            if (selectedDate != '') {
-                $("#ToDate").datepicker("option", "minDate", selectedDate);
-                var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
-                date.setMonth(date.getMonth() + 2);
-                console.log(selectedDate, date);
-                $("#ToDate").datepicker("option", "minDate", selectedDate);
-                $("#ToDate").datepicker("option", "maxDate", date);
-            }
-        }
-            });
-            $("#ToDate").datepicker({
-                dateFormat: "dd-m-yy",
-                minDate: 0,
-                 onClose: function (selectedDate) {
-            $("#FromDate").datepicker("option", "maxDate", selectedDate);
-            }
-
-            });
-        });
-    </script>
 </head>
+<style>
+    .wellif {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color :#1a6b63 !important;
+  border: 1px solid #1c5953;
+  border-radius: 4px;
+}
+.sidebar-primary{
+ 	background-color :#003B36 !important;
+}
+.navbarstyle{
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  color:black!important;
+  background-color:white!important;
+
+}
+.btnadd{
+color:white!important;
+font-weight:bold!important;
+background-color :#1c5953 !important;
+}
+p:hover {
+color:black!important;
+}
+.navbarheading{
+text-align:center;
+font-weight:bold;
+font-size:18px;
+color:white;
+}
+.brand-link
+{
+text-align:center;
+}
+.tablerow{
+background-color:#1c5953;
+color:white;
+font-weight:bold;
+}
+table, th, td, tr {
+  border: 1px solid #1c5953;
+}
+.modal-header{
+background-color:#1c5953;
+color:white;
+font-weight:bold;
+}
+.modalclose{
+color:white!important;
+font-weight:bold;
+}
+.btncancel{
+color:white!important;
+font-weight:bold!important;
+background-color :#F70000!important;
+}
+</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
 
 {% block body %}
 
 <div class="content-wrapper">
-<div class="container-fluid">
-  <div class="well text-center">
-    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 20px">REALTIME MONITORING OF WORKFORCE</h2>
+<div class="container-fluid" style="padding:0px;">
+  <div class="wellif text-center">
+     <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
@@ -70,22 +105,22 @@
       </ul>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-      <span class="brand-text font-weight-light">Employee Home Page</span>
+      <span class="navbarheading">Employee Home Page</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel d-flex" style="border-bottom:1px solid white;">
         <div class="image">
           <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Hello...Employee </a>
+          <p  class="navbarstyle">Hello... Employee </p>
         </div>
       </div>
 
@@ -95,38 +130,38 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+            <a href="#" class="nav-link ">
+              <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
+              <p class="navbarstyle">
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                      <a href="{{url_for('mydetails')}}" class="nav-link ">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>My Details</p>
+                      <a href="{{url_for('mydetails4')}}" class="nav-link ">
+                          <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
+                           <p class="navbarstyle">My Details</p>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="./index2.html" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Attendance</p>
+                          <p class="navbarstyle">Attendance</p>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="./index2.html" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Leave History</p>
+                          <p class="navbarstyle">Leave History</p>
                       </a>
-                   <li class="nav-item">
-                      <a href="{{url_for('leave')}}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Apply Leave</p>
-                      </a>
-                   </li>
-              </ul>
+                    <li class="nav-item">
+                         <a href="{{url_for('leave')}}" class="nav-link">
+                            <i class="fa fa-plus navbarstyle"></i>&nbsp;
+                            <p class="navbarstyle">Apply Leave</p>
+                         </a>
+                    </li>
+                </ul>
           </li>
         </ul>
       </nav>
@@ -135,8 +170,8 @@
 </div>
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
-      <div class="col md-12">
-        <h2>List of Leave<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">New Leave Request</button></h2>
+      <div class="col md-12" style="padding:20px;padding-top:0px;">
+        <h2 style="margin-top:0px;">List of Leave<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;New Leave Request</button></h2>
 
         {%with messages = get_flashed_messages()%}
 
@@ -153,9 +188,8 @@
         {%endfor%}
         {%endif%}
         {%endwith%}
-        <table class="table table-striped">
-            <tr>
-<!--                <th>Leave Id</th>-->
+        <table class="table">
+            <tr class="tablerow">
                 <th>Name</th>
                 <th>Leave Request Date</th>
                 <th>FromDate</th>
@@ -166,7 +200,6 @@
             </tr>
             {% for row in leaves %}
             <tr>
-<!--                <td>{{row.0}}</td>-->
                 <td>{{row.1}}</td>
                 <td>{{row.2}}</td>
                 <td>{{row.3}}</td>
@@ -175,13 +208,13 @@
                 <td>{{row.6}}</td>
                   <td>
                       {% if (row.7) == 1: %}
-                      <label class="btn btn-success btn-xs">Accepted</label>
+                      <label><i class="fa fa-check-circle" style="color:green;"></i></label>
 
                       {% elif (row.7) == 2: %}
-                      <label class="btn btn-danger btn-xs">Rejected</label>
+                      <label><i class="fa fa-times-circle" style="color:red;"></i></label>
                       {% else %}
 
-                      <label class="btn btn-warning btn-xs ">Pending</label>
+                      <label><i class="fa fa-hourglass-half" style="color:orange;"></i></label>
 
                       {% endif %}
                   </td>
@@ -191,12 +224,13 @@
       </div>
     </div>
   </div>
+    {% include "/include/footer.html" %}
 </div>
 {% endblock %}
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
-{% include "/include/footer.html" %}
+
 <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"
         type="text/css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
@@ -226,19 +260,40 @@
 
             });
         });
-    </script>
+
+        function validateform()
+        {
+            var reason= document.getElementById('reason').value;
+            var letters = /^[A-Za-z]+$/;
+            if(reason == "")
+            {
+                document.getElementById('reasons').innerHTML =" ** Please fill the username field";
+                return false;
+            }
+            if((reason.length <= 3) || (reason.length > 20))
+            {
+                document.getElementById('reasons').innerHTML =" ** Username length must be between 3 and 20";
+                return false;
+            }
+             if(!letters.test(reason))
+             {
+                document.getElementById('reasons').innerHTML =" ** only characters are allowed";
+                return false;
+             }
+        }
+   </script>
 </body>
 </html>
 <!--Modal-->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content"  style=" color :#1a6b63 !important;">
       <div class="modal-header">
-          <h4>Insert New Leave</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">Please Insert Data</h4>
+          <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form action="{{url_for('leaveinsert')}}" method="POST">
+        <form action="{{url_for('leaveinsert')}}" method="POST" onclick="return validateform()">
 <!--          <div class="form-group">-->
 <!--            <label>Employee Id:</label>-->
 <!--            <input type="number" class="form-control" name="EmployeeId" required="1">-->
@@ -261,11 +316,12 @@
           </div>
              <div class="form-group">
             <label>Reason:</label>
-            <input type="text" class="form-control" name="Reason" pattern="^[a-z A-Z'-]+$" title="Please Enter Valid Reason" maxlength="15" minlength="3"  required="1">
+            <input type="text" class="form-control" name="Reason" id="reason" required="1">
+                 <span id="reasons" class="text-danger font-weight-bold"></span>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary" type="submit">Apply Leave</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+             <button class="btn btnadd" name="submit" value="submit" type="submit">Apply Leave</button>
+              <button class="btn  btncancel" type="reset" value="reset" data-dismiss="modal">Cancel</button>
           </div>
         </form>
       </div>

@@ -4,15 +4,81 @@
     <meta charset="UTF-8">
     <title>Pending Leave Request</title>
 </head>
+<style>
+    .wellif {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color :#1a6b63 !important;
+  border: 1px solid #1c5953;
+  border-radius: 4px;
+}
+.sidebar-primary{
+ 	background-color :#003B36 !important;
+}
+.navbarstyle{
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  color:black!important;
+  background-color:white!important;
+
+}
+
+p:hover {
+color:black!important;
+}
+.btnadd{
+color:white!important;
+font-weight:bold!important;
+background-color :#1c5953 !important;
+}
+.navbarheading{
+text-align:center;
+font-weight:bold;
+font-size:18px;
+color:white;
+}
+.brand-link
+{
+text-align:center;
+}
+.tablerow{
+background-color:#1c5953;
+color:white;
+font-weight:bold;
+}
+table, th, td, tr {
+  border: 1px solid #1c5953;
+}
+.modal-header{
+background-color:#1c5953;
+color:white;
+font-weight:bold;
+}
+.modalclose{
+color:white!important;
+font-weight:bold;
+}
+.btncancel{
+color:white!important;
+font-weight:bold!important;
+background-color :#F70000!important;
+}
+</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
 
 {% block body %}
 
 <div class="content-wrapper">
-<div class="container-fluid">
-  <div class="well text-center">
-    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 20px">REALTIME MONITORING OF WORKFORCE</h2>
+<div class="container-fluid" style="padding:0px;">
+  <div class="wellif text-center">
+    <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
@@ -39,22 +105,22 @@
         </li>
       </ul>
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-      <span class="brand-text font-weight-light">Manager Home Page</span>
+      <span class="navbarheading">Manager Home Page</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="border-bottom:1px solid white;">
         <div class="image">
           <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Hello...Manager </a>
+          <p class="navbarstyle">Hello...Manager </p>
         </div>
       </div>
 
@@ -64,9 +130,9 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+            <a href="#" class="nav-link">
+               <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
+              <p class="navbarstyle">
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -74,26 +140,26 @@
               <ul class="nav nav-treeview">
                   <li class="nav-item">
                       <a href="{{url_for('home2')}}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Employee List</p>
+                          <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
+                          <p class="navbarstyle">Employee List</p>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="{{url_for('monthlyattendance')}}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Monthly Attendance</p>
+                          <p class="navbarstyle">Monthly Attendance</p>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="{{url_for('yearlyattendance')}}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Yearly Attendance</p>
+                          <p class="navbarstyle">Yearly Attendance</p>
                       </a>
                   </li>
                    <li class="nav-item">
                       <a href="{{url_for('pendingleave')}}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Pending Leave Request</p>
+                          <i class="fa fa-hourglass-half navbarstyle"></i>
+                          <p class="navbarstyle">Pending Leave Request</p>
                       </a>
                   </li>
               </ul>
@@ -105,8 +171,8 @@
 </div>
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
-      <div class="col md-12">
-        <h2>Pending Leave List</h2>
+      <div class="col md-12" style="padding:20px;padding-top:0px;">
+        <h2 style="margin-top:0px;">Pending Leave List</h2>
 
         {%with messages = get_flashed_messages()%}
 
@@ -123,8 +189,8 @@
         {%endfor%}
         {%endif%}
         {%endwith%}
-         <table class="table table-striped">
-            <tr>
+         <table class="table">
+            <tr class="tablerow">
                 <th>LeaveId</th>
                 <th>EmployeeId</th>
                 <th>Leave Request Date</th>
@@ -144,8 +210,8 @@
                 <td>{{row.5}}</td>
                 <td>{{row.6}}</td>
                  <td>
-              <a href="/accept/{{row.0}}" class="btn btn-warning btn-xs" onclick="return confirm('Are You Sure For Accept?')">Accept</a>
-              <a href="/reject/{{row.0}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Reject?')">Reject</a>
+              <a href="/accept/{{row.0}}" class="btn btn-xs" onclick="return confirm('Are You Sure For Accept?')"><i class="fa fa-check-circle" style="color:green;"></i></a>
+              <a href="/reject/{{row.0}}" class="btn btn-xs" onclick="return confirm('Are You Sure For Reject?')"><i class="fa fa-times-circle" style="color:red;"></i></a>
             </td>
             </tr>
             {% endfor %}
@@ -153,11 +219,11 @@
       </div>
     </div>
     </div>
+    {% include "/include/footer.html" %}
   </div>
 {% endblock %}
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
-{% include "/include/footer.html" %}
 </body>
 </html>

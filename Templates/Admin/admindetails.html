@@ -2,98 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Employee Home page</title>
+    <title>My Profile</title>
 </head>
-<style>
-  .wellif {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color :#1a6b63 !important;
-  border: 1px solid #1c5953;
-  border-radius: 4px;
-}
-.sidebar-primary{
- 	background-color :#003B36 !important;
-}
-.navbarstyle{
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-}
-.nav > li > a:hover,
-.nav > li > a:focus {
-  text-decoration: none;
-  color:black!important;
-  background-color:white!important;
-
-}
-
-p:hover {
-color:black!important;
-}
-.navbarheading{
-text-align:center;
-font-weight:bold;
-font-size:18px;
-color:white;
-}
-.brand-link
-{
-text-align:center;
-}
-</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
 
 {% block body %}
 
 <div class="content-wrapper">
-<div class="container-fluid" style="padding:0px;">
-  <div class="wellif text-center">
-     <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
+<div class="container-fluid">
+  <div class="well text-center">
+    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 20px">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
   <!-- Navbar -->
-      <!-- Left navbar links -->
+<!--  <nav class="navbar navbar-expand navbar-light">-->
+    <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url_for('home3')}}" class="nav-link">Home</a>
+        <a href="{{url_for('home1')}}" class="nav-link">Home</a>
       </li>
     </ul>
 
-    <!-- Right navbar links -->
+     <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"  data-toggle="dropdown"> </a>
-          Logged as Employee
+          Logged as Admin
           <div class="dropdown-menu dropdown-menu-right" style="top: 13px;">
             <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
           </div>
         </li>
       </ul>
+<!--  </nav>-->
+
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-      <span class="navbarheading">Employee Home Page</span>
+      <span class="brand-text font-weight-light">Admin Home Page</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel d-flex" style="border-bottom:1px solid white;">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <p  class="navbarstyle">Hello... Employee </p>
+          <a href="#" class="d-block">Hello...Admin </a>
         </div>
       </div>
 
@@ -103,9 +67,9 @@ text-align:center;
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
-              <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
-              <p class="navbarstyle">
+            <a href="{{url_for('mydetails2')}}" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -113,27 +77,15 @@ text-align:center;
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('mydetails4')}}" class="nav-link">
-                  <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
-                  <p class="navbarstyle">My Details</p>
+                <a href="{{url_for('Index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Employee Details</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{url_for('holiday')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Attendance </p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Leave History </p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="{{url_for('leave')}}" class="nav-link">
-                   <i class="fa fa-plus navbarstyle"></i>&nbsp;
-                  <p class="navbarstyle">Apply Leave</p>
+                  <p>Add Holiday</p>
                 </a>
               </li>
             </ul>
@@ -145,7 +97,7 @@ text-align:center;
 </div>
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
-     <div class="col md-12" style="padding:20px;padding-top:0px;">
+      <div class="col-md-12">
 
         {%with messages = get_flashed_messages()%}
 
@@ -168,10 +120,11 @@ text-align:center;
                <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
               <div class="card-header">
-                <i class="fa fa-user" aria-hidden="true" style="font-size:18px; padding:7px; color :#1a6b63 !important;">MY PROFILE</i>&nbsp;
+                <i class="fa fa-user" aria-hidden="true" style="font-size:18px; padding:7px;">MY PROFILE</i>
+
               </div>
                <!-- /.card-header -->
-              <div class="card-body"  style=" color :#1a6b63 !important;">
+              <div class="card-body">
                 <!-- /.row -->
                 {% for row in usermaster %}
                 <div class="form-group col-md-3">
@@ -214,23 +167,6 @@ text-align:center;
         </div>
       </div>
     </section>
-        <!-- /.card -->
-<!--        <form name="form1">-->
-<!--          {% for row in usermaster %}-->
-<!--         &lt;!&ndash; <div><b class="head">EmployeeId</b>:<b class="info">{{row.0}}</b></div>&ndash;&gt;-->
-<!--          <div><b class="head">Name:</b>:<b class="info">{{row.1}}</b></div>-->
-<!--          <div><b class="head">Designation:</b>:<b class="info">{{row.2}}</b></div>-->
-<!--          <div><b class="head">Department: </b>:<b class="info">{{row.3}}</b></div>-->
-<!--          <div><b class="head">ManagerId: </b>:<b class="info">{{row.4}}</b></div>-->
-<!--          <div><b class="head">City: </b>:<b class="info">{{row.5}}</b></div>-->
-<!--          <div><b class="head">Email: </b>:<b class="info">{{row.6}}</b></div>-->
-<!--          <div><b class="head">Mobile: </b>:<b class="info">{{row.7}}</b></div>-->
-<!--          <div><b class="head">Address: </b>:<b class="info">{{row.8}}</b></div>-->
-<!--        &lt;!&ndash;  <div><b class="head">LoginName: </b>:<b class="info">{{row.9}}</b></div>-->
-<!--          <div><b class="head">Password: </b>:<b class="info">{{row.10}}</b></div>&ndash;&gt;-->
-
-<!--          {% endfor  %}-->
-<!--        </form>-->
       </div>
     </div>
   </div>
@@ -240,5 +176,6 @@ text-align:center;
 {% endblock %}
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+
 </body>
 </html>
