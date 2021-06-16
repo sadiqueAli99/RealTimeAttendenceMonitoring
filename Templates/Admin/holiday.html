@@ -4,15 +4,103 @@
     <meta charset="UTF-8">
     <title>Holiday</title>
 </head>
+<style>
+body{
+font-family:Times, Times New Roman, serif;
+}
+ .wellif {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background: linear-gradient(to top, #ff8008, #ffc837);
+  color:black;
+  font-family:New Century Schoolbook, TeX Gyre Schola, serif;
+}
+.head{
+font-size:36px;
+}
+.navbarstyle{
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  color:black!important;
+  background-color:white!important;
+
+}
+i:hover {
+color:black!important;
+}
+p:hover {
+color:black!important;
+}
+.btnadd{
+color:black!important;
+font-weight:bold!important;
+background-color: #007bff!important;
+}
+.navbarheading{
+text-align:center;
+font-weight:bold;
+font-size:18px;
+color:white;
+}
+.brand-link
+{
+text-align:center;
+}
+.tablerow{
+color :black!important;
+font-weight:bold;
+}
+.modal-header{
+background-color: #FFBD30!important;
+color:black;
+font-weight:bold;
+}
+.modalclose{
+color:black!important;
+font-weight:bold;
+}
+.btncancel{
+color:white!important;
+font-weight:bold!important;
+background-color :#F70000!important;
+}
+body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content:counter(Serial); /* Display the counter */
+}
+.cardtitle{
+    margin-top:0px;
+  font-size: 2rem;
+  font-weight:bold;
+  color :black !important;
+}
+</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
 
 {% block body %}
 
-<div class="wrapper">
-
+<div class="content-wrapper">
+<div class="container-fluid" style="padding:0px;">
+  <div class="wellif text-center">
+    <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
+  </div>
+  <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <div class="container-fluid navbar navbar-expand navbar-light">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<!--  <nav class="navbar navbar-expand navbar-light">-->
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -34,25 +122,25 @@
           </div>
         </li>
       </ul>
-  </nav>
+<!--  </nav>-->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-      <span class="brand-text font-weight-light">Admin Home Page</span>
+      <span class="navbarheading">Admin Home Page</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="border-bottom:1px solid white;">
         <div class="image">
           <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Hello...Admin </a>
+          <p class="navbarstyle">Hello...Admin </p>
         </div>
       </div>
 
@@ -62,25 +150,25 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+            <a href="{{url_for('mydetails2')}}" class="nav-link">
+              <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
+              <p class="navbarstyle">
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
 
-            <ul class="nav nav-treeview">
+             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('home1')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Employee Details</p>
+                <a href="{{url_for('Index')}}" class="nav-link">
+                  <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
+                  <p class="navbarstyle">Employee Details</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{url_for('holiday')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Holiday</p>
+                  <i class="fa fa-plus navbarstyle"></i>&nbsp;
+                  <p class="navbarstyle">Add Holiday</p>
                 </a>
               </li>
             </ul>
@@ -91,17 +179,9 @@
   </aside>
 </div>
   <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-<div class="container-fluid">
-  <div class="well text-center">
-    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 20px">REALTIME MONITORING OF WORKFORCE</h2>
-    <h3>HOLIDAY DETAILS FORM</h3>
-  </div>
-  <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
-  <div class="container-fluid">
     <div class="row">
-      <div class="col md-12">
-        <h2>Holiday List<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add holiday</button></h2>
+      <div class="col md-12" style="padding:20px;padding-top:0px;">
+<!--        <h2 style="margin-top:0px;">Holiday List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>-->
 
         {%with messages = get_flashed_messages()%}
 
@@ -118,71 +198,101 @@
         {%endfor%}
         {%endif%}
         {%endwith%}
-        <table class="table table-striped">
-          <tr>
-            <th>HolidayID</th>
-            <th>Date</th>
-            <th>Year</th>
-            <th>EventName</th>
-            <th>Action</th>
+         <div class="card">
+              <div class="card-header">
+                <h2 class="cardtitle">HOLIDAY LIST<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>
+              </div>
+         <div class="card-body">
+           <table id="example1" class="table table-bordered table-striped">
+             <tr class="tablerow">
+            <th>Sl. No.</th>
+            <th>HOLIDAY ID</th>
+            <th>DATE</th>
+            <th>YEAR</th>
+            <th>EVENT NAME</th>
+            <th>ACTION</th>
           </tr>
           {% for row in holidaycalendermaster %}
           <tr>
+            <td></td>
             <td>{{row.0}}</td>
             <td>{{row.1}}</td>
             <td>{{row.2}}</td>
             <td>{{row.3}}</td>
-            <td>
-              <a href="/holidayupdate/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
-              <a href="/holidaydelete/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
-            </td>
+            <td >
+              <a href="/update/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#007bff;"></i></a>
+              <a href="/delete/{{ row.0 }}" class="btn btn-xs" onclick="return confirm('Are You Sure For Delete?')"><i class="fa fa-trash" style="color:red;"></i></a>
+            </td >
           </tr>
           <!--Modal Edit Event-->
           <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title">Update Holiday</h4>
+                  <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <form action="{{url_for('holidayupdate')}}" method="POST">
+                  <form action="{{url_for('holidayupdate')}}" method="POST" onclick="return validateform()">
                     <div class="form-group">
-                      <label>Date:</label>
+                      <label>DATE:</label>
                       <input type="hidden" name="HolidayId" value="{{row.0}}">
-                      <input type="date" class="form-control" name="Date" value="{{row.1}}">
+                      <input type="date" class="form-control" name="Date" required="" value="{{row.1}}">
                     </div>
                     <div class="form-group">
-                      <label>Year:</label>
-                      <input type="number" class="form-control" name="Year" value="{{row.2}}">
+                      <label>YEAR:</label>
+                      <input type="number" class="form-control" name="Year" required="" value="{{row.2}}">
                     </div>
                     <div class="form-group">
-                      <label>Event Name:</label>
-                      <input type="text" class="form-control" name="EventName" value="{{row.3}}">
+                      <label>EVENT NAME:</label>
+                      <input type="text" class="form-control" name="EventName" id="ename" required="" value="{{row.3}}">
+                       <span id="enames" class="text-danger font-weight-bold"></span>
                     </div>
                     <div class="form-group">
-                      <button class="btn btn-primary" type="submit">Update</button>
+                      <button class="btn btnadd" type="submit">Update Holiday</button>
+                      <button type="button" class="btn btncancel" data-dismiss="modal">Cancel</button>
                     </div>
                   </form>
-                </div>
-                <div class="form-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
           </div>
           {% endfor%}
         </table>
+         </div>
+         </div>
       </div>
     </div>
   </div>
-</div>
+{% include "/include/footer.html" %}
 </div>
 {% endblock %}
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
-{% include "/include/footer.html" %}
+
+<script>
+function validateform()
+{
+ var Name= document.getElementById('Name').value;
+ var letters = /^[A-Za-z]+$/;
+ if(Name == "")
+  {
+		document.getElementById('Names').innerHTML =" ** Please fill the username field";
+		return false;
+  }
+  if((Name.length <= 2) || (Name.length > 20))
+  {
+		document.getElementById('Names').innerHTML =" ** Username length must be between 2 and 20";
+		return false;
+  }
+  if(!letters.test(Name))
+  {
+		document.getElementById('Names').innerHTML =" ** only characters are allowed";
+		return false;
+  }
+}
+</script>
 </body>
 </html>
 <!--Modal-->
@@ -190,30 +300,29 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4>Insert Holiday</h4>
+        <h4 class="modal-title">Please Insert Data</h4>
+        <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form action="{{url_for('holidayinsert')}}" method="POST">
+        <form action="{{url_for('holidayinsert')}}" method="POST"  onsubmit="return validateform()">
           <div class="form-group">
-            <label>Date:</label>
-            <input type="date" class="form-control" name="Date" required="1">
+            <label>DATE:</label>
+            <input type="date" class="form-control" name="Date" required="">
           </div>
           <div class="form-group">
-            <label>Year:</label>
-            <input type="number" class="form-control" name="Year" required="1">
+            <label>YEAR:</label>
+            <input type="number" class="form-control" name="Year" required="">
           </div>
            <div class="form-group">
-            <label>Event Name:</label>
-            <input type="text" class="form-control" name="EventName" required="1">
+            <label>EVENT NAME:</label>
+            <input type="text" class="form-control" name="EventName" id="Name" required="">
+             <span id="Names" class="text-danger font-weight-bold" ></span>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary" type="submit">Insert Holiday</button>
+            <button class="btn btnadd" name="submit" value="submit" type="submit">Insert Holiday</button>
+            <button class="btn  btncancel" type="reset" value="reset" data-dismiss="modal">Cancel</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

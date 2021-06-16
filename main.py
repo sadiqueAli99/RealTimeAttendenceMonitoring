@@ -13,6 +13,7 @@ app.config['MYSQL_DB'] = 'ram'
 mysql = MySQL(app)
 
 # LOGIN
+# LOGIN
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -25,28 +26,27 @@ def login():
         if count > 0:
             global userID
             userID = data[0]
-            print(userID)
             if bcrypt.hashpw(Password, data[12].encode('utf-8')) == data[12].encode('utf-8'):
                 session['Email'] = request.form['Email']
                 if data[10] == 1:
                     cur.close()
-                    return render_template('/ITAdmin/itadminhome.html')
+                    return render_template('/ITAdmin/itadminhome.html',usermaster=data)
                 elif data[10] == 2:
                     cur.close()
-                    return render_template('/Admin/adminhome.html')
+                    return render_template('/Admin/adminhome.html', usermaster=data)
                 elif data[10] == 3:
                     cur.close()
-                    return render_template('/Manager/mgrhome.html')
+                    return render_template('/Manager/mgrhome.html',usermaster=data)
                 else:
                     cur.close()
-                    return render_template('/Employee/emphome.html')
+                    return render_template('/Employee/emphome.html',usermaster=data)
             else:
-                flash('Invalid Email or Password!!')
-                return render_template('/CommonPage/login.html')
+                flash('Invalid Email or Password!!','danger')
+                return render_template('/CommonPage/login.html',usermaster=data)
         else:
             cur.close()
-            flash("login failed")
-            return render_template('/CommonPage/login.html')
+            flash("login failed",'danger')
+            return render_template('/CommonPage/login.html',usermaster=data)
     return render_template('/CommonPage/login.html')
 
 @app.route('/logout')
@@ -61,8 +61,19 @@ def Index():
     cur = mysql.connection.cursor()
     cur.execute("SELECT  * FROM usermaster where Status=1 and userrole=4 ")
     data = cur.fetchall()
+    cur.execute("SELECT * FROM userrolemaster order by UserRole ")
+    Userrolemaster = cur.fetchall()
     cur.close()
-    return render_template('/Admin/adminhome.html', usermaster=data)
+    return render_template('/Admin/adminhome.html', usermaster=data, userrolemaster=Userrolemaster)
+
+@app.route('/mydetails2')
+def mydetails2():
+    cur = mysql.connection.cursor()
+    print(userID)
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,2,userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Admin/admindetails.html', usermaster=data)
 
 @app.route('/home1')
 def home1():
@@ -85,23 +96,29 @@ def insert():
         Password = details['Password'].encode('utf-8')
         hash_Password=bcrypt.hashpw(Password,bcrypt.gensalt())
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM usermaster WHERE Status=%s AND Email=%s AND Mobile=%s ", (1,Email, Mobile))
+        cur.execute("SELECT * FROM usermaster WHERE Status=1 AND Name=%s", [Name])
+        count = cur.rowcount
+        if count > 0:
+            flash("Name Already Existed")
+            return redirect(url_for('Index'))
+        cur.execute("SELECT * FROM usermaster WHERE Status=1 AND Email=%s", [Email])
         count = cur.rowcount
         if count > 0:
             flash("Email Already Existed")
             return redirect(url_for('Index'))
-        # elif count > 1:
-        #     flash("number existed")
-        #     return redirect(url_for('Index'))
+        cur.execute("SELECT * FROM usermaster WHERE Status=1 AND Mobile=%s", [Mobile])
+        count = cur.rowcount
+        if count > 0:
+            flash("Number Already Existed")
+            return redirect(url_for('Index'))
         else:
             cur.execute(
                 "INSERT INTO usermaster (Name,Designation,Department,ManagerId,City,Email,Mobile,Address,UserRole,LoginName,Password,Status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                (Name, Designation, Department, ManagerId, City, Email, Mobile, Address, UserRole, LoginName,
+                (Name, Designation, Department, 1, City, Email, Mobile, Address, UserRole, LoginName,
                  hash_Password, 1))
             mysql.connection.commit()
             flash("Data Inserted Successfully")
-            return redirect(url_for('Index'))
-
+    return redirect(url_for('Index'))
 
 @app.route('/delete/<string:EmployeeId>', methods=['GET'])
 def delete(EmployeeId):
@@ -133,7 +150,7 @@ def update():
             (Name, Designation, Department, ManagerId, City, Email, Mobile, Address, UserRole, EmployeeId))
         flash("Data Updated Successfully")
         mysql.connection.commit()
-        return redirect(url_for('Index'))
+    return redirect(url_for('Index'))
 
     # ADMIN HOME PAGE - ADD HOLIDAY
 
@@ -154,9 +171,10 @@ def holidayinsert():
         Date = details['Date']
         Year = details['Year']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO holidaycalendermaster(EventName,Date,Year,Status) VALUES(%s,%s,%s)", (EventName, Date,Year,1))
+        cur.execute("INSERT INTO holidaycalendermaster(EventName,Date,Year,Status) VALUES(%s,%s,%s,%s)", [EventName, Date,Year,1,])
         mysql.connection.commit()
     return redirect(url_for('holiday'))
+
 
 @app.route('/holidayupdate', methods=['POST', 'GET'])
 def holidayupdate():
@@ -167,7 +185,7 @@ def holidayupdate():
         Date = details['Date']
         Year = details['Year']
         cur = mysql.connection.cursor()
-        cur.execute("UPDATE holidaycalendermaster SET EventName=%s,Date=%s, Year=%s WHERE HolidayId=%s", (EventName, Date, Year,HolidayId))
+        cur.execute("UPDATE holidaycalendermaster SET EventName=%s,Date=%s, Year=%s WHERE HolidayId=%s", [EventName, Date, Year,HolidayId])
         flash("Holiday Updated")
         mysql.connection.commit()
     return redirect(url_for('holiday'))
@@ -176,7 +194,7 @@ def holidayupdate():
 def holidaydelete(HolidayId):
     flash("Holiday Deleted")
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE holidaycalendermaster SET status=0 WHERE HolidayId =%s", (HolidayId))
+    cur.execute("UPDATE holidaycalendermaster SET status=0 WHERE HolidayId =%s", [HolidayId])
     mysql.connection.commit()
     return redirect(url_for('holiday'))
 
@@ -185,15 +203,25 @@ def holidaydelete(HolidayId):
 @app.route('/employeedetails')
 def employeedetails():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT  * FROM usermaster where Status=1 and userrole=4 ")
+    cur.execute("SELECT  * FROM usermaster where Status=1")
     data = cur.fetchall()
     cur.close()
     return render_template('/Manager/mgrhome.html', usermaster=data)
 
+@app.route('/mydetails3')
+def mydetails3():
+    cur = mysql.connection.cursor()
+    print(userID)
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,3,userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Manager/managerdetails.html', usermaster=data)
+
+
 @app.route('/pendingleave')
 def pendingleave():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=0 ")
+    cur.execute("SELECT leaves.leaveId , usermaster.Name, leaves.LeaveRequestDate , leaves.FromDate , leaves.ToDate , leaves.NumberofDays , leaves.Reason , leaves.LeaveApprovalStatus FROM leaves INNER JOIN usermaster ON leaves.EmployeeId = usermaster.EmployeeID WHERE LeaveApprovalStatus=0")
     data = cur.fetchall()
     cur.close()
     return render_template('/Manager/pendingleave.html', leaves=data)
@@ -202,7 +230,7 @@ def pendingleave():
 def accept(leaveId):
     flash("Leave Has Been Accepted Successfully")
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE leaves SET LeaveApprovalStatus=1  WHERE leaveId=%s", (leaveId))
+    cur.execute("UPDATE leaves SET LeaveApprovalStatus=1  WHERE leaveId=%s", [leaveId])
     mysql.connection.commit()
     return redirect(url_for('pendingleave'))
 
@@ -210,7 +238,7 @@ def accept(leaveId):
 def reject(leaveId):
     flash("Leave Has Been Rejected Successfully")
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE leaves SET LeaveApprovalStatus=2  WHERE leaveId =%s", (leaveId))
+    cur.execute("UPDATE leaves SET LeaveApprovalStatus=2  WHERE leaveId =%s", [leaveId])
     mysql.connection.commit()
     return redirect(url_for('pendingleave'))
 
@@ -236,14 +264,14 @@ def home2():
 
     # EMPLOYEE HOME PAGE
 
-@app.route('/mydetails', methods=['GET','POST'])
-def mydetails():
-        cur = mysql.connection.cursor()
-        print(userID)
-        cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,4,userID))
-        data = cur.fetchall()
-        cur.close()
-        return render_template('/Employee/emphome.html', usermaster=data)
+@app.route('/mydetails4')
+def mydetails4():
+    cur = mysql.connection.cursor()
+    print(userID)
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,4,userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Employee/emphome.html', usermaster=data)
 
 @app.route('/leave')
 def leave():
@@ -252,7 +280,6 @@ def leave():
     data = cur.fetchall()
     cur.close()
     return render_template('/Employee/leave.html', leaves=data)
-
 
 @app.route('/leaveinsert', methods=['POST'])
 def leaveinsert():
@@ -272,22 +299,6 @@ def leaveinsert():
         mysql.connection.commit()
     return redirect(url_for('leave'))
 
-# @app.route('/leaveaccept')
-# def leaveaccept():
-#     cur = mysql.connection.cursor()
-#     cur.execute("SELECT * FROM leaves WHERE LeaveApprovalStatus=%s AND EmployeeID=%s",[1,userID,])
-#     data = cur.fetchall()
-#     cur.close()
-#     return render_template('/Employee/acceptedleave.html', leaves=data)
-#
-# @app.route('/leavereject')
-# def leavereject():
-#     cur = mysql.connection.cursor()
-#     cur.execute("SELECT * FROM leaves where LeaveApprovalStatus=%s AND EmployeeID=%s",[2,userID,])
-#     data = cur.fetchall()
-#     cur.close()
-#     return render_template('/Employee/rejectedleave.html', leaves=data)
-
 @app.route('/home3')
 def home3():
     return render_template('/Employee/emphome.html')
@@ -301,6 +312,17 @@ def itadminhome():
     cur.close()
     return render_template('/ITAdmin/itadminhome.html', camra=data)
 
+
+@app.route('/mydetails1')
+def mydetails1():
+    cur = mysql.connection.cursor()
+    print(userID)
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,1,userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/ITAdmin/itadmindetails.html', usermaster=data)
+
+
 @app.route('/Camerainsert', methods=['POST'])
 def Camerainsert():
     if request.method == 'POST':
@@ -313,13 +335,13 @@ def Camerainsert():
             "INSERT INTO camra (CameraName,Location,status) VALUES (%s,%s,%s)",
             (CameraName, Location,1))
         mysql.connection.commit()
-        return redirect(url_for('itadminhome'))
+    return redirect(url_for('itadminhome'))
 
 @app.route('/Cameradelete/<string:CamaraID>', methods=['GET'])
 def Cameradelete(CamaraID):
     flash("Record Has Been Deleted Successfully")
     cur = mysql.connection.cursor()
-    cur.execute("UPDATE camra SET status=0  WHERE CamaraID=%s", (CamaraID))
+    cur.execute("UPDATE camra SET status=0  WHERE CamaraID=%s", [CamaraID])
     mysql.connection.commit()
     return redirect(url_for('itadminhome'))
 
@@ -336,7 +358,7 @@ def Cameraupdate():
             (CameraName, Location,CamaraID))
         flash("Data Updated Successfully")
         mysql.connection.commit()
-        return redirect(url_for('itadminhome'))
+    return redirect(url_for('itadminhome'))
 
 @app.route('/home')
 def home():
