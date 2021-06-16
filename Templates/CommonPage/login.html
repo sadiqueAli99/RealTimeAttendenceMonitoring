@@ -1,9 +1,19 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+
 
 </head>
 <style>
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
@@ -21,12 +31,12 @@ body {
 	margin: -10px 0 10px;
 }
 
-h1 {
+h3 {
 	font-weight: bold;
-	margin: 0;
+	margin: 30px;
 }
 p {
-	font-size: 17px;
+	font-size: 19px;
 	line-height: 20px;
 	letter-spacing: 0.5px;
 	margin: 20px 0px 30px;
@@ -74,7 +84,7 @@ form {
 input {
 	background-color: #eee;
 	border: none;
-	padding: 12px 15px;
+	padding: 10px 10px;
 	margin: 8px 0;
 	width: 100%;
 }
@@ -115,7 +125,7 @@ input {
 }
 
 .overlay {
-	background-color :#1a6b63 !important;
+	  background: linear-gradient(to top, #ff8008, #ffc837);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -155,30 +165,30 @@ input {
 
 	<div class="form-container sign-in-container">
 		<form action="{{url_for('login')}}"  method="POST"  >
-			<h1>Sign in</h1>
-<!--			{%with messages = get_flashed_messages()%}-->
-<!--	 		{%if messages%}-->
-<!--			{% for message in messages %}-->
-<!--	 		<div class="alert alert-danger alert-dismissable text-center error_msg" role="alert">-->
-<!--		  	{{message}}-->
-<!--		 	<button type="button" class="close" data-dismiss="alert" aria-label ="close">-->
-<!--			 <span aria-hidden="true">&times;</span>-->
-<!--		 	</button>-->
-<!--	 		</div>-->
-<!--	 		{%endfor%}-->
-<!--	 		{%endif%}-->
-<!--			 {%endwith%}-->
+			{%with messages = get_flashed_messages()%}
+	 		{%if messages%}
+			{% for message in messages %}
+	 		<div class="alert alert-danger alert-dismissable text-center error_msg" role="alert">
+		  	{{message}}
+		 	<button type="button" class="close" data-dismiss="alert" aria-label ="close">
+			 <span aria-hidden="true">&times;</span>
+		 	</button>
+	 		</div>
+	 		{%endfor%}
+	 		{%endif%}
+			 {%endwith%}
+			<h3>Sign in</h3>
 			<input type="email" placeholder="Enter Email" name="Email" required="">
 			<input type="password" placeholder="Enter Password" name="Password" required="">
-			<a href="#">Forgot your password?</a>
+			<a href="{{url_for('forgot')}}">Forgot your password?</a>
 			<button>Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-right">
-				<h1>Hello, Employee!</h1>
-				<p>Enter your personal details and start journey with us</p>
+				<h3>Hello, Employee!</h3>
+				<p>Commitment is an Act not a Word</p>
 <!--				<button class="ghost" id="signUp">Sign Up</button>-->
 			</div>
 		</div>

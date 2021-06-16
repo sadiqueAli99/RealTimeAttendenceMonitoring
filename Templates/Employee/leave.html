@@ -5,16 +5,19 @@
     <title>Apply Leave</title>
 </head>
 <style>
-    .wellif {
+body{
+font-family:Times, Times New Roman, serif;
+}
+ .wellif {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color :#1a6b63 !important;
-  border: 1px solid #1c5953;
-  border-radius: 4px;
+  background: linear-gradient(to top, #ff8008, #ffc837);
+  color:black;
+  font-family:New Century Schoolbook, TeX Gyre Schola, serif;
 }
-.sidebar-primary{
- 	background-color :#003B36 !important;
+.head{
+font-size:36px;
 }
 .navbarstyle{
   color:white;
@@ -28,13 +31,16 @@
   background-color:white!important;
 
 }
-.btnadd{
-color:white!important;
-font-weight:bold!important;
-background-color :#1c5953 !important;
+i:hover {
+color:black!important;
 }
 p:hover {
 color:black!important;
+}
+.btnadd{
+color:black!important;
+font-weight:bold!important;
+background-color: #007bff!important;
 }
 .navbarheading{
 text-align:center;
@@ -47,26 +53,38 @@ color:white;
 text-align:center;
 }
 .tablerow{
-background-color:#1c5953;
-color:white;
+color :black!important;
 font-weight:bold;
 }
-table, th, td, tr {
-  border: 1px solid #1c5953;
-}
 .modal-header{
-background-color:#1c5953;
-color:white;
+background-color: #FFBD30!important;
+color:black;
 font-weight:bold;
 }
 .modalclose{
-color:white!important;
+color:black!important;
 font-weight:bold;
 }
 .btncancel{
 color:white!important;
 font-weight:bold!important;
 background-color :#F70000!important;
+}
+body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content:counter(Serial); /* Display the counter */
+}
+.cardtitle{
+    margin-top:0px;
+  font-size: 2rem;
+  font-weight:bold;
+  color :black !important;
 }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -77,7 +95,7 @@ background-color :#F70000!important;
 <div class="content-wrapper">
 <div class="container-fluid" style="padding:0px;">
   <div class="wellif text-center">
-     <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
+     <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
@@ -105,7 +123,7 @@ background-color :#F70000!important;
       </ul>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
@@ -130,37 +148,39 @@ background-color :#F70000!important;
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link ">
+            <a href="#" class="nav-link">
               <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
               <p class="navbarstyle">
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-              <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                      <a href="{{url_for('mydetails4')}}" class="nav-link ">
-                          <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
-                           <p class="navbarstyle">My Details</p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="./index2.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p class="navbarstyle">Attendance</p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="./index2.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p class="navbarstyle">Leave History</p>
-                      </a>
-                    <li class="nav-item">
-                         <a href="{{url_for('leave')}}" class="nav-link">
-                            <i class="fa fa-plus navbarstyle"></i>&nbsp;
-                            <p class="navbarstyle">Apply Leave</p>
-                         </a>
-                    </li>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url_for('mydetails4')}}" class="nav-link">
+                  <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
+                  <p class="navbarstyle">My Details</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index2.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p class="navbarstyle">Attendance </p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="./index2.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p class="navbarstyle">Leave History </p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="{{url_for('leave')}}" class="nav-link">
+                   <i class="fa fa-plus navbarstyle"></i>&nbsp;
+                  <p class="navbarstyle">Apply Leave</p>
+                </a>
+              </li>
                 </ul>
           </li>
         </ul>
@@ -171,7 +191,7 @@ background-color :#F70000!important;
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
       <div class="col md-12" style="padding:20px;padding-top:0px;">
-        <h2 style="margin-top:0px;">List of Leave<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;New Leave Request</button></h2>
+<!--        <h3 style="margin-top:0px;">APPLIED LEAVES<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;New Leave Request</button></h3>-->
 
         {%with messages = get_flashed_messages()%}
 
@@ -188,18 +208,25 @@ background-color :#F70000!important;
         {%endfor%}
         {%endif%}
         {%endwith%}
-        <table class="table">
-            <tr class="tablerow">
-                <th>Name</th>
-                <th>Leave Request Date</th>
-                <th>FromDate</th>
-                <th>ToDate</th>
-                <th>Number Of Days</th>
-                <th>Reason</th>
-                <th>Status</th>
+        <div class="card">
+              <div class="card-header">
+                 <h3 class="cardtitle">APPLIED LEAVES<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;New Leave Request</button></h3>
+              </div>
+         <div class="card-body">
+           <table id="example1" class="table table-bordered table-striped">
+          <tr class="tablerow">
+                <th>Sl. No.</th>
+                <th>NAME</th>
+                <th>LEAVE REQUEST DATE</th>
+                <th>START DATE</th>
+                <th>END DATE</th>
+                <th>NO. OF DAYS</th>
+                <th>REASON</th>
+                <th>STATUS</th>
             </tr>
             {% for row in leaves %}
             <tr>
+                <td></td>
                 <td>{{row.1}}</td>
                 <td>{{row.2}}</td>
                 <td>{{row.3}}</td>
@@ -221,6 +248,8 @@ background-color :#F70000!important;
             </tr>
             {% endfor %}
         </table>
+         </div>
+        </div>
       </div>
     </div>
   </div>
@@ -285,11 +314,11 @@ background-color :#F70000!important;
 </body>
 </html>
 <!--Modal-->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog" >
   <div class="modal-dialog">
-    <div class="modal-content"  style=" color :#1a6b63 !important;">
+    <div class="modal-content" >
       <div class="modal-header">
-           <h4 class="modal-title">Please Insert Data</h4>
+           <h4 class="modal-title" >Please Insert Data</h4>
           <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -303,19 +332,19 @@ background-color :#F70000!important;
 <!--            <input type="text" class="form-control" name="LeaveRequestDate" required="1">-->
 <!--          </div>-->
              <div class="form-group">
-            <label>From Date:</label>
+            <label>START DATE:</label>
             <input type="text" class="form-control" name="FromDate" id="FromDate" required="1">
           </div>
              <div class="form-group">
-            <label>To Date:</label>
+            <label>END DATE:</label>
             <input type="text" class="form-control" name="ToDate" id="ToDate" required="1">
           </div>
              <div class="form-group">
-            <label>Number Of days:</label>
+            <label>NUMBER OF DAYS:</label>
             <input type="number" class="form-control" name="NumberofDays" required="1">
           </div>
              <div class="form-group">
-            <label>Reason:</label>
+            <label>REASON:</label>
             <input type="text" class="form-control" name="Reason" id="reason" required="1">
                  <span id="reasons" class="text-danger font-weight-bold"></span>
           </div>

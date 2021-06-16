@@ -16,25 +16,28 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
   <script src="Static/dist/js/bootstrapValidator.js"></script>
 
     <link rel="stylesheet" href="Static/dist/css/bootstrapValidator.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 
 </head>
 <style>
-  .wellif {
+body{
+font-family:Times, Times New Roman, serif;
+}
+ .wellif {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color :#1a6b63 !important;
-  border: 1px solid #1c5953;
-  border-radius: 4px;
+  background: linear-gradient(to top, #ff8008, #ffc837);
+  color:black;
+  font-family:New Century Schoolbook, TeX Gyre Schola, serif;
 }
-.sidebar-primary{
- 	background-color :#003B36 !important;
+.head{
+font-size:36px;
 }
 .navbarstyle{
   color:white;
@@ -48,14 +51,16 @@
   background-color:white!important;
 
 }
-
+i:hover {
+color:black!important;
+}
 p:hover {
 color:black!important;
 }
 .btnadd{
-color:white!important;
+color:black!important;
 font-weight:bold!important;
-background-color :#1c5953 !important;
+background-color: #007bff!important;
 }
 .navbarheading{
 text-align:center;
@@ -68,20 +73,16 @@ color:white;
 text-align:center;
 }
 .tablerow{
-background-color:#1c5953;
-color:white;
+color :black!important;
 font-weight:bold;
 }
-table, th, td, tr {
-  border: 1px solid #1c5953;
-}
 .modal-header{
-background-color:#1c5953;
-color:white;
+background-color: #FFBD30!important;
+color:black;
 font-weight:bold;
 }
 .modalclose{
-color:white!important;
+color:black!important;
 font-weight:bold;
 }
 .btncancel{
@@ -94,15 +95,16 @@ body
     counter-reset: Serial;           /* Set the Serial counter to 0 */
 }
 
-table
-{
-    border-collapse: separate;
-}
-
 tr td:first-child:before
 {
   counter-increment: Serial;      /* Increment the Serial counter */
   content:counter(Serial); /* Display the counter */
+}
+.cardtitle{
+    margin-top:0px;
+  font-size: 2rem;
+  font-weight:bold;
+  color :black !important;
 }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -113,7 +115,7 @@ tr td:first-child:before
 <div class="content-wrapper">
 <div class="container-fluid" style="padding:0px;">
   <div class="wellif text-center">
-    <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
+    <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
@@ -141,7 +143,7 @@ tr td:first-child:before
       </ul>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link" >
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
@@ -197,7 +199,7 @@ tr td:first-child:before
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
       <div class="col md-12" style="padding:20px;padding-top:0px;">
-        <h2 style="margin-top:0px;">Employee List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;Add Employee Data</button></h2>
+<!--        <h2 style="margin-top:0px;">EMPLOYEE LIST<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;Add Employee Data</button></h2>-->
 
         {%with messages = get_flashed_messages()%}
 
@@ -214,21 +216,26 @@ tr td:first-child:before
         {%endfor%}
         {%endif%}
         {%endwith%}
-        <table class="table">
+       <div class="card">
+              <div class="card-header">
+                <h1 class="cardtitle">EMPLOYEE LIST<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;Add Employee Data</button></h1>
+              </div>
+         <div class="card-body">
+           <table id="example1" class="table table-bordered table-striped">
           <tr class="tablerow">
             <th>Sl. No.</th>
-            <th >EmployeeId</th>
-            <th >Name</th>
-            <th >Designation</th>
-            <th >Department</th>
-            <th >ManagerId</th>
-            <th >City</th>
-            <th >Email</th>
-            <th >Mobile</th>
-            <th >Address</th>
-<!--            <th>LoginName</th>-->
-<!--            <th>Password</th>-->
-            <th >Action</th>
+            <th >EMP ID</th>
+            <th >NAME</th>
+            <th >DESIGNATION</th>
+            <th >DEPARTMENT</th>
+            <th >MGR ID</th>
+            <th >CITY</th>
+            <th >EMAIL</th>
+            <th >MOBILE</th>
+            <th >ADDRESS</th>
+<!--            <th>LOGIN NAME</th>-->
+<!--            <th>PASSWORD</th>-->
+            <th >ACTION</th>
           </tr>
           {% for row in usermaster %}
           <tr>
@@ -246,14 +253,14 @@ tr td:first-child:before
 <!--            <td>{{row.11}}</td>-->
 
             <td >
-              <a href="/update/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#1c5953;"></i></a>
+              <a href="/update/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#007bff;"></i></a>
               <a href="/delete/{{ row.0 }}" class="btn btn-xs" onclick="return confirm('Are You Sure For Delete?')"><i class="fa fa-trash" style="color:red;"></i></a>
             </td >
           </tr >
      <!-- Modal Edit Employee-->
           <div id="modaledit{{row.0}}" class="modal fade" role="dialog" >
             <div class="modal-dialog">
-              <div class="modal-content"  style=" color :#1a6b63 !important;">
+              <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title">Update Information</h4>
                   <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
@@ -261,41 +268,41 @@ tr td:first-child:before
                 <div class="modal-body">
                   <form action="{{ url_for('update') }}" method="POST" onclick="return validform()">
                     <div class="form-group">
-                      <label>Name:</label>
+                      <label>NAME:</label>
                       <input type="hidden"  name="EmployeeId" value="{{row.0}}">
                       <input type="text" class="form-control" id="uname" name="Name" required="" value="{{row.1}}">
                       <span id="unames" class="text-danger font-weight-bold" ></span>
                     </div>
                     <div class="form-group">
-                      <label>Designation:</label>
+                      <label>DESIGNATION:</label>
                       <input type="text" class="form-control" name="Designation" required="" value="{{row.2}}">
                     </div>
                     <div class="form-group">
-                      <label>Department:</label>
+                      <label>DEPARTMENT:</label>
                       <input type="text"  class="form-control" name="Department" required="" value="{{row.3}}">
                     </div>
                     <div class="form-group">
-                      <label>ManagerId:</label>
+                      <label>MGR ID:</label>
                       <input type="number" class="form-control" name="ManagerId" required=""  value="{{row.4}}">
                     </div>
                     <div class="form-group">
-                      <label>City:</label>
+                      <label>CITY:</label>
                       <input type="text" class="form-control" name="City" required=""   value="{{row.5}}">
                     </div>
                     <div class="form-group">
-                      <label>Email:</label>
+                      <label>EMAIL:</label>
                       <input type="email" class="form-control" name="Email" required=""  value="{{row.6}}">
                     </div>
                     <div class="form-group">
-                      <label>Mobile:</label>
+                      <label>MOBILE:</label>
                       <input type="text" class="form-control" name="Mobile" required=""  value="{{row.7}}">
                     </div>
                     <div class="form-group">
-                      <label>Address:</label>
+                      <label>ADDRESS:</label>
                       <input type="text" class="form-control" name="Address" required=""  value="{{row.8}}">
                     </div>
                     <div class="form-group">
-                      <label>UserRole:</label>
+                      <label>USER ROLE:</label>
                        <select class="form-control" name="UserRole" id="UserRole" required="">
                           {% for r in userrolemaster %}
                            <option value="{{r.0}}">{{r.1}}</option>
@@ -303,11 +310,11 @@ tr td:first-child:before
                        </select>
                     </div>
 <!--                    <div class="form-group">-->
-<!--                      <label>LoginName:</label>-->
+<!--                      <label>LOGIN NAME:</label>-->
 <!--                      <input type="email" class="form-control" name="LoginName" value="{{row.10}}">-->
 <!--                    </div>-->
 <!--                    <div class="form-group">-->
-<!--                      <label>Password:</label>-->
+<!--                      <label>PASSWORD:</label>-->
 <!--                      <input type="password" class="form-control" name="Password" value="{{row.11}}">-->
 <!--                    </div>-->
                     <div class="form-group">
@@ -323,12 +330,13 @@ tr td:first-child:before
           </div>
           {% endfor  %}
         </table>
+         </div>
+       </div>
       </div>
     </div>
   </div>
   {% include "/include/footer.html" %}
 </div>
-
 {% endblock %}
 <script >
 function validateform()
@@ -497,7 +505,7 @@ function validform()
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
    <div class="modal-dialog">
-      <div class="modal-content"  style=" color :#1a6b63 !important;">
+      <div class="modal-content">
          <div class="modal-header">
            <h4 class="modal-title">Please Insert Data</h4>
            <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
@@ -505,47 +513,47 @@ function validform()
         <div class="modal-body">
           <form action="{{ url_for('insert') }}" method="POST"  onsubmit="return validateform()">
             <div class="form-group">
-              <label>Name:</label>
+              <label>NAME:</label>
               <input type="text" class="form-control" name="Name"  id="Name" required="">
               <span id="Names" class="text-danger font-weight-bold" ></span>
             </div>
             <div class="form-group">
-              <label >Designation:</label>
+              <label >DESIGNATION:</label>
               <input type="text" class="form-control" name="Designation"  id="Designation" autocomplete="off" required="">
               <span id="Desig" class="text-danger font-weight-bold"> </span>
             </div>
             <div class="form-group">
-              <label >Department:</label>
+              <label >DEPARTMENT:</label>
               <input type="text" class="form-control" name="Department" id="Department" autocomplete="off" required="">
               <span id="Depart" class="text-danger font-weight-bold"> </span>
             </div>
             <div class="form-group">
-              <label>ManagerId:</label>
+              <label>MGR ID:</label>
               <input type="number" class="form-control" name="ManagerId" id="ManagerId" autocomplete="off" required="">
               <span id="ManagId" class="text-danger font-weight-bold"> </span>
             </div>
             <div class="form-group">
-              <label>City:</label>
+              <label>CITY:</label>
               <input type="text" class="form-control" name="City" id="City" autocomplete="off" required="">
                <span id="Citys" class="text-danger font-weight-bold"> </span>
             </div>
             <div class="form-group">
-              <label>Email:</label>
+              <label>EMAIL:</label>
               <input type="email" class="form-control" name="Email" id="Email" autocomplete="off" required="">
                <span id="Emails" class="text-danger font-weight-bold"> </span>
             </div>
             <div class="form-group">
-              <label>Mobile:</label>
+              <label>MOBILE:</label>
               <input type="text" class="form-control" name="Mobile" id="Mobile" autocomplete="off" required="">
                <span id="Mobiles" class="text-danger font-weight-bold"> </span>
             </div>
             <div class="form-group">
-              <label >Address:</label>
+              <label >ADDRESS:</label>
               <input type="text" class="form-control" name="Address" id="Address" min  autocomplete="off" required="">
                <span id="Adds" class="text-danger font-weight-bold"> </span>
             </div>
             <div class="form-group">
-              <label>UserRole:</label>
+              <label>USER ROLE:</label>
 <!--              <input type="number" class="form-control" name="UserRole" required="1">-->
               <select  class="form-control" name="UserRole" autocomplete="off" required="">
                 {% for r in userrolemaster %}
@@ -554,12 +562,12 @@ function validform()
               </select>
             </div>
             <div class="form-group">
-              <label >LoginName:</label>
+              <label >LOGIN NAME:</label>
               <input type="email" class="form-control" name="LoginName" id="LoginName"  autocomplete="off" required="">
                <span id="LName" class="text-danger font-weight-bold"> </span>
             </div>
             <div class="form-group">
-              <label>Password:</label>
+              <label>PASSWORD:</label>
               <input type="password" class="form-control" name="Password" id="Password" autocomplete="off" required="">
                <span id="Pass" class="text-danger font-weight-bold"> </span>
             </div>

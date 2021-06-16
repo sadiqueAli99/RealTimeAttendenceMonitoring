@@ -5,16 +5,19 @@
     <title>Pending Leave Request</title>
 </head>
 <style>
-    .wellif {
+body{
+font-family:Times, Times New Roman, serif;
+}
+ .wellif {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color :#1a6b63 !important;
-  border: 1px solid #1c5953;
-  border-radius: 4px;
+  background: linear-gradient(to top, #ff8008, #ffc837);
+  color:black;
+  font-family:New Century Schoolbook, TeX Gyre Schola, serif;
 }
-.sidebar-primary{
- 	background-color :#003B36 !important;
+.head{
+font-size:36px;
 }
 .navbarstyle{
   color:white;
@@ -28,14 +31,16 @@
   background-color:white!important;
 
 }
-
+i:hover {
+color:black!important;
+}
 p:hover {
 color:black!important;
 }
 .btnadd{
-color:white!important;
+color:black!important;
 font-weight:bold!important;
-background-color :#1c5953 !important;
+background-color: #007bff!important;
 }
 .navbarheading{
 text-align:center;
@@ -48,26 +53,38 @@ color:white;
 text-align:center;
 }
 .tablerow{
-background-color:#1c5953;
-color:white;
+color :black!important;
 font-weight:bold;
 }
-table, th, td, tr {
-  border: 1px solid #1c5953;
-}
 .modal-header{
-background-color:#1c5953;
-color:white;
+background-color: #FFBD30!important;
+color:black;
 font-weight:bold;
 }
 .modalclose{
-color:white!important;
+color:black!important;
 font-weight:bold;
 }
 .btncancel{
 color:white!important;
 font-weight:bold!important;
 background-color :#F70000!important;
+}
+body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content:counter(Serial); /* Display the counter */
+}
+.cardtitle{
+    margin-top:0px;
+  font-size: 2rem;
+  font-weight:bold;
+  color :black !important;
 }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -78,7 +95,7 @@ background-color :#F70000!important;
 <div class="content-wrapper">
 <div class="container-fluid" style="padding:0px;">
   <div class="wellif text-center">
-    <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
+    <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
@@ -105,7 +122,7 @@ background-color :#F70000!important;
         </li>
       </ul>
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
@@ -139,7 +156,7 @@ background-color :#F70000!important;
             </a>
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                      <a href="{{url_for('home2')}}" class="nav-link">
+                      <a href="{{url_for('employeedetails')}}" class="nav-link">
                           <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
                           <p class="navbarstyle">Employee List</p>
                       </a>
@@ -172,7 +189,7 @@ background-color :#F70000!important;
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
       <div class="col md-12" style="padding:20px;padding-top:0px;">
-        <h2 style="margin-top:0px;">Pending Leave List</h2>
+<!--        <h3 style="margin-top:0px;">PENDING LEAVE LIST</h3>-->
 
         {%with messages = get_flashed_messages()%}
 
@@ -189,19 +206,26 @@ background-color :#F70000!important;
         {%endfor%}
         {%endif%}
         {%endwith%}
-         <table class="table">
-            <tr class="tablerow">
-                <th>LeaveId</th>
-                <th>EmployeeId</th>
-                <th>Leave Request Date</th>
-                <th>FromDate</th>
-                <th>ToDate</th>
-                <th>Number Of Days</th>
-                <th>Reason</th>
-                <th>Action</th>
+          <div class="card">
+              <div class="card-header">
+                <h1 class="cardtitle">PENDING LEAVE</h1>
+              </div>
+         <div class="card-body">
+           <table id="example1" class="table table-bordered table-striped table-hover">
+          <tr class="tablerow" >
+                <th>Sl. No.</th>
+                <th>LEAVE ID</th>
+                <th>EMPLOYEE ID</th>
+                 <th>LEAVE REQUEST DATE</th>
+                <th>START DATE</th>
+                <th>END DATE</th>
+                <th>NO. OF DAYS</th>
+                <th>REASON</th>
+                <th>STATUS</th>
             </tr>
             {% for row in leaves %}
             <tr>
+                <td></td>
                 <td>{{row.0}}</td>
                 <td>{{row.1}}</td>
                 <td>{{row.2}}</td>
@@ -216,6 +240,8 @@ background-color :#F70000!important;
             </tr>
             {% endfor %}
         </table>
+         </div>
+          </div>
       </div>
     </div>
     </div>

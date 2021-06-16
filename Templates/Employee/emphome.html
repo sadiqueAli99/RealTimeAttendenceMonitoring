@@ -5,16 +5,23 @@
     <title>Employee Home page</title>
 </head>
 <style>
-  .wellif {
+ body {
+	font-family: sans-serif;
+}
+
+ .wellif {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color :#1a6b63 !important;
-  border: 1px solid #1c5953;
-  border-radius: 4px;
+  background: linear-gradient(to top, #ff8008, #ffc837);
+  color:black;
+  font-family:Times,serif;font-family:Times,serif;
+}
+.head{
+font-size:36px;
 }
 .sidebar-primary{
- 	background-color :#003B36 !important;
+ 	background: linear-gradient(to bottom, #ff8008, #ffc837);
 }
 .navbarstyle{
   color:white;
@@ -32,6 +39,11 @@
 p:hover {
 color:black!important;
 }
+.btnadd{
+color:white!important;
+font-weight:bold!important;
+background-color: #007bff!important;
+}
 .navbarheading{
 text-align:center;
 font-weight:bold;
@@ -42,6 +54,41 @@ color:white;
 {
 text-align:center;
 }
+.tablerow{
+color :#1a6b63 !important;
+font-weight:bold;
+}
+.modal-header{
+color:black;
+font-weight:bold;
+ background:#FFBE31;
+}
+.modalclose{
+color:black!important;
+font-weight:bold;
+ background:#FFBE31;
+}
+.btncancel{
+color:white!important;
+font-weight:bold!important;
+background-color :#F70000!important;
+}
+body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content:counter(Serial); /* Display the counter */
+}
+.cardtitle{
+    margin-top:0px;
+  font-size: 2rem;
+  font-weight:bold;
+  color :#1a6b63 !important;
+}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
@@ -51,7 +98,7 @@ text-align:center;
 <div class="content-wrapper">
 <div class="container-fluid" style="padding:0px;">
   <div class="wellif text-center">
-     <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
+     <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
@@ -78,7 +125,7 @@ text-align:center;
         </li>
       </ul>
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
@@ -168,42 +215,42 @@ text-align:center;
                <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
               <div class="card-header">
-                <i class="fa fa-user" aria-hidden="true" style="font-size:18px; padding:7px; color :#1a6b63 !important;">MY PROFILE</i>&nbsp;
+                <i class="fa fa-user" aria-hidden="true" style="font-size:18px; font-weight:bold; font-weight:bold;">MY PROFILE</i>&nbsp;
               </div>
                <!-- /.card-header -->
-              <div class="card-body"  style=" color :#1a6b63 !important;">
+              <div class="card-body">
                 <!-- /.row -->
                 {% for row in usermaster %}
                 <div class="form-group col-md-3">
-                  <label >Name</label>
+                  <label >NAME:</label>
                   <input type="text" class="form-control" value="{{row.1}}" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                  <label>Designation</label>
+                  <label>DESIGNATION:</label>
                   <input type="text" class="form-control" value="{{row.2}}" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                  <label>Department</label>
+                  <label>DEPARTMENT:</label>
                   <input type="text" class="form-control" value="{{row.3}}" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                  <label>ManagerId</label>
+                  <label>MANAGER ID:</label>
                   <input type="number" class="form-control" value="{{row.4}}" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                  <label>City</label>
+                  <label>CITY:</label>
                   <input type="text" class="form-control" value="{{row.5}}" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                  <label>Email</label>
+                  <label>EMAIL:</label>
                   <input type="email" class="form-control" value="{{row.6}}" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                  <label>Mobile</label>
+                  <label>MOBILE:</label>
                   <input type="number" class="form-control" value="{{row.7}}" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                  <label>Address</label>
+                  <label>ADDRESS:</label>
                   <input type="text" class="form-control" value="{{row.8}}" readonly>
                 </div>
 
@@ -236,7 +283,6 @@ text-align:center;
   </div>
   {% include "/include/footer.html" %}
 </div>
-
 {% endblock %}
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>

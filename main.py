@@ -40,18 +40,27 @@ def login():
                     cur.close()
                     return render_template('/Employee/emphome.html',usermaster=data)
             else:
-                flash('Invalid Email or Password!!')
+                flash('Invalid Email or Password!!','danger')
                 return render_template('/CommonPage/login.html',usermaster=data)
         else:
             cur.close()
-            flash("login failed")
-            return render_template('/CommonPage/login.html',usermaster=data)
+            flash("login failed",'danger')
+            return render_template('/CommonPage/login.html')
     return render_template('/CommonPage/login.html')
+
+@app.route('/forgot',methods=['GET','POST'])
+def forgot():
+    return render_template('/CommonPage/forgot.html')
+
+@app.route('/reset',methods=['GET','POST'])
+def reset():
+    return render_template('/CommonPage/reset.html')
 
 @app.route('/logout')
 def logout():
     session.clear()
     return render_template('/CommonPage/login.html')
+
 
     # ADMIN HOME PAGE - CRUD OPERATIONS
 
@@ -71,8 +80,6 @@ def mydetails2():
     print(userID)
     cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,2,userID))
     data = cur.fetchall()
-    count=cur.rowcount()
-    print(count)
     cur.close()
     return render_template('/Admin/admindetails.html', usermaster=data)
 

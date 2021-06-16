@@ -5,16 +5,19 @@
     <title>Holiday</title>
 </head>
 <style>
-  .wellif {
+body{
+font-family:Times, Times New Roman, serif;
+}
+ .wellif {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color :#1a6b63 !important;
-  border: 1px solid #1c5953;
-  border-radius: 4px;
+  background: linear-gradient(to top, #ff8008, #ffc837);
+  color:black;
+  font-family:New Century Schoolbook, TeX Gyre Schola, serif;
 }
-.sidebar-primary{
- 	background-color :#003B36 !important;
+.head{
+font-size:36px;
 }
 .navbarstyle{
   color:white;
@@ -28,14 +31,16 @@
   background-color:white!important;
 
 }
-
+i:hover {
+color:black!important;
+}
 p:hover {
 color:black!important;
 }
 .btnadd{
-color:white!important;
+color:black!important;
 font-weight:bold!important;
-background-color :#1c5953 !important;
+background-color: #007bff!important;
 }
 .navbarheading{
 text-align:center;
@@ -48,20 +53,16 @@ color:white;
 text-align:center;
 }
 .tablerow{
-background-color:#1c5953;
-color:white;
+color :black!important;
 font-weight:bold;
 }
-table, th, td, tr {
-  border: 1px solid #1c5953;
-}
 .modal-header{
-background-color:#1c5953;
-color:white;
+background-color: #FFBD30!important;
+color:black;
 font-weight:bold;
 }
 .modalclose{
-color:white!important;
+color:black!important;
 font-weight:bold;
 }
 .btncancel{
@@ -74,15 +75,16 @@ body
     counter-reset: Serial;           /* Set the Serial counter to 0 */
 }
 
-table
-{
-    border-collapse: separate;
-}
-
 tr td:first-child:before
 {
   counter-increment: Serial;      /* Increment the Serial counter */
   content:counter(Serial); /* Display the counter */
+}
+.cardtitle{
+    margin-top:0px;
+  font-size: 2rem;
+  font-weight:bold;
+  color :black !important;
 }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -93,7 +95,7 @@ tr td:first-child:before
 <div class="content-wrapper">
 <div class="container-fluid" style="padding:0px;">
   <div class="wellif text-center">
-    <h2 style="font-size:38px; color:white;">REALTIME MONITORING OF WORKFORCE</h2>
+    <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
@@ -123,7 +125,7 @@ tr td:first-child:before
 <!--  </nav>-->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
@@ -179,7 +181,7 @@ tr td:first-child:before
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
       <div class="col md-12" style="padding:20px;padding-top:0px;">
-        <h2 style="margin-top:0px;">Holiday List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>
+<!--        <h2 style="margin-top:0px;">Holiday List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>-->
 
         {%with messages = get_flashed_messages()%}
 
@@ -196,29 +198,36 @@ tr td:first-child:before
         {%endfor%}
         {%endif%}
         {%endwith%}
-        <table class="table">
-          <tr class="tablerow">
-            <th>HolidayID</th>
-            <th>Date</th>
-            <th>Year</th>
-            <th>EventName</th>
-            <th>Action</th>
+         <div class="card">
+              <div class="card-header">
+                <h2 class="cardtitle">HOLIDAY LIST<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>
+              </div>
+         <div class="card-body">
+           <table id="example1" class="table table-bordered table-striped">
+             <tr class="tablerow">
+            <th>Sl. No.</th>
+            <th>HOLIDAY ID</th>
+            <th>DATE</th>
+            <th>YEAR</th>
+            <th>EVENT NAME</th>
+            <th>ACTION</th>
           </tr>
           {% for row in holidaycalendermaster %}
           <tr>
             <td></td>
+            <td>{{row.0}}</td>
             <td>{{row.1}}</td>
             <td>{{row.2}}</td>
             <td>{{row.3}}</td>
             <td >
-              <a href="/update/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#1c5953;"></i></a>
+              <a href="/update/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#007bff;"></i></a>
               <a href="/delete/{{ row.0 }}" class="btn btn-xs" onclick="return confirm('Are You Sure For Delete?')"><i class="fa fa-trash" style="color:red;"></i></a>
             </td >
           </tr>
           <!--Modal Edit Event-->
           <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
             <div class="modal-dialog">
-              <div class="modal-content"  style=" color :#1a6b63 !important;">
+              <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title">Update Holiday</h4>
                   <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
@@ -226,16 +235,16 @@ tr td:first-child:before
                 <div class="modal-body">
                   <form action="{{url_for('holidayupdate')}}" method="POST" onclick="return validateform()">
                     <div class="form-group">
-                      <label>Date:</label>
+                      <label>DATE:</label>
                       <input type="hidden" name="HolidayId" value="{{row.0}}">
                       <input type="date" class="form-control" name="Date" required="" value="{{row.1}}">
                     </div>
                     <div class="form-group">
-                      <label>Year:</label>
+                      <label>YEAR:</label>
                       <input type="number" class="form-control" name="Year" required="" value="{{row.2}}">
                     </div>
                     <div class="form-group">
-                      <label>Event Name:</label>
+                      <label>EVENT NAME:</label>
                       <input type="text" class="form-control" name="EventName" id="ename" required="" value="{{row.3}}">
                        <span id="enames" class="text-danger font-weight-bold"></span>
                     </div>
@@ -250,6 +259,8 @@ tr td:first-child:before
           </div>
           {% endfor%}
         </table>
+         </div>
+         </div>
       </div>
     </div>
   </div>
@@ -287,7 +298,7 @@ function validateform()
 <!--Modal-->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-    <div class="modal-content"  style=" color :#1a6b63 !important;">
+    <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Please Insert Data</h4>
         <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
@@ -295,15 +306,15 @@ function validateform()
       <div class="modal-body">
         <form action="{{url_for('holidayinsert')}}" method="POST"  onsubmit="return validateform()">
           <div class="form-group">
-            <label>Date:</label>
+            <label>DATE:</label>
             <input type="date" class="form-control" name="Date" required="">
           </div>
           <div class="form-group">
-            <label>Year:</label>
+            <label>YEAR:</label>
             <input type="number" class="form-control" name="Year" required="">
           </div>
            <div class="form-group">
-            <label>Event Name:</label>
+            <label>EVENT NAME:</label>
             <input type="text" class="form-control" name="EventName" id="Name" required="">
              <span id="Names" class="text-danger font-weight-bold" ></span>
           </div>
