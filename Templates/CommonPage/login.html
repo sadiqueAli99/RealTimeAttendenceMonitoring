@@ -33,13 +33,13 @@ body {
 
 h3 {
 	font-weight: bold;
-	margin: 30px;
+	margin: 25px;
 }
 p {
 	font-size: 19px;
 	line-height: 20px;
 	letter-spacing: 0.5px;
-	margin: 20px 0px 30px;
+	margin:-10px -10px 0px 30px;
 }
 
 a {
@@ -165,10 +165,10 @@ input {
 
 	<div class="form-container sign-in-container">
 		<form action="{{url_for('login')}}"  method="POST"  >
-			{%with messages = get_flashed_messages()%}
+			{% with messages = get_flashed_messages(with_categories=true) %}
 	 		{%if messages%}
-			{% for message in messages %}
-	 		<div class="alert alert-danger alert-dismissable text-center error_msg" role="alert">
+			{% for category, message in messages %}
+	 		<div class="alert alert-{{ category }}" >
 		  	{{message}}
 		 	<button type="button" class="close" data-dismiss="alert" aria-label ="close">
 			 <span aria-hidden="true">&times;</span>

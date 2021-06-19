@@ -193,21 +193,18 @@ tr td:first-child:before
       <div class="col md-12"  style="padding:20px;padding-top:0px;">
 <!--        <h3  style="margin-top:0px;">EMPLOYEE LIST</h3>-->
 
-        {%with messages = get_flashed_messages()%}
-
-        {%if messages%}
-
-        {% for message in messages %}
-
-        <div class="alert alert-success alert-dismissable" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label ="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        {{message}}
-        </div>
-        {%endfor%}
-        {%endif%}
-        {%endwith%}
+       {% with messages = get_flashed_messages(with_categories=true) %}
+	 		{%if messages%}
+			{% for category, message in messages %}
+	 		<div class="alert alert-{{ category }}" >
+		  	{{message}}
+		 	<button type="button" class="close" data-dismiss="alert" aria-label ="close">
+			 <span aria-hidden="true">&times;</span>
+		 	</button>
+	 		</div>
+	 		{%endfor%}
+	 		{%endif%}
+			 {%endwith%}
          <div class="card">
               <div class="card-header">
                 <h1 class="cardtitle">EMPLOYEE LIST</h1>
