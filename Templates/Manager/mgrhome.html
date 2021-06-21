@@ -86,6 +86,10 @@ tr td:first-child:before
   font-weight:bold;
   color :black !important;
 }
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
+    background-color: rgba(255,255,255,.9);
+    color: #343a40;
+}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
@@ -148,7 +152,7 @@ tr td:first-child:before
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{url_for('home2')}}" class="nav-link ">
+            <a href="{{url_for('home2')}}" class="nav-link active">
                <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
               <p class="navbarstyle">
                 Dashboard
@@ -158,7 +162,7 @@ tr td:first-child:before
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('employeedetails')}}" class="nav-link ">
+                <a href="{{url_for('employeedetails')}}" class="nav-link active">
                   <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">Employee List</p>
                 </a>

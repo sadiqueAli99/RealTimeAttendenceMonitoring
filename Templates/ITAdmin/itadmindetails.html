@@ -4,15 +4,98 @@
     <meta charset="UTF-8">
     <title>IT Admin Home page</title>
 </head>
+<style>
+body{
+font-family:Times, Times New Roman, serif;
+}
+ .wellif {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background: linear-gradient(to top, #ff8008, #ffc837);
+  color:black;
+  font-family:New Century Schoolbook, TeX Gyre Schola, serif;
+}
+.head{
+font-size:36px;
+}
+.navbarstyle{
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  color:black!important;
+  background-color:white!important;
+
+}
+i:hover {
+color:black!important;
+}
+p:hover {
+color:black!important;
+}
+.btnadd{
+color:black!important;
+font-weight:bold!important;
+background-color: #007bff!important;
+}
+.navbarheading{
+text-align:center;
+font-weight:bold;
+font-size:18px;
+color:white;
+}
+.brand-link
+{
+text-align:center;
+}
+.tablerow{
+color :black!important;
+font-weight:bold;
+}
+.modal-header{
+background-color: #FFBD30!important;
+color:black;
+font-weight:bold;
+}
+.modalclose{
+color:black!important;
+font-weight:bold;
+}
+.btncancel{
+color:white!important;
+font-weight:bold!important;
+background-color :#F70000!important;
+}
+body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content:counter(Serial); /* Display the counter */
+}
+.cardtitle{
+    margin-top:0px;
+  font-size: 2rem;
+  font-weight:bold;
+  color :black !important;
+}
+</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
 
 {% block body %}
 
 <div class="content-wrapper">
-<div class="container-fluid">
-  <div class="well text-center">
-    <h2 style="color:#008080; font-size:38px; box-shadow: 0 0 20px">REALTIME MONITORING OF WORKFORCE</h2>
+<div class="container-fluid" style="padding:0px;">
+  <div class="wellif text-center">
+    <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid">
@@ -46,18 +129,18 @@
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-      <span class="brand-text font-weight-light">IT Admin Home Page</span>
+      <span class="navbarheading">IT Admin Home Page</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="border-bottom:1px solid white;">
         <div class="image">
           <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Hello... IT Admin </a>
+          <p class="navbarstyle">Hello... IT Admin </p>
         </div>
       </div>
 
@@ -67,9 +150,9 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+            <a href="{{url_for('itadminhome')}}" class="nav-link active">
+             <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
+              <p class="navbarstyle">
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -78,11 +161,11 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{url_for('itadminhome')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Camera</p>
+                  <i class="fa fa-plus navbarstyle"></i>&nbsp;
+                   <p class="navbarstyle">Add Camera</p>
                 </a>
               </li>
-<!--              <li class="nav-item">-->
+<!--              <li class="nav-item">&ndash;&gt;-->
 <!--                <a href="./index2.html" class="nav-link">-->
 <!--                  <i class="far fa-circle nav-icon"></i>-->
 <!--                  <p>View Camera</p>-->
@@ -97,23 +180,21 @@
 </div>
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
-      <div class="col-md-12">
+      <div class="col md-12" style="padding:20px;padding-top:0px;">
+<!--        <h2 style="margin-top:0px;">Camera List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add Camera Data</button></h2>-->
 
-        {%with messages = get_flashed_messages()%}
-
-        {%if messages%}
-
-        {% for message in messages %}
-
-        <div class="alert alert-success alert-dismissable" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label ="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        {{message}}
-        </div>
-        {%endfor%}
-        {%endif%}
-        {%endwith%}
+       {% with messages = get_flashed_messages(with_categories=true) %}
+	 		{%if messages%}
+			{% for category, message in messages %}
+	 		<div class="alert alert-{{ category }}" >
+		  	{{message}}
+		 	<button type="button" class="close" data-dismiss="alert" aria-label ="close">
+			 <span aria-hidden="true">&times;</span>
+		 	</button>
+	 		</div>
+	 		{%endfor%}
+	 		{%endif%}
+			 {%endwith%}
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">

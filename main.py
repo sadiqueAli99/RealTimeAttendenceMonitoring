@@ -29,24 +29,42 @@ def login():
             if bcrypt.hashpw(Password, data[12].encode('utf-8')) == data[12].encode('utf-8'):
                 session['Email'] = request.form['Email']
                 if data[10] == 1:
+                    cur = mysql.connection.cursor()
+                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",
+                                (1, 1, userID))
+                    data = cur.fetchall()
                     cur.close()
                     flash("login success", 'success')
-                    return render_template('/ITAdmin/itadminhome.html',usermaster=data)
+                    return render_template('/ITAdmin/itadmindetails.html', usermaster=data)
                 elif data[10] == 2:
+                    cur = mysql.connection.cursor()
+                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",
+                                (1, 2, userID))
+                    data = cur.fetchall()
                     cur.close()
                     flash("login success", 'success')
                     return render_template('/Admin/admindetails.html', usermaster=data)
                 elif data[10] == 3:
+                    cur = mysql.connection.cursor()
+                    print(userID)
+                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",
+                                (1, 3, userID))
+                    data = cur.fetchall()
                     cur.close()
                     flash("login success", 'success')
-                    return render_template('/Manager/managerdetails.html',usermaster=data)
+                    return render_template('/Manager/managerdetails.html', usermaster=data)
                 else:
+                    cur = mysql.connection.cursor()
+                    print(userID)
+                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",
+                                (1, 4, userID))
+                    data = cur.fetchall()
                     cur.close()
                     flash("login success", 'success')
-                    return render_template('/Employee/emphome.html',usermaster=data)
+                    return render_template('/Employee/emphome.html', usermaster=data)
             else:
                 flash("Invalid Email or Password!!",'danger')
-                return render_template('/CommonPage/login.html',usermaster=data)
+                return render_template('/CommonPage/login.html')
         else:
             cur.close()
             flash("login failed",'danger')
@@ -79,7 +97,6 @@ def reset(token):
     if 'login' in session:
         return redirect('/')
     if request.method == 'POST':
-        # Password = request.form['Password'].encode('utf-8')
         Password = request.form['Password'].encode('utf-8')
         Con_Password = request.form['Con_Password'].encode('utf-8')
         hash_Password = bcrypt.hashpw(Password, bcrypt.gensalt())
@@ -119,14 +136,13 @@ def Index():
     cur.close()
     return render_template('/Admin/adminhome.html', usermaster=data, userrolemaster=Userrolemaster)
 
-@app.route('/mydetails2')
-def mydetails2():
+@app.route('/leavestatus')
+def leavestatus():
     cur = mysql.connection.cursor()
-    print(userID)
-    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,2,userID))
+    cur.execute("SELECT leaves.leaveId , usermaster.Name, leaves.LeaveRequestDate , leaves.FromDate , leaves.ToDate , leaves.NumberofDays , leaves.Reason , leaves.LeaveApprovalStatus FROM leaves INNER JOIN usermaster ON leaves.EmployeeId = usermaster.EmployeeID")
     data = cur.fetchall()
     cur.close()
-    return render_template('/Admin/admindetails.html', usermaster=data)
+    return render_template('/Admin/leavestatus.html', leaves=data)
 
 @app.route('/home1')
 def home1():
@@ -228,7 +244,6 @@ def holidayinsert():
         mysql.connection.commit()
     return redirect(url_for('holiday'))
 
-
 @app.route('/holidayupdate', methods=['POST', 'GET'])
 def holidayupdate():
     if request.method == 'POST':
@@ -260,16 +275,6 @@ def employeedetails():
     data = cur.fetchall()
     cur.close()
     return render_template('/Manager/mgrhome.html', usermaster=data)
-
-@app.route('/mydetails3')
-def mydetails3():
-    cur = mysql.connection.cursor()
-    print(userID)
-    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,3,userID))
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Manager/managerdetails.html', usermaster=data)
-
 
 @app.route('/pendingleave')
 def pendingleave():
@@ -317,14 +322,14 @@ def home2():
 
     # EMPLOYEE HOME PAGE
 
-@app.route('/mydetails4')
-def mydetails4():
-    cur = mysql.connection.cursor()
-    print(userID)
-    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,4,userID))
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Employee/emphome.html', usermaster=data)
+# @app.route('/mydetails')
+# def mydetails():
+#     cur = mysql.connection.cursor()
+#     print(userID)
+#     cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,4,userID))
+#     data = cur.fetchall()
+#     cur.close()
+#     return render_template('/Employee/emphome.html', usermaster=data)
 
 @app.route('/leave')
 def leave():
@@ -364,17 +369,6 @@ def itadminhome():
     data = cur.fetchall()
     cur.close()
     return render_template('/ITAdmin/itadminhome.html', camra=data)
-
-
-@app.route('/mydetails1')
-def mydetails1():
-    cur = mysql.connection.cursor()
-    print(userID)
-    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,1,userID))
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/ITAdmin/itadmindetails.html', usermaster=data)
-
 
 @app.route('/Camerainsert', methods=['POST'])
 def Camerainsert():

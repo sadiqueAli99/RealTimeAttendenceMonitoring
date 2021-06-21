@@ -17,7 +17,6 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -165,7 +164,7 @@ tr td:first-child:before
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active ">
+            <a href="#" class="nav-link active">
               <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
               <p class="navbarstyle">
                 Dashboard
@@ -180,7 +179,7 @@ tr td:first-child:before
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url_for('holiday')}}" class="nav-link active">
+                <a href="{{url_for('holiday')}}" class="nav-link">
                   <i class="fa fa-plus navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">Add Holiday</p>
                 </a>
@@ -198,7 +197,7 @@ tr td:first-child:before
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url_for('leavestatus')}}" class="nav-link">
+                <a href="{{url_for('leavestatus')}}" class="nav-link active">
                    <i class="fa fa-info navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">Leave Status</p>
                 </a>
@@ -210,10 +209,10 @@ tr td:first-child:before
     </div>
   </aside>
   </div>
-  <!-- Content Wrapper. Contains page content -->
+     <!-- Content Wrapper. Contains page content -->
     <div class="row">
       <div class="col md-12" style="padding:20px;padding-top:0px;">
-<!--        <h2 style="margin-top:0px;">Holiday List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>-->
+<!--        <h3 style="margin-top:0px;">APPLIED LEAVES<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;New Leave Request</button></h3>-->
 
         {% with messages = get_flashed_messages(with_categories=true) %}
 	 		{%if messages%}
@@ -227,129 +226,149 @@ tr td:first-child:before
 	 		{%endfor%}
 	 		{%endif%}
 			 {%endwith%}
-         <div class="card">
+        <div class="card">
               <div class="card-header">
-                <h2 class="cardtitle">HOLIDAY LIST<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>
+                 <h3 class="cardtitle">APPLIED LEAVES<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;New Leave Request</button></h3>
               </div>
          <div class="card-body">
            <table id="example1" class="table table-bordered table-striped">
-             <tr class="tablerow">
-            <th>Sl. No.</th>
-            <th>HOLIDAY ID</th>
-            <th>DATE</th>
-            <th>YEAR</th>
-            <th>EVENT NAME</th>
-            <th>ACTION</th>
-          </tr>
-          {% for row in holidaycalendermaster %}
-          <tr>
-            <td></td>
-            <td>{{row.0}}</td>
-            <td>{{row.1}}</td>
-            <td>{{row.2}}</td>
-            <td>{{row.3}}</td>
-            <td >
-              <a href="/update/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#007bff;"></i></a>
-              <a href="/delete/{{ row.0 }}" class="btn btn-xs" onclick="return confirm('Are You Sure For Delete?')"><i class="fa fa-trash" style="color:red;"></i></a>
-            </td >
-          </tr>
-          <!--Modal Edit Event-->
-          <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Update Holiday</h4>
-                  <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <form action="{{url_for('holidayupdate')}}" method="POST" onclick="return validateform()">
-                    <div class="form-group">
-                      <label>DATE:</label>
-                      <input type="hidden" name="HolidayId" value="{{row.0}}">
-                      <input type="date" class="form-control" name="Date" required="" value="{{row.1}}">
-                    </div>
-                    <div class="form-group">
-                      <label>YEAR:</label>
-                      <input type="number" class="form-control" name="Year" required="" value="{{row.2}}">
-                    </div>
-                    <div class="form-group">
-                      <label>EVENT NAME:</label>
-                      <input type="text" class="form-control" name="EventName" id="ename" required="" value="{{row.3}}">
-                       <span id="enames" class="text-danger font-weight-bold"></span>
-                    </div>
-                    <div class="form-group">
-                      <button class="btn btnadd" type="submit">Update Holiday</button>
-                      <button type="button" class="btn btncancel" data-dismiss="modal">Cancel</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% endfor%}
+          <tr class="tablerow">
+                <th>Sl. No.</th>
+                <th>NAME</th>
+                <th>LEAVE REQUEST DATE</th>
+                <th>START DATE</th>
+                <th>END DATE</th>
+                <th>NO. OF DAYS</th>
+                <th>REASON</th>
+                <th>STATUS</th>
+            </tr>
+            {% for row in leaves %}
+            <tr>
+                <td></td>
+                <td>{{row.1}}</td>
+                <td>{{row.2}}</td>
+                <td>{{row.3}}</td>
+                <td>{{row.4}}</td>
+                <td>{{row.5}}</td>
+                <td>{{row.6}}</td>
+                  <td>
+                      {% if (row.7) == 1: %}
+                      <label><i class="fa fa-check-circle" style="color:green;"></i></label>
+
+                      {% elif (row.7) == 2: %}
+                      <label><i class="fa fa-times-circle" style="color:red;"></i></label>
+                      {% else %}
+
+                      <label><i class="fa fa-hourglass-half" style="color:orange;"></i></label>
+
+                      {% endif %}
+                  </td>
+            </tr>
+            {% endfor %}
         </table>
          </div>
-         </div>
+        </div>
       </div>
     </div>
   </div>
-{% include "/include/footer.html" %}
+    {% include "/include/footer.html" %}
 </div>
 {% endblock %}
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
 
-<script>
-function validateform()
-{
- var Name= document.getElementById('Name').value;
- var letters = /^[A-Za-z]+$/;
- if(Name == "")
-  {
-		document.getElementById('Names').innerHTML =" ** Please fill the username field";
-		return false;
-  }
-  if((Name.length <= 2) || (Name.length > 20))
-  {
-		document.getElementById('Names').innerHTML =" ** Username length must be between 2 and 20";
-		return false;
-  }
-  if(!letters.test(Name))
-  {
-		document.getElementById('Names').innerHTML =" ** only characters are allowed";
-		return false;
-  }
-}
-</script>
+<link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"
+        type="text/css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script language="javascript">
+        $(document).ready(function () {
+            $("#FromDate").datepicker({
+                dateFormat: "dd-m-yy",
+                minDate: 0,
+                onClose: function (selectedDate, instance) {
+            if (selectedDate != '') {
+                $("#ToDate").datepicker("option", "minDate", selectedDate);
+                var date = $.datepicker.parseDate(instance.settings.dateFormat, selectedDate, instance.settings);
+                date.setMonth(date.getMonth() + 2);
+                console.log(selectedDate, date);
+                $("#ToDate").datepicker("option", "minDate", selectedDate);
+                $("#ToDate").datepicker("option", "maxDate", date);
+            }
+        }
+            });
+            $("#ToDate").datepicker({
+                dateFormat: "dd-m-yy",
+                minDate: 0,
+                 onClose: function (selectedDate) {
+            $("#FromDate").datepicker("option", "maxDate", selectedDate);
+            }
+
+            });
+        });
+
+        function validateform()
+        {
+            var reason= document.getElementById('reason').value;
+            var letters = /^[A-Za-z]+$/;
+            if(reason == "")
+            {
+                document.getElementById('reasons').innerHTML =" ** Please fill the username field";
+                return false;
+            }
+            if((reason.length <= 3) || (reason.length > 20))
+            {
+                document.getElementById('reasons').innerHTML =" ** Username length must be between 3 and 20";
+                return false;
+            }
+             if(!letters.test(reason))
+             {
+                document.getElementById('reasons').innerHTML =" ** only characters are allowed";
+                return false;
+             }
+        }
+   </script>
 </body>
 </html>
 <!--Modal-->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog" >
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" >
       <div class="modal-header">
-        <h4 class="modal-title">Please Insert Data</h4>
-        <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title" >Please Insert Data</h4>
+          <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form action="{{url_for('holidayinsert')}}" method="POST"  onsubmit="return validateform()">
-          <div class="form-group">
-            <label>DATE:</label>
-            <input type="date" class="form-control" name="Date" required="">
+        <form action="{{url_for('leaveinsert')}}" method="POST" onclick="return validateform()">
+<!--          <div class="form-group">-->
+<!--            <label>Employee Id:</label>-->
+<!--            <input type="number" class="form-control" name="EmployeeId" required="1">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label>Leave Request Date:</label>-->
+<!--            <input type="text" class="form-control" name="LeaveRequestDate" required="1">-->
+<!--          </div>-->
+             <div class="form-group">
+            <label>START DATE:</label>
+            <input type="text" class="form-control" name="FromDate" id="FromDate" required="">
+          </div>
+             <div class="form-group">
+            <label>END DATE:</label>
+            <input type="text" class="form-control" name="ToDate" id="ToDate" required="">
+          </div>
+             <div class="form-group">
+            <label>NUMBER OF DAYS:</label>
+            <input type="number" class="form-control" name="NumberofDays" required="">
+          </div>
+             <div class="form-group">
+            <label>REASON:</label>
+            <input type="text" class="form-control" name="Reason" id="reason" required="">
+                 <span id="reasons" class="text-danger font-weight-bold"></span>
           </div>
           <div class="form-group">
-            <label>YEAR:</label>
-            <input type="number" class="form-control" name="Year" required="">
-          </div>
-           <div class="form-group">
-            <label>EVENT NAME:</label>
-            <input type="text" class="form-control" name="EventName" id="Name" required="">
-             <span id="Names" class="text-danger font-weight-bold" ></span>
-          </div>
-          <div class="form-group">
-            <button class="btn btnadd" name="submit" value="submit" type="submit">Insert Holiday</button>
-            <button class="btn  btncancel" type="reset" value="reset" data-dismiss="modal">Cancel</button>
+             <button class="btn btnadd" name="submit" value="submit" type="submit">Apply Leave</button>
+              <button class="btn  btncancel" type="reset" value="reset" data-dismiss="modal">Cancel</button>
           </div>
         </form>
       </div>
