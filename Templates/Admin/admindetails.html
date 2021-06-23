@@ -180,7 +180,7 @@ tr td:first-child:before
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url_for('holiday')}}" class="nav-link active">
+                <a href="{{url_for('holiday')}}" class="nav-link">
                   <i class="fa fa-plus navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">Add Holiday</p>
                 </a>
@@ -213,9 +213,9 @@ tr td:first-child:before
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
       <div class="col md-12" style="padding:20px;padding-top:0px;">
-<!--        <h2 style="margin-top:0px;">Holiday List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>-->
+<!--        <h2 style="margin-top:0px;">EMPLOYEE LIST<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp;Add Employee Data</button></h2>-->
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
+       {% with messages = get_flashed_messages(with_categories=true) %}
 	 		{%if messages%}
 			{% for category, message in messages %}
 	 		<div class="alert alert-{{ category }}" >
@@ -227,132 +227,67 @@ tr td:first-child:before
 	 		{%endfor%}
 	 		{%endif%}
 			 {%endwith%}
-         <div class="card">
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+               <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
               <div class="card-header">
-                <h2 class="cardtitle">HOLIDAY LIST<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>  &nbsp;Add Holiday</button></h2>
+                <i class="fa fa-user" aria-hidden="true" style="font-size:18px; padding:7px;">MY PROFILE</i>
+
               </div>
-         <div class="card-body">
-           <table id="example1" class="table table-bordered table-striped">
-             <tr class="tablerow">
-            <th>Sl. No.</th>
-            <th>HOLIDAY ID</th>
-            <th>DATE</th>
-            <th>YEAR</th>
-            <th>EVENT NAME</th>
-            <th>ACTION</th>
-          </tr>
-          {% for row in holidaycalendermaster %}
-          <tr>
-            <td></td>
-            <td>{{row.0}}</td>
-            <td>{{row.1}}</td>
-            <td>{{row.2}}</td>
-            <td>{{row.3}}</td>
-            <td >
-              <a href="/update/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#007bff;"></i></a>
-              <a href="/delete/{{ row.0 }}" class="btn btn-xs" onclick="return confirm('Are You Sure For Delete?')"><i class="fa fa-trash" style="color:red;"></i></a>
-            </td >
-          </tr>
-          <!--Modal Edit Event-->
-          <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Update Holiday</h4>
-                  <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
+               <!-- /.card-header -->
+              <div class="card-body">
+                <!-- /.row -->
+                {% for row in usermaster %}
+                <div class="form-group col-md-3">
+                  <label >Name</label>
+                  <input type="text" class="form-control" value="{{row.1}}" readonly>
                 </div>
-                <div class="modal-body">
-                  <form action="{{url_for('holidayupdate')}}" method="POST" onclick="return validateform()">
-                    <div class="form-group">
-                      <label>DATE:</label>
-                      <input type="hidden" name="HolidayId" value="{{row.0}}">
-                      <input type="date" class="form-control" name="Date" required="" value="{{row.1}}">
-                    </div>
-                    <div class="form-group">
-                      <label>YEAR:</label>
-                      <input type="number" class="form-control" name="Year" required="" value="{{row.2}}">
-                    </div>
-                    <div class="form-group">
-                      <label>EVENT NAME:</label>
-                      <input type="text" class="form-control" name="EventName" id="ename" required="" value="{{row.3}}">
-                       <span id="enames" class="text-danger font-weight-bold"></span>
-                    </div>
-                    <div class="form-group">
-                      <button class="btn btnadd" type="submit">Update Holiday</button>
-                      <button type="button" class="btn btncancel" data-dismiss="modal">Cancel</button>
-                    </div>
-                  </form>
+                <div class="form-group col-md-3">
+                  <label>Designation</label>
+                  <input type="text" class="form-control" value="{{row.2}}" readonly>
                 </div>
-              </div>
-            </div>
+                <div class="form-group col-md-3">
+                  <label>Department</label>
+                  <input type="text" class="form-control" value="{{row.3}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>ManagerId</label>
+                  <input type="number" class="form-control" value="{{row.4}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>City</label>
+                  <input type="text" class="form-control" value="{{row.5}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Email</label>
+                  <input type="email" class="form-control" value="{{row.6}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Mobile</label>
+                  <input type="number" class="form-control" value="{{row.7}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Address</label>
+                  <input type="text" class="form-control" value="{{row.8}}" readonly>
+                </div>
+                {% endfor  %}
+            <!-- /.row -->
           </div>
-          {% endfor%}
-        </table>
-         </div>
-         </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </section>
       </div>
     </div>
   </div>
-{% include "/include/footer.html" %}
+  {% include "/include/footer.html" %}
 </div>
-{% endblock %}
 
+{% endblock %}
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
 
-<script>
-function validateform()
-{
- var Name= document.getElementById('Name').value;
- var letters = /^[A-Za-z]+$/;
- if(Name == "")
-  {
-		document.getElementById('Names').innerHTML =" ** Please fill the username field";
-		return false;
-  }
-  if((Name.length <= 2) || (Name.length > 20))
-  {
-		document.getElementById('Names').innerHTML =" ** Username length must be between 2 and 20";
-		return false;
-  }
-  if(!letters.test(Name))
-  {
-		document.getElementById('Names').innerHTML =" ** only characters are allowed";
-		return false;
-  }
-}
-</script>
 </body>
 </html>
-<!--Modal-->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Please Insert Data</h4>
-        <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form action="{{url_for('holidayinsert')}}" method="POST"  onsubmit="return validateform()">
-          <div class="form-group">
-            <label>DATE:</label>
-            <input type="date" class="form-control" name="Date" required="">
-          </div>
-          <div class="form-group">
-            <label>YEAR:</label>
-            <input type="number" class="form-control" name="Year" required="">
-          </div>
-           <div class="form-group">
-            <label>EVENT NAME:</label>
-            <input type="text" class="form-control" name="EventName" id="Name" required="">
-             <span id="Names" class="text-danger font-weight-bold" ></span>
-          </div>
-          <div class="form-group">
-            <button class="btn btnadd" name="submit" value="submit" type="submit">Insert Holiday</button>
-            <button class="btn  btncancel" type="reset" value="reset" data-dismiss="modal">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>

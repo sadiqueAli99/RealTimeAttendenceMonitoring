@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manager Home page</title>
+    <title>IT Admin Home page</title>
 </head>
 <style>
 body{
@@ -86,10 +86,6 @@ tr td:first-child:before
   font-weight:bold;
   color :black !important;
 }
-[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
-    background-color: rgba(255,255,255,.9);
-    color: #343a40;
-}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
@@ -102,15 +98,16 @@ tr td:first-child:before
     <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
-  <div class="container-fluid navbar navbar-expand navbar-light">
+  <div class="container-fluid">
   <!-- Navbar -->
+  <nav class=" navbar navbar-expand navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url_for('home2')}}" class="nav-link">Home</a>
+        <a href="{{url_for('home')}}" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -119,19 +116,20 @@ tr td:first-child:before
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"  data-toggle="dropdown"> </a>
-          Logged as Manager
+          Logged as IT Admin
           <div class="dropdown-menu dropdown-menu-right" style="top: 13px;">
             <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
           </div>
         </li>
       </ul>
+  </nav>
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-       <span class="navbarheading">Manager Home Page</span>
+      <span class="navbarheading">IT Admin Home Page</span>
     </a>
 
     <!-- Sidebar -->
@@ -142,7 +140,7 @@ tr td:first-child:before
           <img src="static/dist/img/login.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-           <p class="navbarstyle">Hello... Manager </p>
+          <p class="navbarstyle">Hello... IT Admin </p>
         </div>
       </div>
 
@@ -152,8 +150,8 @@ tr td:first-child:before
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{url_for('home2')}}" class="nav-link active">
-               <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
+            <a href="{{url_for('itadminhome')}}" class="nav-link active">
+             <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
               <p class="navbarstyle">
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
@@ -162,29 +160,17 @@ tr td:first-child:before
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('employeedetails')}}" class="nav-link active">
-                  <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
-                  <p class="navbarstyle">Employee List</p>
+                <a href="{{url_for('itadminhome')}}" class="nav-link">
+                  <i class="fa fa-plus navbarstyle"></i>&nbsp;
+                   <p class="navbarstyle">Add Camera</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{url_for('monthlyattendance')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Monthly Attendance</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url_for('yearlyattendance')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Yearly Attendance</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url_for('pendingleave')}}" class="nav-link">
-                  <i class="fa fa-hourglass-half navbarstyle"></i>
-                  <p class="navbarstyle">Pending Leave Request</p>
-                </a>
-              </li>
+<!--              <li class="nav-item">&ndash;&gt;-->
+<!--                <a href="./index2.html" class="nav-link">-->
+<!--                  <i class="far fa-circle nav-icon"></i>-->
+<!--                  <p>View Camera</p>-->
+<!--                </a>-->
+<!--              </li>-->
             </ul>
           </li>
         </ul>
@@ -194,8 +180,8 @@ tr td:first-child:before
 </div>
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
-      <div class="col md-12"  style="padding:20px;padding-top:0px;">
-<!--        <h3  style="margin-top:0px;">EMPLOYEE LIST</h3>-->
+      <div class="col md-12" style="padding:20px;padding-top:0px;">
+<!--        <h2 style="margin-top:0px;">Camera List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add Camera Data</button></h2>-->
 
        {% with messages = get_flashed_messages(with_categories=true) %}
 	 		{%if messages%}
@@ -209,50 +195,68 @@ tr td:first-child:before
 	 		{%endfor%}
 	 		{%endif%}
 			 {%endwith%}
-         <div class="card">
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+               <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
               <div class="card-header">
-                <h1 class="cardtitle">EMPLOYEE LIST</h1>
+                <i class="fa fa-user" aria-hidden="true" style="font-size:18px; padding:7px;">MY PROFILE</i>
+
               </div>
-         <div class="card-body">
-           <table id="example1" class="table table-bordered table-striped">
-          <tr class="tablerow">
-            <th>Sl.No.</th>
-            <th>EMP. ID</th>
-            <th>NAME</th>
-            <th>DESIGNATION</th>
-            <th>DEPARTMENT</th>
-            <th>MGR. ID</th>
-            <th>CITY</th>
-            <th>EMAIL</th>
-            <th>MOBILE</th>
-            <th>ADDRESS</th>
-<!--            <th>LOGIN NAME</th>-->
-<!--            <th>PASSWORD</th>-->
-          </tr>
-          {% for row in usermaster %}
-          <tr>
-            <td></td>
-            <td>{{row.0}}</td>
-            <td>{{row.1}}</td>
-            <td>{{row.2}}</td>
-            <td>{{row.3}}</td>
-            <td>{{row.4}}</td>
-            <td>{{row.5}}</td>
-            <td>{{row.6}}</td>
-            <td>{{row.7}}</td>
-            <td>{{row.8}}</td>
-<!--            <td>{{row.9}}</td>-->
-<!--            <td>{{row.10}}</td>-->
-          </tr>
-          {% endfor  %}
-        </table>
-         </div>
-         </div>
+               <!-- /.card-header -->
+              <div class="card-body">
+                <!-- /.row -->
+                {% for row in usermaster %}
+                <div class="form-group col-md-3">
+                  <label >Name</label>
+                  <input type="text" class="form-control" value="{{row.1}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Designation</label>
+                  <input type="text" class="form-control" value="{{row.2}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Department</label>
+                  <input type="text" class="form-control" value="{{row.3}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>ManagerId</label>
+                  <input type="number" class="form-control" value="{{row.4}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>City</label>
+                  <input type="text" class="form-control" value="{{row.5}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Email</label>
+                  <input type="email" class="form-control" value="{{row.6}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Mobile</label>
+                  <input type="number" class="form-control" value="{{row.7}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Address</label>
+                  <input type="text" class="form-control" value="{{row.8}}" readonly>
+                </div>
+
+                {% endfor  %}
+            <!-- /.row -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </section>
       </div>
     </div>
   </div>
   {% include "/include/footer.html" %}
 </div>
+
 {% endblock %}
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+
 </body>
 </html>

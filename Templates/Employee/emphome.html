@@ -150,7 +150,7 @@ tr td:first-child:before
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
               <p class="navbarstyle">
                 Dashboard
@@ -160,7 +160,7 @@ tr td:first-child:before
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('mydetails4')}}" class="nav-link">
+                <a href="#" class="nav-link active">
                   <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">My Details</p>
                 </a>
@@ -194,21 +194,18 @@ tr td:first-child:before
     <div class="row">
      <div class="col md-12" style="padding:20px;padding-top:0px;">
 
-        {%with messages = get_flashed_messages()%}
-
-        {%if messages%}
-
-        {% for message in messages %}
-
-        <div class="alert alert-success alert-dismissable" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label ="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        {{message}}
-        </div>
-        {%endfor%}
-        {%endif%}
-        {%endwith%}
+       {% with messages = get_flashed_messages(with_categories=true) %}
+	 		{%if messages%}
+			{% for category, message in messages %}
+	 		<div class="alert alert-{{ category }}" >
+		  	{{message}}
+		 	<button type="button" class="close" data-dismiss="alert" aria-label ="close">
+			 <span aria-hidden="true">&times;</span>
+		 	</button>
+	 		</div>
+	 		{%endfor%}
+	 		{%endif%}
+			 {%endwith%}
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
@@ -261,23 +258,6 @@ tr td:first-child:before
         </div>
       </div>
     </section>
-        <!-- /.card -->
-<!--        <form name="form1">-->
-<!--          {% for row in usermaster %}-->
-<!--         &lt;!&ndash; <div><b class="head">EmployeeId</b>:<b class="info">{{row.0}}</b></div>&ndash;&gt;-->
-<!--          <div><b class="head">Name:</b>:<b class="info">{{row.1}}</b></div>-->
-<!--          <div><b class="head">Designation:</b>:<b class="info">{{row.2}}</b></div>-->
-<!--          <div><b class="head">Department: </b>:<b class="info">{{row.3}}</b></div>-->
-<!--          <div><b class="head">ManagerId: </b>:<b class="info">{{row.4}}</b></div>-->
-<!--          <div><b class="head">City: </b>:<b class="info">{{row.5}}</b></div>-->
-<!--          <div><b class="head">Email: </b>:<b class="info">{{row.6}}</b></div>-->
-<!--          <div><b class="head">Mobile: </b>:<b class="info">{{row.7}}</b></div>-->
-<!--          <div><b class="head">Address: </b>:<b class="info">{{row.8}}</b></div>-->
-<!--        &lt;!&ndash;  <div><b class="head">LoginName: </b>:<b class="info">{{row.9}}</b></div>-->
-<!--          <div><b class="head">Password: </b>:<b class="info">{{row.10}}</b></div>&ndash;&gt;-->
-
-<!--          {% endfor  %}-->
-<!--        </form>-->
       </div>
     </div>
   </div>

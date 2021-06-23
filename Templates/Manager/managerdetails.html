@@ -86,10 +86,6 @@ tr td:first-child:before
   font-weight:bold;
   color :black !important;
 }
-[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
-    background-color: rgba(255,255,255,.9);
-    color: #343a40;
-}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 {% include "/include/header.html" %}
@@ -162,7 +158,7 @@ tr td:first-child:before
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('employeedetails')}}" class="nav-link active">
+                <a href="{{url_for('employeedetails')}}" class="nav-link ">
                   <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">Employee List</p>
                 </a>
@@ -209,50 +205,68 @@ tr td:first-child:before
 	 		{%endfor%}
 	 		{%endif%}
 			 {%endwith%}
-         <div class="card">
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+               <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
               <div class="card-header">
-                <h1 class="cardtitle">EMPLOYEE LIST</h1>
+                <i class="fa fa-user" aria-hidden="true" style="font-size:18px; padding:7px;">MY PROFILE</i>
+
               </div>
-         <div class="card-body">
-           <table id="example1" class="table table-bordered table-striped">
-          <tr class="tablerow">
-            <th>Sl.No.</th>
-            <th>EMP. ID</th>
-            <th>NAME</th>
-            <th>DESIGNATION</th>
-            <th>DEPARTMENT</th>
-            <th>MGR. ID</th>
-            <th>CITY</th>
-            <th>EMAIL</th>
-            <th>MOBILE</th>
-            <th>ADDRESS</th>
-<!--            <th>LOGIN NAME</th>-->
-<!--            <th>PASSWORD</th>-->
-          </tr>
-          {% for row in usermaster %}
-          <tr>
-            <td></td>
-            <td>{{row.0}}</td>
-            <td>{{row.1}}</td>
-            <td>{{row.2}}</td>
-            <td>{{row.3}}</td>
-            <td>{{row.4}}</td>
-            <td>{{row.5}}</td>
-            <td>{{row.6}}</td>
-            <td>{{row.7}}</td>
-            <td>{{row.8}}</td>
-<!--            <td>{{row.9}}</td>-->
-<!--            <td>{{row.10}}</td>-->
-          </tr>
-          {% endfor  %}
-        </table>
-         </div>
-         </div>
+               <!-- /.card-header -->
+              <div class="card-body">
+                <!-- /.row -->
+                {% for row in usermaster %}
+                <div class="form-group col-md-3">
+                  <label >Name</label>
+                  <input type="text" class="form-control" value="{{row.1}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Designation</label>
+                  <input type="text" class="form-control" value="{{row.2}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Department</label>
+                  <input type="text" class="form-control" value="{{row.3}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>ManagerId</label>
+                  <input type="number" class="form-control" value="{{row.4}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>City</label>
+                  <input type="text" class="form-control" value="{{row.5}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Email</label>
+                  <input type="email" class="form-control" value="{{row.6}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Mobile</label>
+                  <input type="number" class="form-control" value="{{row.7}}" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Address</label>
+                  <input type="text" class="form-control" value="{{row.8}}" readonly>
+                </div>
+
+                {% endfor  %}
+            <!-- /.row -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </section>
       </div>
     </div>
   </div>
   {% include "/include/footer.html" %}
 </div>
+
 {% endblock %}
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+
 </body>
 </html>

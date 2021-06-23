@@ -150,7 +150,7 @@ tr td:first-child:before
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{url_for('itadminhome')}}" class="nav-link">
+            <a href="{{url_for('itadminhome')}}" class="nav-link active">
              <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
               <p class="navbarstyle">
                 Dashboard
@@ -160,7 +160,7 @@ tr td:first-child:before
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url_for('itadminhome')}}" class="nav-link">
+                <a href="{{url_for('itadminhome')}}" class="nav-link active">
                   <i class="fa fa-plus navbarstyle"></i>&nbsp;
                    <p class="navbarstyle">Add Camera</p>
                 </a>
@@ -183,21 +183,18 @@ tr td:first-child:before
       <div class="col md-12" style="padding:20px;padding-top:0px;">
 <!--        <h2 style="margin-top:0px;">Camera List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add Camera Data</button></h2>-->
 
-        {%with messages = get_flashed_messages()%}
-
-        {%if messages%}
-
-        {% for message in messages %}
-
-        <div class="alert alert-success alert-dismissable" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label ="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        {{message}}
-        </div>
-        {%endfor%}
-        {%endif%}
-        {%endwith%}
+       {% with messages = get_flashed_messages(with_categories=true) %}
+	 		{%if messages%}
+			{% for category, message in messages %}
+	 		<div class="alert alert-{{ category }}" >
+		  	{{message}}
+		 	<button type="button" class="close" data-dismiss="alert" aria-label ="close">
+			 <span aria-hidden="true">&times;</span>
+		 	</button>
+	 		</div>
+	 		{%endfor%}
+	 		{%endif%}
+			 {%endwith%}
         <div class="card">
               <div class="card-header">
         <h2 class="cardtitle">Camera List<button type="button" class="btn btnadd pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add Camera Data</button></h2>
