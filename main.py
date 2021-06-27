@@ -30,32 +30,27 @@ def login():
                 session['Email'] = request.form['Email']
                 if data[10] == 1:
                     cur = mysql.connection.cursor()
-                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",
-                                (1, 1, userID))
+                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1, 1, userID))
                     data = cur.fetchall()
                     cur.close()
                     flash("login success", 'success')
                     return render_template('/ITAdmin/itadmindetails.html', usermaster=data)
                 elif data[10] == 2:
                     cur = mysql.connection.cursor()
-                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",
-                                (1, 2, userID))
+                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1, 2, userID))
                     data = cur.fetchall()
                     cur.close()
                     flash("login success", 'success')
                     return render_template('/Admin/admindetails.html', usermaster=data)
                 elif data[10] == 3:
                     cur = mysql.connection.cursor()
-                    print(userID)
-                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",
-                                (1, 3, userID))
+                    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1, 3, userID))
                     data = cur.fetchall()
                     cur.close()
                     flash("login success", 'success')
                     return render_template('/Manager/managerdetails.html', usermaster=data)
                 else:
                     cur = mysql.connection.cursor()
-                    print(userID)
                     cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",
                                 (1, 4, userID))
                     data = cur.fetchall()
@@ -146,7 +141,11 @@ def leavestatus():
 
 @app.route('/home1')
 def home1():
-    return render_template('/Admin/adminhome.html')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1, 2, userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Admin/admindetails.html',usermaster=data)
 
 @app.route('/insert', methods=['POST'])
 def insert():
@@ -318,18 +317,13 @@ def yearlyattendance():
 
 @app.route('/home2')
 def home2():
-    return render_template('/Manager/mgrhome.html')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1, 3, userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Manager/managerdetails.html', usermaster=data)
 
     # EMPLOYEE HOME PAGE
-
-# @app.route('/mydetails')
-# def mydetails():
-#     cur = mysql.connection.cursor()
-#     print(userID)
-#     cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1,4,userID))
-#     data = cur.fetchall()
-#     cur.close()
-#     return render_template('/Employee/emphome.html', usermaster=data)
 
 @app.route('/leave')
 def leave():
@@ -359,7 +353,11 @@ def leaveinsert():
 
 @app.route('/home3')
 def home3():
-    return render_template('/Employee/emphome.html')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 4, userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/Employee/emphome.html', usermaster=data)
 
 # IT ADMIN HOME PAGE
 @app.route('/itadminhome')
@@ -409,7 +407,11 @@ def Cameraupdate():
 
 @app.route('/home')
 def home():
-    return render_template('/ITAdmin/itadminhome.html')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s",(1, 1, userID))
+    data = cur.fetchall()
+    cur.close()
+    return render_template('/ITAdmin/itadmindetails.html', usermaster=data)
 
 if __name__ == "__main__":
     app.run(debug=True)
