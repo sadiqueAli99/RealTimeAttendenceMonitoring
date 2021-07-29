@@ -4,94 +4,7 @@
     <meta charset="UTF-8">
     <title>Employee Home page</title>
 </head>
-<style>
- body {
-	font-family: sans-serif;
-}
-
- .wellif {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background: linear-gradient(to top, #ff8008, #ffc837);
-  color:black;
-  font-family:Times,serif;font-family:Times,serif;
-}
-.head{
-font-size:36px;
-}
-.sidebar-primary{
- 	background: linear-gradient(to bottom, #ff8008, #ffc837);
-}
-.navbarstyle{
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-}
-.nav > li > a:hover,
-.nav > li > a:focus {
-  text-decoration: none;
-  color:black!important;
-  background-color:white!important;
-
-}
-
-p:hover {
-color:black!important;
-}
-.btnadd{
-color:white!important;
-font-weight:bold!important;
-background-color: #007bff!important;
-}
-.navbarheading{
-text-align:center;
-font-weight:bold;
-font-size:18px;
-color:white;
-}
-.brand-link
-{
-text-align:center;
-}
-.tablerow{
-color :#1a6b63 !important;
-font-weight:bold;
-}
-.modal-header{
-color:black;
-font-weight:bold;
- background:#FFBE31;
-}
-.modalclose{
-color:black!important;
-font-weight:bold;
- background:#FFBE31;
-}
-.btncancel{
-color:white!important;
-font-weight:bold!important;
-background-color :#F70000!important;
-}
-body
-{
-    counter-reset: Serial;           /* Set the Serial counter to 0 */
-}
-
-tr td:first-child:before
-{
-  counter-increment: Serial;      /* Increment the Serial counter */
-  content:counter(Serial); /* Display the counter */
-}
-.cardtitle{
-    margin-top:0px;
-  font-size: 2rem;
-  font-weight:bold;
-  color :#1a6b63 !important;
-}
-</style>
-<body class="hold-transition sidebar-mini layout-fixed">
-{% include "/include/header.html" %}
+{% include "/Layout/header.html" %}
 
 {% block body %}
 
@@ -100,7 +13,6 @@ tr td:first-child:before
   <div class="wellif text-center">
      <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
-  <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
   <!-- Navbar -->
       <!-- Left navbar links -->
@@ -143,50 +55,7 @@ tr td:first-child:before
           <p  class="navbarstyle">Hello... Employee </p>
         </div>
       </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
-              <p class="navbarstyle">
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
-                  <p class="navbarstyle">My Details</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Attendance </p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Leave History </p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="{{url_for('leave')}}" class="nav-link">
-                   <i class="fa fa-plus navbarstyle"></i>&nbsp;
-                  <p class="navbarstyle">Apply Leave</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+       {% include "/Layout/sidebar.html" %}
     </div>
   </aside>
 </div>
@@ -261,10 +130,7 @@ tr td:first-child:before
       </div>
     </div>
   </div>
-  {% include "/include/footer.html" %}
+  {% include "/Layout/footer.html" %}
 </div>
 {% endblock %}
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
-<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
-</body>
 </html>

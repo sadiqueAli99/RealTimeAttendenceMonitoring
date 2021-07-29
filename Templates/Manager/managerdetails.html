@@ -4,91 +4,7 @@
     <meta charset="UTF-8">
     <title>Manager Home page</title>
 </head>
-<style>
-body{
-font-family:Times, Times New Roman, serif;
-}
- .wellif {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background: linear-gradient(to top, #ff8008, #ffc837);
-  color:black;
-  font-family:New Century Schoolbook, TeX Gyre Schola, serif;
-}
-.head{
-font-size:36px;
-}
-.navbarstyle{
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-}
-.nav > li > a:hover,
-.nav > li > a:focus {
-  text-decoration: none;
-  color:black!important;
-  background-color:white!important;
-
-}
-i:hover {
-color:black!important;
-}
-p:hover {
-color:black!important;
-}
-.btnadd{
-color:black!important;
-font-weight:bold!important;
-background-color: #007bff!important;
-}
-.navbarheading{
-text-align:center;
-font-weight:bold;
-font-size:18px;
-color:white;
-}
-.brand-link
-{
-text-align:center;
-}
-.tablerow{
-color :black!important;
-font-weight:bold;
-}
-.modal-header{
-background-color: #FFBD30!important;
-color:black;
-font-weight:bold;
-}
-.modalclose{
-color:black!important;
-font-weight:bold;
-}
-.btncancel{
-color:white!important;
-font-weight:bold!important;
-background-color :#F70000!important;
-}
-body
-{
-    counter-reset: Serial;           /* Set the Serial counter to 0 */
-}
-
-tr td:first-child:before
-{
-  counter-increment: Serial;      /* Increment the Serial counter */
-  content:counter(Serial); /* Display the counter */
-}
-.cardtitle{
-    margin-top:0px;
-  font-size: 2rem;
-  font-weight:bold;
-  color :black !important;
-}
-</style>
-<body class="hold-transition sidebar-mini layout-fixed">
-{% include "/include/header.html" %}
+{% include "/Layout/header.html" %}
 
 {% block body %}
 
@@ -97,7 +13,6 @@ tr td:first-child:before
   <div class="wellif text-center">
     <h2 class="head">REALTIME MONITORING OF WORKFORCE</h2>
   </div>
-  <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
   <div class="container-fluid navbar navbar-expand navbar-light">
   <!-- Navbar -->
     <!-- Left navbar links -->
@@ -141,58 +56,13 @@ tr td:first-child:before
            <p class="navbarstyle">Hello... Manager </p>
         </div>
       </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="{{url_for('home2')}}" class="nav-link active">
-               <i class="fa fa-tachometer-alt navbarstyle"></i>&nbsp;
-              <p class="navbarstyle">
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url_for('employeedetails')}}" class="nav-link ">
-                  <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
-                  <p class="navbarstyle">Employee List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url_for('monthlyattendance')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Monthly Attendance</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url_for('yearlyattendance')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p class="navbarstyle">Yearly Attendance</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url_for('pendingleave')}}" class="nav-link">
-                  <i class="fa fa-hourglass-half navbarstyle"></i>
-                  <p class="navbarstyle">Pending Leave Request</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+      {% include "/Layout/sidebar.html" %}
     </div>
   </aside>
 </div>
   <!-- Content Wrapper. Contains page content -->
     <div class="row">
       <div class="col md-12"  style="padding:20px;padding-top:0px;">
-<!--        <h3  style="margin-top:0px;">EMPLOYEE LIST</h3>-->
-
        {% with messages = get_flashed_messages(with_categories=true) %}
 	 		{%if messages%}
 			{% for category, message in messages %}
@@ -261,12 +131,8 @@ tr td:first-child:before
       </div>
     </div>
   </div>
-  {% include "/include/footer.html" %}
+  {% include "/Layout/footer.html" %}
 </div>
 
 {% endblock %}
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
-<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
-
-</body>
 </html>

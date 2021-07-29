@@ -25,12 +25,114 @@
   <link rel="stylesheet" href="static/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="static/plugins/summernote/summernote-bs4.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
+<style>
+body{
+font-family:Times, Times New Roman, serif;
+}
+ .wellif {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background: linear-gradient(to top, #ff8008, #ffc837);
+  color:black;
+  font-family:New Century Schoolbook, TeX Gyre Schola, serif;
+}
+.head{
+font-size:36px;
+}
+.navbarstyle{
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  color:black!important;
+  background-color:white!important;
+
+}
+i:hover {
+color:black!important;
+}
+p:hover {
+color:black!important;
+}
+.btnadd{
+color:black!important;
+font-weight:bold!important;
+background-color: #007bff!important;
+}
+.navbarheading{
+text-align:center;
+font-weight:bold;
+font-size:18px;
+color:white;
+}
+.brand-link
+{
+text-align:center;
+}
+.tablerow{
+color :black!important;
+font-weight:bold;
+}
+.modal-header{
+background-color: #FFBD30!important;
+color:black;
+font-weight:bold;
+}
+.modalclose{
+color:black!important;
+font-weight:bold;
+}
+.btncancel{
+color:white!important;
+font-weight:bold!important;
+background-color :#F70000!important;
+}
+body
+{
+    counter-reset: Serial;           /* Set the Serial counter to 0 */
+}
+
+tr td:first-child:before
+{
+  counter-increment: Serial;      /* Increment the Serial counter */
+  content:counter(Serial); /* Display the counter */
+}
+.cardtitle{
+    margin-top:0px;
+  font-size: 2rem;
+  font-weight:bold;
+  color :black !important;
+}
+</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 
+<link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
 
-
-
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -69,9 +171,5 @@
 <script src="static/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="static/dist/js/demo.js"></script>
-
-
-
-
 </body>
 </html>

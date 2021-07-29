@@ -1,17 +1,27 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from flask_mysqldb import MySQL
+from flask_mail import Mail,Message
 import bcrypt
 import datetime
 import uuid
 
 app = Flask(__name__, template_folder="Templates")
 app.secret_key = "many random bytes"
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT']=465
+app.config['MAIL_USERNAME'] = 'shwethanayak661@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Krishna@28'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
 userID = ''
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'ram2'
 app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'ram'
 mysql = MySQL(app)
+mail = Mail(app)
 
 # LOGIN
 @app.route('/', methods=['GET', 'POST'])
@@ -71,7 +81,9 @@ def forgot():
     if 'login' in session:
         return redirect('/')
     if request.method == 'POST':
+        global Email
         Email = request.form['Email']
+        global token
         token = str(uuid.uuid4())
         cur = mysql.connection.cursor()
         res = cur.execute("SELECT * FROM usermaster WHERE Email=%s",[Email])
@@ -81,11 +93,32 @@ def forgot():
             cur.execute("UPDATE usermaster SET token=%s WHERE Email=%s",[token,Email])
             mysql.connection.commit()
             cur.close()
-            flash("Email already sent to your Email",'success')
-            return redirect('/reset')
+            flash("Please Enter Your Email Again ",'success')
+            return render_template('/CommonPage/mail.html', usermaster=data)
         else:
             flash("User not Found",'danger')
     return render_template('/CommonPage/forgot.html')
+
+@app.route('/sendmsg',methods=['POST','GET'])
+def sendmsg():
+    if request.method == 'POST':
+        Email= request.form['Email']
+        #Subject= request.form['Subject']
+        msg = request.form['message']
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM usermaster WHERE Status=1 AND Email=%s", (Email,))
+        data = cur.fetchone()
+        count = cur.rowcount
+        if count > 0:
+            token = data[13]
+            message = Message(subject='RAM New Password Request', sender='shwethanayak661@gmail.com', recipients=[Email])
+            urll='http://127.0.0.1:5000/reset/'
+            message.body = urll+token
+            mail.send(message)
+            success="Message sent"
+            flash('check your mail','success')
+            # return render_template('/CommonPage/reset.html',success=success)
+    return render_template('/CommonPage/mail.html')
 
 @app.route('/reset/<string:token>',methods=['GET','POST'])
 def reset(token):
@@ -124,7 +157,9 @@ def logout():
 @app.route('/adminhome')
 def Index():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT  * FROM usermaster where Status=1 and userrole=4 ")
+    cur.execute("SELECT  * FROM usermaster where Status=1 and userrole=4")
+    data = cur.fetchall()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 2, userID))
     data = cur.fetchall()
     cur.execute("SELECT * FROM userrolemaster order by UserRole ")
     Userrolemaster = cur.fetchall()
@@ -134,10 +169,12 @@ def Index():
 @app.route('/leavestatus')
 def leavestatus():
     cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 2, userID))
+    data1 = cur.fetchall()
     cur.execute("SELECT leaves.leaveId , usermaster.Name, leaves.LeaveRequestDate , leaves.FromDate , leaves.ToDate , leaves.NumberofDays , leaves.Reason , leaves.LeaveApprovalStatus FROM leaves INNER JOIN usermaster ON leaves.EmployeeId = usermaster.EmployeeID")
     data = cur.fetchall()
     cur.close()
-    return render_template('/Admin/leavestatus.html', leaves=data)
+    return render_template('/Admin/leavestatus.html', leaves=data,usermaster=data1)
 
 @app.route('/home1')
 def home1():
@@ -227,8 +264,10 @@ def holiday():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM holidaycalendermaster where Status=1")
     data = cur.fetchall()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 2, userID))
+    data1 = cur.fetchall()
     cur.close()
-    return render_template('/Admin/holiday.html', holidaycalendermaster=data)
+    return render_template('/Admin/holiday.html', holidaycalendermaster=data,usermaster=data1)
 
 @app.route('/holidayinsert', methods=['POST'])
 def holidayinsert():
@@ -272,6 +311,8 @@ def employeedetails():
     cur = mysql.connection.cursor()
     cur.execute("SELECT  * FROM usermaster where Status=1")
     data = cur.fetchall()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 3, userID))
+    data = cur.fetchall()
     cur.close()
     return render_template('/Manager/mgrhome.html', usermaster=data)
 
@@ -280,8 +321,10 @@ def pendingleave():
     cur = mysql.connection.cursor()
     cur.execute("SELECT leaves.leaveId , usermaster.Name, leaves.LeaveRequestDate , leaves.FromDate , leaves.ToDate , leaves.NumberofDays , leaves.Reason , leaves.LeaveApprovalStatus FROM leaves INNER JOIN usermaster ON leaves.EmployeeId = usermaster.EmployeeID WHERE LeaveApprovalStatus=0")
     data = cur.fetchall()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 3, userID))
+    data1 = cur.fetchall()
     cur.close()
-    return render_template('/Manager/pendingleave.html', leaves=data)
+    return render_template('/Manager/pendingleave.html', leaves=data,usermaster=data1)
 
 @app.route('/accept/<string:leaveId>', methods=['GET'])
 def accept(leaveId):
@@ -330,8 +373,10 @@ def leave():
     cur = mysql.connection.cursor()
     cur.execute("SELECT leaves.EmployeeId , usermaster.Name, leaves.LeaveRequestDate , leaves.FromDate , leaves.ToDate , leaves.NumberofDays , leaves.Reason , leaves.LeaveApprovalStatus FROM leaves INNER JOIN usermaster ON leaves.EmployeeId = usermaster.EmployeeID WHERE leaves.EmployeeId=%s",[userID])
     data = cur.fetchall()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 4, userID))
+    data1 = cur.fetchall()
     cur.close()
-    return render_template('/Employee/leave.html', leaves=data)
+    return render_template('/Employee/leave.html', leaves=data,usermaster=data1)
 
 @app.route('/leaveinsert', methods=['POST'])
 def leaveinsert():
@@ -365,13 +410,15 @@ def itadminhome():
     cur = mysql.connection.cursor()
     cur.execute("SELECT  * FROM camra where status=1")
     data = cur.fetchall()
+    cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 1, userID))
+    data1 = cur.fetchall()
     cur.close()
-    return render_template('/ITAdmin/itadminhome.html', camra=data)
+    return render_template('/ITAdmin/itadminhome.html', camra=data,usermaster=data1)
 
 @app.route('/Camerainsert', methods=['POST'])
 def Camerainsert():
     if request.method == 'POST':
-        flash("Data Inserted Successfully",'success')
+        flash("D011ata Inserted Successfully",'success')
         details = request.form
         CameraName = details['CameraName']
         Location = details['Location']

@@ -20,7 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="home">
+      <change afterPath="$PROJECT_DIR$/Templates/CommonPage/mail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Templates/Layout/sidebar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Admin/admindetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/admindetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Admin/adminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/adminhome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Admin/holiday.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/holiday.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Admin/leavestatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/leavestatus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/CommonPage/forgot.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/CommonPage/forgot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/CommonPage/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/CommonPage/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/CommonPage/reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/CommonPage/reset.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Employee/emphome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/emphome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Employee/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/leave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/ITAdmin/itadmindetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/ITAdmin/itadmindetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Include/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Layout/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Include/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Layout/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/managerdetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/managerdetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/monthlyattendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/monthlyattendance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/yearlyattendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/yearlyattendance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,16 +91,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Static/dist/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Templates/Layout" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Templates\Layout" />
       <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Static\dist\js" />
       <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Static\dist\css" />
       <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Static" />
       <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Static\css" />
-      <recent name="C:\Users\sadiq\PycharmProjects\RealTimeAttendenceMonitoring" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Templates\CommonPage" />
+      <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Templates\Include" />
+      <recent name="C:\Users\Admin\PycharmProjects\RealTimeAttendenceMonitoring\Templates" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -251,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624777358729</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="home">
+      <created>1625220818894</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1625220818894</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -297,46 +330,46 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1620650623223" />
-    <state x="363" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1622284209520">
+    <state x="363" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1625311936671">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="363" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1622284209520" />
+    <state x="363" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1625311936671" />
     <state x="550" y="126" key="EnvironmentVariablesDialog" timestamp="1620650552671">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="550" y="126" key="EnvironmentVariablesDialog/0.0.1366.728@0.0.1366.728" timestamp="1620650552671" />
-    <state x="463" y="126" key="FileChooserDialogImpl" timestamp="1621838910991">
+    <state x="463" y="126" key="FileChooserDialogImpl" timestamp="1627288570807">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="126" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621838910991" />
+    <state x="463" y="126" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1627288570807" />
     <state x="407" y="231" key="Github.CreatePullRequestDialog" timestamp="1620649432682">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="407" y="231" key="Github.CreatePullRequestDialog/0.0.1366.728@0.0.1366.728" timestamp="1620649432682" />
-    <state width="1345" height="138" key="GridCell.Tab.0.bottom" timestamp="1625211593172">
+    <state width="1345" height="138" key="GridCell.Tab.0.bottom" timestamp="1627560354117">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="138" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1625211593172" />
-    <state width="1345" height="138" key="GridCell.Tab.0.center" timestamp="1625211593171">
+    <state width="1345" height="138" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627560354117" />
+    <state width="1345" height="138" key="GridCell.Tab.0.center" timestamp="1627560354117">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="138" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1625211593171" />
-    <state width="1345" height="138" key="GridCell.Tab.0.left" timestamp="1625211593171">
+    <state width="1345" height="138" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627560354117" />
+    <state width="1345" height="138" key="GridCell.Tab.0.left" timestamp="1627560354116">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="138" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1625211593171" />
-    <state width="1345" height="138" key="GridCell.Tab.0.right" timestamp="1625211593171">
+    <state width="1345" height="138" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627560354116" />
+    <state width="1345" height="138" key="GridCell.Tab.0.right" timestamp="1627560354117">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="138" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1625211593171" />
-    <state x="184" y="9" key="SettingsEditor" timestamp="1620816976624">
+    <state width="1345" height="138" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627560354117" />
+    <state x="184" y="9" key="SettingsEditor" timestamp="1627288515377">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1620816976624" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1624777387808">
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1627288515377" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1625220849934">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1624777387808" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1625220849934" />
     <state x="434" y="77" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1621598821173">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
