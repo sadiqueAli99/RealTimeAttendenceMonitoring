@@ -111,7 +111,7 @@ def sendmsg():
         count = cur.rowcount
         if count > 0:
             token = data[13]
-            message = Message(subject='RAM New Password Request', sender='shwethanayak661@gmail.com', recipients=[Email])
+            message = Message(subject='Realtime Attendance Monitoring of Workforce New Password Request', sender='shwethanayak661@gmail.com', recipients=[Email])
             urll='http://127.0.0.1:5000/reset/'
             message.body = urll+token
             mail.send(message)
@@ -341,22 +341,6 @@ def reject(leaveId):
     cur.execute("UPDATE leaves SET LeaveApprovalStatus=2  WHERE leaveId =%s", [leaveId])
     mysql.connection.commit()
     return redirect(url_for('pendingleave'))
-
-@app.route('/monthlyattendance')
-def monthlyattendance():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM monthlyattendancedashboard where Status=1 ")
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Manager/monthlyattendance.html', monthlyattendancedashboard=data)
-
-@app.route('/yearlyattendance')
-def yearlyattendance():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM yearlyattendancedashboard where Status=1 ")
-    data = cur.fetchall()
-    cur.close()
-    return render_template('/Manager/yearlyattendance.html', yearlyattendancedashboard=data)
 
 @app.route('/home2')
 def home2():

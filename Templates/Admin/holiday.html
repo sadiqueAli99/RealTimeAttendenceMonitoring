@@ -109,7 +109,7 @@
                   <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <form action="{{url_for('holidayupdate')}}" method="POST" onsubmit="makeSearch()">
+                  <form action="{{url_for('holidayupdate')}}" method="POST" >
                     <div class="form-group">
                       <label>DATE:</label>
                       <input type="hidden" name="HolidayId" value="{{row.0}}">
@@ -125,7 +125,7 @@
                        <span id="enames" class="text-danger font-weight-bold"></span>
                     </div>
                     <div class="form-group">
-                      <button class="btn btnadd" type="submit">Update Holiday</button>
+                      <button class="btn btnadd" type="submit" onsubmit="validatefor()" >Update Holiday</button>
                       <button type="button" class="btn btncancel" data-dismiss="modal">Cancel</button>
                     </div>
                   </form>
@@ -162,6 +162,29 @@ function validateform()
   if(!letters.test(Name))
   {
 		document.getElementById('Names').innerHTML =" ** only characters are allowed";
+		return false;
+  }
+}
+</script>
+<script>
+function validatefor()
+{
+   var ename= document.getElementById('ename').value;
+ var letters = /^[A-Za-z]+$/;
+ if(ename == "")
+  {
+		document.getElementById('enames').innerHTML =" ** Please fill the username field";
+		return false;
+  }
+  if((ename.length <= 2) || (ename.length > 20))
+  {
+		document.getElementById('enames').innerHTML =" ** Username length must be between 2 and 20";
+		return false;
+
+  }
+  if(!letters.test(ename))
+  {
+		document.getElementById('enames').innerHTML =" ** only characters are allowed";
 		return false;
   }
 }

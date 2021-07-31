@@ -19,28 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="home">
-      <change afterPath="$PROJECT_DIR$/Templates/CommonPage/mail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Templates/Layout/sidebar.html" afterDir="false" />
+    <list default="true" id="1d5c5a92-c276-418f-9deb-c6e258504146" name="Default Changelist" comment="sending mail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Admin/admindetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/admindetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Admin/adminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/adminhome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Templates/Admin/holiday.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/holiday.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Admin/leavestatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Admin/leavestatus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/CommonPage/forgot.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/CommonPage/forgot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/CommonPage/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/CommonPage/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/CommonPage/reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/CommonPage/reset.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Employee/emphome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/emphome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Employee/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Employee/leave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/ITAdmin/itadmindetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/ITAdmin/itadmindetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/ITAdmin/itadminhome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Include/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Layout/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Include/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Layout/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Manager/managerdetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/managerdetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/mgrhome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Manager/monthlyattendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/monthlyattendance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/pendingleave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Manager/yearlyattendance.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Manager/yearlyattendance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Layout/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Layout/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Layout/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Layout/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/monthlyattendance.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/Manager/yearlyattendance.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -284,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625220818894</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="sending mail">
+      <created>1627564098505</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1627564098505</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -323,7 +315,8 @@
     <MESSAGE value="reset password" />
     <MESSAGE value="landing page" />
     <MESSAGE value="home" />
-    <option name="LAST_COMMIT_MESSAGE" value="home" />
+    <MESSAGE value="sending mail" />
+    <option name="LAST_COMMIT_MESSAGE" value="sending mail" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620650623223">
@@ -346,30 +339,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="407" y="231" key="Github.CreatePullRequestDialog/0.0.1366.728@0.0.1366.728" timestamp="1620649432682" />
-    <state width="1345" height="138" key="GridCell.Tab.0.bottom" timestamp="1627560354117">
+    <state width="1345" height="138" key="GridCell.Tab.0.bottom" timestamp="1627724311776">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="138" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627560354117" />
-    <state width="1345" height="138" key="GridCell.Tab.0.center" timestamp="1627560354117">
+    <state width="1345" height="138" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627724311776" />
+    <state width="1345" height="138" key="GridCell.Tab.0.center" timestamp="1627724311775">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="138" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627560354117" />
-    <state width="1345" height="138" key="GridCell.Tab.0.left" timestamp="1627560354116">
+    <state width="1345" height="138" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627724311775" />
+    <state width="1345" height="138" key="GridCell.Tab.0.left" timestamp="1627724311775">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="138" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627560354116" />
-    <state width="1345" height="138" key="GridCell.Tab.0.right" timestamp="1627560354117">
+    <state width="1345" height="138" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627724311775" />
+    <state width="1345" height="138" key="GridCell.Tab.0.right" timestamp="1627724311776">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="138" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627560354117" />
+    <state width="1345" height="138" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627724311776" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1627288515377">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1627288515377" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1625220849934">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1627564116658">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1625220849934" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1627564116658" />
     <state x="434" y="77" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1621598821173">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
