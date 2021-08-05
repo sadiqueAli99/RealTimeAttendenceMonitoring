@@ -59,25 +59,37 @@ font-family:Times, Times New Roman, serif;
 }
 .head{
 font-size:36px;
+font-family: 'Charm', cursive;
 }
 .navbarstyle{
   color:white;
   font-weight:bold;
   font-size:15px;
 }
-.nav > li > a:hover,
-.nav > li > a:focus {
-  text-decoration: none;
-  color:black!important;
-  background-color:white!important;
+<!--.nav > li > a:hover,-->
+<!--.nav > li > a:focus {-->
+<!--  text-decoration: none;-->
+<!--  color:black!important;-->
+<!--  background-color:white!important;-->
 
+<!--}-->
+<!--i:hover {-->
+<!--color:black!important;-->
+<!--}-->
+<!--p:hover {-->
+<!--color:black!important;-->
+<!--}-->
+#sidebar ul li a:hover {
+
+    background: #007BFF;
 }
-i:hover {
-color:black!important;
+li a .active1:hover {
+
+    background: #007BFF;
 }
-p:hover {
-color:black!important;
-}
+
+
+
 .btnadd{
 color:black!important;
 font-weight:bold!important;
@@ -116,7 +128,7 @@ body
     counter-reset: Serial;           /* Set the Serial counter to 0 */
 }
 
-tr td:first-child:before
+#example1 tr td:first-child:before
 {
   counter-increment: Serial;      /* Increment the Serial counter */
   content:counter(Serial); /* Display the counter */

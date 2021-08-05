@@ -115,9 +115,7 @@ def sendmsg():
             urll='http://127.0.0.1:5000/reset/'
             message.body = urll+token
             mail.send(message)
-            success="Message sent"
             flash('check your mail','success')
-            # return render_template('/CommonPage/reset.html',success=success)
     return render_template('/CommonPage/mail.html')
 
 @app.route('/reset/<string:token>',methods=['GET','POST'])
@@ -157,14 +155,16 @@ def logout():
 @app.route('/adminhome')
 def Index():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT  * FROM usermaster where Status=1 and userrole=4")
-    data = cur.fetchall()
+    #list of Employees to show in Employee table
     cur.execute("SELECT * FROM usermaster WHERE Status=%s AND UserRole=%s AND EmployeeID=%s", (1, 2, userID))
     data = cur.fetchall()
+    cur.execute("SELECT * FROM usermaster WHERE Status=1")
+    empdata = cur.fetchall()
+    #the below user role list is for Role dropdown in Add User dialog
     cur.execute("SELECT * FROM userrolemaster order by UserRole ")
     Userrolemaster = cur.fetchall()
     cur.close()
-    return render_template('/Admin/adminhome.html', usermaster=data, userrolemaster=Userrolemaster)
+    return render_template('/Admin/adminhome.html', usermaster=data, userrolemaster=Userrolemaster,empdata=empdata)
 
 @app.route('/leavestatus')
 def leavestatus():
@@ -289,9 +289,8 @@ def holidayupdate():
         HolidayId=details['HolidayId']
         EventName = details['EventName']
         Date = details['Date']
-        Year = details['Year']
         cur = mysql.connection.cursor()
-        cur.execute("UPDATE holidaycalendermaster SET EventName=%s,Date=%s, Year=%s WHERE HolidayId=%s", [EventName, Date, Year,HolidayId])
+        cur.execute("UPDATE holidaycalendermaster SET EventName=%s,Date=%s WHERE HolidayId=%s", [EventName, Date,HolidayId])
         flash("Holiday Updated",'success')
         mysql.connection.commit()
     return redirect(url_for('holiday'))

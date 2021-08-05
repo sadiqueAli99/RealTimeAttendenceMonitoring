@@ -12,8 +12,9 @@
               </p>
             </a>
             {% for row in usermaster %}
+
             <ul class="nav nav-treeview">
-              {% if(row.10 == 1) or (row.10 == 2): %}
+              {% if(row.10 == 1) or (row.10 == 2): %}  <!--Admin and IT Admin can see -->
               <li class="nav-item">
                 <a href="{{url_for('itadminhome')}}" class="nav-link">
                   <i class="fa fa-plus navbarstyle"></i>&nbsp;
@@ -21,19 +22,23 @@
                 </a>
               </li>
               {% endif %}
-              {% if(row.10 == 2): %}
+              {% if(row.10 == 2) : %} <!--Admin  can see -->
                 <li class="nav-item">
                 <a href="{{url_for('Index')}}" class="nav-link">
                   <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">Employee Details</p>
                 </a>
               </li>
+              {% endif %}
+              {% if(row.10 == 2): %} <!--Admin  can see -->
               <li class="nav-item">
                 <a href="{{url_for('holiday')}}" class="nav-link">
                   <i class="fa fa-plus navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">Add Holiday</p>
                 </a>
               </li>
+                {% endif %}
+              {% if(row.10 == 2): %} <!--Admin can see -->
               <li class="nav-item">
                 <a href="{{url_for('leavestatus')}}" class="nav-link">
                    <i class="fa fa-info navbarstyle"></i>&nbsp;
@@ -41,13 +46,15 @@
                 </a>
               </li>
               {% endif %}
-                {% if(row.10 == 3) or (row.10 == 2): %}
+                {% if(row.10 == 3)%}  <!--Manager can see -->
               <li class="nav-item">
                 <a href="{{url_for('employeedetails')}}" class="nav-link ">
                   <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">Employee List</p>
                 </a>
               </li>
+               {% endif %}
+              {% if(row.10 == 3): %} <!--Admin  can see -->
               <li class="nav-item">
                 <a href="{{url_for('pendingleave')}}" class="nav-link">
                   <i class="fa fa-hourglass-half navbarstyle"></i>
@@ -55,25 +62,31 @@
                 </a>
               </li>
                 {% endif %}
-                 {% if(row.10 == 4) or (row.10 == 2): %}
+                 {% if(row.10 == 4): %} <!--Employee can see -->
               <li class="nav-item">
                 <a href="{{url_for('home3')}}" class="nav-link ">
                   <i class="fa fa-info-circle navbarstyle"></i>&nbsp;
                   <p class="navbarstyle">My Details</p>
                 </a>
               </li>
+               {% endif %}
+                 {% if(row.10 == 4): %}  <!--Employee can see -->
               <li class="nav-item">
                 <a href="./index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p class="navbarstyle">Attendance </p>
                 </a>
               </li>
+              {% endif %}
+                {% if(row.10 == 4):%}  <!--Employee can see -->
                <li class="nav-item">
                 <a href="./index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p class="navbarstyle">Leave History </p>
                 </a>
               </li>
+               {% endif %}
+               {% if(row.10 == 4):%} <!--Employee can see -->
                <li class="nav-item">
                 <a href="{{url_for('leave')}}" class="nav-link">
                    <i class="fa fa-plus navbarstyle"></i>&nbsp;
@@ -82,7 +95,7 @@
               </li>
                 {% endif %}
             </ul>
-             {% endfor %}
+            {% endfor %}
           </li>
         </ul>
       </nav>

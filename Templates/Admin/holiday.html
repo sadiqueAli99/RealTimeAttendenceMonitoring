@@ -84,7 +84,6 @@
             <th>Sl. No.</th>
             <th>HOLIDAY ID</th>
             <th>DATE</th>
-            <th>YEAR</th>
             <th>EVENT NAME</th>
             <th>ACTION</th>
           </tr>
@@ -93,11 +92,10 @@
             <td></td>
             <td>{{row.0}}</td>
             <td>{{row.1}}</td>
-            <td>{{row.2}}</td>
             <td>{{row.3}}</td>
             <td >
-              <a href="/update/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#007bff;"></i></a>
-              <a href="/delete/{{ row.0 }}" class="btn btn-xs" onclick="return confirm('Are You Sure For Delete?')"><i class="fa fa-trash" style="color:red;"></i></a>
+              <a href="/holidayupdate/{{row.0}}" class="btn  btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}"><i class="fa fa-edit" style="color:#007bff;"></i></a>
+              <a href="/holidaydelete/{{row.0}}" class="btn btn-xs" onclick="return confirm('Are You Sure For Delete?')"><i class="fa fa-trash" style="color:red;"></i></a>
             </td >
           </tr>
           <!--Modal Edit Event-->
@@ -109,23 +107,23 @@
                   <button type="button" class="close modalclose" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  <form action="{{url_for('holidayupdate')}}" method="POST" >
+                  <form action="{{url_for('holidayupdate')}}" method="POST"  onsubmit="validatefor({{row.0}})">
                     <div class="form-group">
                       <label>DATE:</label>
                       <input type="hidden" name="HolidayId" value="{{row.0}}">
-                      <input type="date" class="form-control" name="Date" required="" value="{{row.1}}">
+                      <input type="date" class="form-control" name="Date" required value="{{row.1}}">
                     </div>
                     <div class="form-group">
                       <label>YEAR:</label>
-                      <input type="number" class="form-control" name="Year" required="" value="{{row.2}}">
+                      <input type="number" class="form-control" name="Year" required value="{{row.2}}">
                     </div>
                     <div class="form-group">
                       <label>EVENT NAME:</label>
-                      <input type="text" class="form-control" name="EventName" id="ename" required="" value="{{row.3}}">
+                      <input type="text" class="form-control" name="EventName" id="ename{{row.0}}" required value="{{row.3}}">
                        <span id="enames" class="text-danger font-weight-bold"></span>
                     </div>
                     <div class="form-group">
-                      <button class="btn btnadd" type="submit" onsubmit="validatefor()" >Update Holiday</button>
+                      <button class="btn btnadd" type="submit">Update Holiday</button>
                       <button type="button" class="btn btncancel" data-dismiss="modal">Cancel</button>
                     </div>
                   </form>
@@ -167,10 +165,16 @@ function validateform()
 }
 </script>
 <script>
-function validatefor()
+function validatefor(msg )
 {
-   var ename= document.getElementById('ename').value;
+alert("hello");
+alert(msg);
+var xyz='ename'+msg;
+alert(xyz);
+   var ename= document.getElementById(xyz).value;
+   alert(ename);
  var letters = /^[A-Za-z]+$/;
+ alert(ename.length);
  if(ename == "")
   {
 		document.getElementById('enames').innerHTML =" ** Please fill the username field";
@@ -178,6 +182,7 @@ function validatefor()
   }
   if((ename.length <= 2) || (ename.length > 20))
   {
+  alert(ename)
 		document.getElementById('enames').innerHTML =" ** Username length must be between 2 and 20";
 		return false;
 
